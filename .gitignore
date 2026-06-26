@@ -1,0 +1,13 @@
+# Local source data and generated work folders
+*.xlsx
+*.xls
+*.csv
+outputs/
+work/
+public/
+node_modules/
+node_modules
+package-lock.json
+
+# System files
+.DS_Store
