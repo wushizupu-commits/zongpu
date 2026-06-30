@@ -42,6 +42,7 @@
         repeating-linear-gradient(0deg, rgba(80, 59, 33, .025) 0 1px, transparent 1px 8px),
         linear-gradient(135deg, #f4ead9 0%, var(--bg) 52%, #e8dac4 100%);
       overflow: hidden;
+      overscroll-behavior: none;
     }
 
     .app {
@@ -1134,6 +1135,45 @@
       background: rgba(255, 250, 240, .88);
     }
 
+    .mobile-icon {
+      display: none;
+      width: 19px;
+      height: 19px;
+      color: var(--accent-2);
+      flex: 0 0 auto;
+    }
+
+    .mobile-icon svg,
+    .mobile-icon .toolbar-icon {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      background: none;
+      min-height: 0 !important;
+      cursor: inherit;
+      touch-action: auto;
+      stroke: currentColor;
+      position: static;
+      flex: 0 0 auto;
+    }
+
+    .mobile-icon svg *,
+    .mobile-icon .toolbar-icon * {
+      vector-effect: non-scaling-stroke;
+    }
+
+    .canvas-actions .mobile-icon {
+      color: var(--accent);
+    }
+
+    .canvas-toolbar button[aria-pressed="true"] .mobile-icon {
+      color: var(--accent);
+    }
+
+    .button-label {
+      display: inline-block;
+    }
+
     .sidebar-open {
       position: fixed;
       left: 18px;
@@ -1223,7 +1263,7 @@
       margin: 0;
     }
 
-    svg {
+    #chart {
       width: 100%;
       height: 100vh;
       display: block;
@@ -1238,7 +1278,7 @@
       touch-action: none;
     }
 
-    svg.dragging { cursor: grabbing; }
+    #chart.dragging { cursor: grabbing; }
 
     .link {
       fill: none;
@@ -1538,8 +1578,14 @@
     }
 
     @media (max-width: 760px) {
-      body { overflow: auto; }
-      .app { display: block; }
+      body {
+        overflow: auto;
+        overscroll-behavior-y: auto;
+      }
+      .app {
+        display: block;
+        min-height: auto;
+      }
       aside, .detail {
         position: relative;
         width: 100%;
@@ -1548,9 +1594,72 @@
         transform: none;
         border: 0;
       }
+      .sidebar {
+        max-height: min(42svh, 360px);
+        overflow: auto;
+        border-bottom: 1px solid var(--line-soft);
+        border-right: 0;
+        box-shadow: 0 12px 28px rgba(61, 45, 25, .12);
+      }
+      .sidebar .side-inner {
+        padding: 16px 18px 18px;
+      }
+      .sidebar .side-header {
+        align-items: center;
+        padding-bottom: 10px;
+      }
+      .sidebar .side-header h1 {
+        font-size: 25px;
+        line-height: 1.08;
+      }
+      .sidebar p {
+        margin: 12px 0;
+        font-size: 13px;
+        line-height: 1.65;
+      }
+      .sidebar h2 {
+        margin: 16px 0 8px;
+        font-size: 15px;
+      }
+      .sidebar .legend {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px 10px;
+        font-size: 11px;
+      }
+      .sidebar .notice {
+        padding: 9px;
+        font-size: 11px;
+      }
+      .search {
+        padding: 10px 12px;
+        border-radius: 11px;
+      }
+      .app.sidebar-hidden .sidebar {
+        display: none;
+        visibility: hidden;
+        pointer-events: none;
+      }
       .detail::before { display: none; }
-      main { height: 70vh; }
-      svg { height: 70vh; }
+      main {
+        height: 72svh;
+        min-height: 520px;
+        overflow: hidden;
+        border-top: 1px solid var(--line-soft);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .app.sidebar-hidden main {
+        height: calc(100svh - 5px);
+        min-height: 640px;
+        border-top: 0;
+      }
+      #chart {
+        height: 100%;
+        min-height: 520px;
+        touch-action: none;
+      }
+      .app.sidebar-hidden #chart {
+        min-height: 640px;
+      }
       .canvas-toolbar,
       .canvas-actions,
       .canvas-meta {
@@ -1562,18 +1671,66 @@
         top: 12px;
         max-width: none;
         justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
       }
+      .canvas-toolbar::-webkit-scrollbar { display: none; }
       .canvas-meta {
-        top: 70px;
+        top: 74px;
         left: 12px;
+        max-width: calc(100% - 24px);
+        font-size: 11px;
       }
       .canvas-actions {
-        top: 112px;
+        top: 116px;
         left: 12px;
         flex-wrap: wrap;
       }
+      .app.sidebar-hidden .canvas-meta,
+      .app.sidebar-hidden .canvas-actions {
+        left: 12px;
+      }
+      .canvas-actions button,
+      .canvas-toolbar button {
+        width: 40px;
+        min-height: 40px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+        border-radius: 11px;
+      }
+      .button-label { display: none; }
+      .mobile-icon { display: inline-flex; }
+      .sidebar-open {
+        top: auto;
+        bottom: 18px;
+        left: 14px;
+      }
+      .node .name {
+        font-size: 14px;
+      }
+      .node .alias-name,
+      .node .id {
+        font-size: 11px;
+      }
       .hover-card {
-        width: calc(100vw - 24px);
+        display: none !important;
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      button:hover {
+        transform: none;
+      }
+      .hover-card {
+        display: none !important;
+      }
+      .node .hit-area {
+        pointer-events: all;
       }
     }
   </style>
@@ -1603,16 +1760,40 @@
     <main>
       <div class="canvas-meta" id="canvasMeta"></div>
       <div class="canvas-actions" aria-label="画布快照下载">
-        <button id="downloadPngBtn" title="下载当前展开节点的完整高清 PNG">PNG 快照</button>
-        <button id="downloadPdfBtn" title="下载当前展开节点的完整高清 PDF">PDF 快照</button>
+        <button id="downloadPngBtn" title="下载当前展开节点的完整高清 PNG" aria-label="PNG 快照">
+          <span class="button-label">PNG 快照</span>
+          <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="13" rx="2.4"/><path d="M8 14l2.4-2.6 2.1 2.1 2.2-3 3.3 4.5"/><circle cx="8.2" cy="8.7" r="1.2"/><path d="M12 19.5v-6"/><path d="M9.4 17l2.6 2.6 2.6-2.6"/></svg></span>
+        </button>
+        <button id="downloadPdfBtn" title="下载当前展开节点的完整高清 PDF" aria-label="PDF 快照">
+          <span class="button-label">PDF 快照</span>
+          <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.8h7.5L19 8.3v11.9H7z"/><path d="M14.5 3.8v4.5H19"/><path d="M8.8 15.2h1.2a1.25 1.25 0 0 0 0-2.5H8.8v4.5"/><path d="M12.4 12.7v4.5h1a2.25 2.25 0 0 0 0-4.5z"/><path d="M16.9 12.7h2.2"/><path d="M16.9 14.9h1.7"/></svg></span>
+        </button>
       </div>
       <div class="toolbar canvas-toolbar" aria-label="画布操作">
-        <button id="viewModeBtn" title="切换为自上而下的纵向展开视图" aria-pressed="false">纵向视图</button>
-        <button id="fitBtn" title="让当前可见图谱适配画布">适配</button>
-        <button id="stepExpandBtn" title="按世代顺序逐级展开下一代节点">逐级展开</button>
-        <button id="expandBtn" title="展开所有人物节点">展开全部</button>
-        <button id="collapseBtn" title="折叠到前几代">折叠</button>
-        <button id="rootBtn" title="回到总根节点">总览</button>
+        <button id="viewModeBtn" title="切换为自上而下的纵向展开视图" aria-label="切换视图" aria-pressed="false">
+          <span class="button-label">纵向视图</span>
+          <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3.5" width="6" height="4" rx="1.2"/><rect x="4" y="16.5" width="6" height="4" rx="1.2"/><rect x="14" y="16.5" width="6" height="4" rx="1.2"/><path d="M12 7.5v5.5"/><path d="M7 16.5V13h10v3.5"/></svg></span>
+        </button>
+        <button id="fitBtn" title="让当前可见图谱适配画布" aria-label="适配画布">
+          <span class="button-label">适配</span>
+          <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H5.8A1.8 1.8 0 0 0 4 5.8V8"/><path d="M16 4h2.2A1.8 1.8 0 0 1 20 5.8V8"/><path d="M20 16v2.2a1.8 1.8 0 0 1-1.8 1.8H16"/><path d="M8 20H5.8A1.8 1.8 0 0 1 4 18.2V16"/><rect x="8.2" y="8.2" width="7.6" height="7.6" rx="1.3"/></svg></span>
+        </button>
+        <button id="stepExpandBtn" title="按世代顺序逐级展开下一代节点" aria-label="逐级展开">
+          <span class="button-label">逐级展开</span>
+          <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6.5h8"/><path d="M5 12h11"/><path d="M5 17.5h8"/><path d="M16 8.5l3.5 3.5-3.5 3.5"/></svg></span>
+        </button>
+        <button id="expandBtn" title="展开所有人物节点" aria-label="展开全部">
+          <span class="button-label">展开全部</span>
+          <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/><path d="M7.5 7.5l-3-3h5.2"/><path d="M16.5 7.5l3-3h-5.2"/><path d="M7.5 16.5l-3 3h5.2"/><path d="M16.5 16.5l3 3h-5.2"/></svg></span>
+        </button>
+        <button id="collapseBtn" title="折叠到前几代" aria-label="折叠">
+          <span class="button-label">折叠</span>
+          <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12h10"/><path d="M10 8H6V4"/><path d="M14 8h4V4"/><path d="M10 16H6v4"/><path d="M14 16h4v4"/></svg></span>
+        </button>
+        <button id="rootBtn" title="回到总根节点" aria-label="总览">
+          <span class="button-label">总览</span>
+          <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5 12 5l7.5 6.5"/><path d="M6.5 10.5v8h11v-8"/><path d="M10 18.5v-5h4v5"/></svg></span>
+        </button>
       </div>
       <button id="sidebarOpenBtn" class="sidebar-open icon-button" title="展开左侧面板" aria-label="展开左侧面板"><span aria-hidden="true">›</span></button>
       <svg id="chart" role="img" aria-label="族谱人物子嗣关系图">
@@ -1782,7 +1963,29 @@
     let stepRevealNodeKeys = new Set();
     let stepRevealLinkKeys = new Set();
     let stepRevealTimer = 0;
+    let mobileSidebarInitialized = false;
     const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const coarsePointerQuery = window.matchMedia ? window.matchMedia("(hover: none), (pointer: coarse)") : null;
+    const narrowViewportQuery = window.matchMedia ? window.matchMedia("(max-width: 760px)") : null;
+
+    function isTouchOptimized() {
+      return Boolean((coarsePointerQuery && coarsePointerQuery.matches) || (narrowViewportQuery && narrowViewportQuery.matches));
+    }
+
+    function refreshInteractionMode() {
+      const touchMode = isTouchOptimized();
+      appEl.classList.toggle("touch-mode", touchMode);
+      if (touchMode) {
+        hideHoverCard();
+        if (!mobileSidebarInitialized) {
+          appEl.classList.add("sidebar-hidden");
+          mobileSidebarInitialized = true;
+        }
+      }
+    }
+
+    if (coarsePointerQuery) coarsePointerQuery.addEventListener("change", refreshInteractionMode);
+    if (narrowViewportQuery) narrowViewportQuery.addEventListener("change", refreshInteractionMode);
 
     function showDetailPanel() {
       appEl.classList.remove("detail-hidden");
@@ -2653,6 +2856,10 @@
     }
 
     function showHoverCard(node, event, targetElement = null) {
+      if (isTouchOptimized()) {
+        hideHoverCard();
+        return;
+      }
       if (isDetailPanelVisible()) {
         hideHoverCard();
         return;
@@ -2757,8 +2964,11 @@
 
     function updateViewModeButton() {
       const isVertical = viewMode === "vertical";
-      viewModeBtn.textContent = isVertical ? "横向视图" : "纵向视图";
+      const label = isVertical ? "横向视图" : "纵向视图";
+      const labelEl = viewModeBtn.querySelector(".button-label");
+      if (labelEl) labelEl.textContent = label;
       viewModeBtn.title = isVertical ? "切换回从左到右的横向展开视图" : "切换为自上而下的纵向展开视图";
+      viewModeBtn.setAttribute("aria-label", label);
       viewModeBtn.setAttribute("aria-pressed", isVertical ? "true" : "false");
     }
 
@@ -3049,10 +3259,7 @@
         }
 
         g.addEventListener("pointerdown", event => {
-          event.stopPropagation();
-        });
-        g.addEventListener("pointerup", event => {
-          event.stopPropagation();
+          if (event.pointerType === "touch" || isTouchOptimized()) hideHoverCard();
         });
         g.addEventListener("pointerenter", event => {
           showHoverCard(node, event, g);
@@ -3075,6 +3282,10 @@
 
         g.addEventListener("click", event => {
           event.stopPropagation();
+          if (dragDistance > 8 || suppressCanvasClick) {
+            event.preventDefault();
+            return;
+          }
           hideHoverCard();
           selectedKey = node.key;
           toggleNodeChildren(node);
@@ -3672,12 +3883,14 @@
     });
     sidebarCollapseBtn.addEventListener("click", () => {
       appEl.classList.add("sidebar-hidden");
+      window.requestAnimationFrame(fitVisible);
     });
     sidebarOpenBtn.addEventListener("pointerdown", event => {
       event.stopPropagation();
     });
     sidebarOpenBtn.addEventListener("click", () => {
       appEl.classList.remove("sidebar-hidden");
+      window.requestAnimationFrame(fitVisible);
     });
     window.zongpuTools = {
       captureCanvas,
@@ -3690,32 +3903,120 @@
     let lastPoint = null;
     let dragDistance = 0;
     let suppressCanvasClick = false;
-    svg.addEventListener("pointerdown", event => {
-      dragging = true;
-      lastPoint = { x: event.clientX, y: event.clientY };
-      dragDistance = 0;
-      svg.setPointerCapture(event.pointerId);
-      svg.classList.add("dragging");
-    });
-    svg.addEventListener("pointermove", event => {
-      if (!dragging || !lastPoint) return;
-      dragDistance += Math.abs(event.clientX - lastPoint.x) + Math.abs(event.clientY - lastPoint.y);
-      transform.x += event.clientX - lastPoint.x;
-      transform.y += event.clientY - lastPoint.y;
-      lastPoint = { x: event.clientX, y: event.clientY };
-      applyTransform();
-    });
-    svg.addEventListener("pointerup", event => {
-      suppressCanvasClick = dragDistance > 4;
+    const activePointers = new Map();
+    let pinchState = null;
+
+    function pointerPoint(event) {
+      return { x: event.clientX, y: event.clientY };
+    }
+
+    function distanceBetween(a, b) {
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    }
+
+    function midpoint(a, b) {
+      return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    }
+
+    function zoomAtClientPoint(clientX, clientY, nextScale) {
+      const rect = svg.getBoundingClientRect();
+      const mx = clientX - rect.left;
+      const my = clientY - rect.top;
+      const oldK = transform.k;
+      const newK = Math.min(2.8, Math.max(0.05, nextScale));
+      transform.x = mx - ((mx - transform.x) / oldK) * newK;
+      transform.y = my - ((my - transform.y) / oldK) * newK;
+      transform.k = newK;
+    }
+
+    function finishPointerGesture(event) {
+      activePointers.delete(event.pointerId);
+      if (event.pointerId !== undefined) {
+        try { svg.releasePointerCapture(event.pointerId); } catch (error) {}
+      }
+      if (activePointers.size >= 2) {
+        const points = Array.from(activePointers.values()).slice(0, 2);
+        pinchState = {
+          distance: distanceBetween(points[0], points[1]),
+          scale: transform.k,
+          center: midpoint(points[0], points[1])
+        };
+        lastPoint = null;
+        return;
+      }
+      pinchState = null;
+      if (activePointers.size === 1) {
+        lastPoint = Array.from(activePointers.values())[0];
+        dragging = true;
+        return;
+      }
+      suppressCanvasClick = dragDistance > 6;
       dragging = false;
       lastPoint = null;
-      svg.releasePointerCapture(event.pointerId);
       svg.classList.remove("dragging");
       if (suppressCanvasClick) {
         window.setTimeout(() => {
           suppressCanvasClick = false;
-        }, 120);
+        }, 140);
       }
+    }
+
+    svg.addEventListener("pointerdown", event => {
+      if (event.button !== undefined && event.button !== 0 && event.pointerType !== "touch") return;
+      hideHoverCard();
+      if (activePointers.size === 0) dragDistance = 0;
+      const point = pointerPoint(event);
+      activePointers.set(event.pointerId, point);
+      dragging = true;
+      lastPoint = point;
+      if (activePointers.size >= 2) {
+        const points = Array.from(activePointers.values()).slice(0, 2);
+        pinchState = {
+          distance: distanceBetween(points[0], points[1]),
+          scale: transform.k,
+          center: midpoint(points[0], points[1])
+        };
+      }
+      try { svg.setPointerCapture(event.pointerId); } catch (error) {}
+      svg.classList.add("dragging");
+    });
+    svg.addEventListener("pointermove", event => {
+      if (!activePointers.has(event.pointerId)) return;
+      const previous = activePointers.get(event.pointerId);
+      const point = pointerPoint(event);
+      activePointers.set(event.pointerId, point);
+      dragDistance += Math.abs(point.x - previous.x) + Math.abs(point.y - previous.y);
+      if (activePointers.size >= 2) {
+        const points = Array.from(activePointers.values()).slice(0, 2);
+        const currentDistance = distanceBetween(points[0], points[1]);
+        const currentCenter = midpoint(points[0], points[1]);
+        if (!pinchState || !pinchState.distance) {
+          pinchState = { distance: currentDistance, scale: transform.k, center: currentCenter };
+          return;
+        }
+        const newScale = pinchState.scale * (currentDistance / pinchState.distance);
+        zoomAtClientPoint(currentCenter.x, currentCenter.y, newScale);
+        const dx = currentCenter.x - pinchState.center.x;
+        const dy = currentCenter.y - pinchState.center.y;
+        transform.x += dx;
+        transform.y += dy;
+        pinchState.center = currentCenter;
+        applyTransform();
+        updateCanvasMeta();
+        return;
+      }
+      if (!dragging || !lastPoint) return;
+      transform.x += point.x - lastPoint.x;
+      transform.y += point.y - lastPoint.y;
+      lastPoint = point;
+      applyTransform();
+    });
+    svg.addEventListener("pointerup", event => {
+      finishPointerGesture(event);
+    });
+    svg.addEventListener("pointercancel", finishPointerGesture);
+    svg.addEventListener("lostpointercapture", event => {
+      if (activePointers.has(event.pointerId)) finishPointerGesture(event);
     });
     svg.addEventListener("click", event => {
       if (suppressCanvasClick) return;
@@ -3724,20 +4025,14 @@
     });
     svg.addEventListener("wheel", event => {
       event.preventDefault();
-      const rect = svg.getBoundingClientRect();
-      const mx = event.clientX - rect.left;
-      const my = event.clientY - rect.top;
-      const oldK = transform.k;
       const factor = event.deltaY > 0 ? 0.9 : 1.1;
-      const newK = Math.min(2.8, Math.max(0.05, oldK * factor));
-      transform.x = mx - ((mx - transform.x) / oldK) * newK;
-      transform.y = my - ((my - transform.y) / oldK) * newK;
-      transform.k = newK;
+      zoomAtClientPoint(event.clientX, event.clientY, transform.k * factor);
       applyTransform();
       updateCanvasMeta();
     }, { passive: false });
 
     renderStats();
+    refreshInteractionMode();
     initializeCollapse(root);
     updateViewModeButton();
     render();
