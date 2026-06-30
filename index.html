@@ -1720,6 +1720,67 @@
       .hover-card {
         display: none !important;
       }
+      .modal-backdrop {
+        place-items: start center;
+        padding: 10px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .migration-modal {
+        width: min(100%, calc(100vw - 20px));
+        height: auto;
+        max-height: none;
+        min-height: 0;
+        display: block;
+        overflow: visible;
+        border-radius: 12px;
+      }
+      .modal-header {
+        padding: 14px 14px 12px;
+      }
+      .modal-header h1 {
+        font-size: 21px;
+        line-height: 1.25;
+      }
+      .modal-header p {
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .migration-layout {
+        display: block;
+        padding: 12px;
+        overflow: visible;
+      }
+      .migration-map-card,
+      .migration-detail-card {
+        overflow: visible;
+      }
+      .migration-map-card {
+        min-height: 0;
+        margin-bottom: 12px;
+      }
+      .migration-map-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .map-tools {
+        width: 100%;
+        justify-content: flex-end;
+      }
+      .migration-map {
+        height: min(52svh, 430px);
+        min-height: 300px;
+      }
+      .migration-map svg {
+        min-height: 300px;
+      }
+      .migration-detail-card {
+        display: block;
+      }
+      .migration-records {
+        overflow: visible;
+        padding-right: 0;
+      }
     }
 
     @media (hover: none), (pointer: coarse) {
@@ -3391,18 +3452,48 @@
       applyTransform();
     }
 
+    function canvasSafeArea() {
+      const rect = svg.getBoundingClientRect();
+      const padding = isTouchOptimized() ? 18 : 40;
+      let top = padding;
+      let left = padding;
+      let right = padding;
+      let bottom = padding;
+      if (isTouchOptimized()) {
+        const overlaySelectors = [".canvas-toolbar", ".canvas-meta", ".canvas-actions"];
+        for (const selector of overlaySelectors) {
+          const element = document.querySelector(selector);
+          if (!element) continue;
+          const style = window.getComputedStyle(element);
+          if (style.display === "none" || style.visibility === "hidden") continue;
+          const overlayRect = element.getBoundingClientRect();
+          if (overlayRect.width <= 0 || overlayRect.height <= 0) continue;
+          const relativeBottom = overlayRect.bottom - rect.top;
+          if (relativeBottom > 0) top = Math.max(top, relativeBottom + 22);
+        }
+        bottom = 28;
+        left = 14;
+        right = 14;
+      }
+      const width = Math.max(120, rect.width - left - right);
+      const height = Math.max(120, rect.height - top - bottom);
+      return { rect, left, top, width, height };
+    }
+
     function fitVisible() {
       if (!allVisible.length) return;
-      const rect = svg.getBoundingClientRect();
+      const safe = canvasSafeArea();
       const minX = Math.min(...allVisible.map(n => n.x));
       const maxX = Math.max(...allVisible.map(n => n.x + NODE_W));
       const minY = Math.min(...allVisible.map(n => n.y));
       const maxY = Math.max(...allVisible.map(n => n.y + NODE_H));
-      const scaleX = (rect.width - 80) / Math.max(1, maxX - minX);
-      const scaleY = (rect.height - 80) / Math.max(1, maxY - minY);
+      const graphWidth = Math.max(1, maxX - minX);
+      const graphHeight = Math.max(1, maxY - minY);
+      const scaleX = safe.width / graphWidth;
+      const scaleY = safe.height / graphHeight;
       transform.k = Math.min(1.35, Math.max(0.08, Math.min(scaleX, scaleY)));
-      transform.x = 40 - minX * transform.k;
-      transform.y = 40 - minY * transform.k;
+      transform.x = safe.left + (safe.width - graphWidth * transform.k) / 2 - minX * transform.k;
+      transform.y = safe.top + (safe.height - graphHeight * transform.k) / 2 - minY * transform.k;
       applyTransform();
       updateCanvasMeta();
     }
