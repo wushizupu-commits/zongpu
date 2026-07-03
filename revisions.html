@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>历代修谱｜延陵吴氏</title>
+  <style>
+    :root {
+      --bg: #f1e6d4;
+      --paper: #fbf6ea;
+      --paper-strong: #fffaf0;
+      --ink: #241b14;
+      --muted: #766d5f;
+      --muted-2: #9b8f7d;
+      --line-soft: #e4d7bd;
+      --accent: #a64232;
+      --accent-dark: #783026;
+      --accent-2: #286a66;
+      --copper: #b89461;
+      --shadow-soft: 0 8px 24px rgba(60, 44, 24, 0.09);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(166, 66, 50, .08), transparent 28%),
+        radial-gradient(circle at 84% 12%, rgba(40, 106, 102, .08), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(80, 59, 33, .025) 0 1px, transparent 1px 8px),
+        linear-gradient(135deg, #f4ead9 0%, var(--bg) 52%, #e8dac4 100%);
+      min-height: 100vh;
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-top: 5px solid #5a2b2d;
+      border-bottom: 1px solid rgba(184, 148, 97, .32);
+      background:
+        linear-gradient(90deg, rgba(255, 250, 240, .96), rgba(247, 236, 218, .9)),
+        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 8px);
+      box-shadow: 0 10px 26px rgba(60, 44, 24, .08);
+    }
+    .site-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 58px;
+      padding: 10px 18px;
+    }
+    .site-brand {
+      flex: 0 0 auto;
+      color: var(--accent-dark);
+      font-size: 17px;
+      font-weight: 820;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav a,
+    .site-nav button {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 31px;
+      padding: 7px 12px;
+      border: 1px solid rgba(184, 148, 97, .38);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .74);
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: 0;
+      box-shadow: 0 4px 10px rgba(60, 44, 24, .05);
+    }
+    .site-nav a.active {
+      border-color: rgba(166, 66, 50, .62);
+      background: linear-gradient(135deg, rgba(166, 66, 50, .12), rgba(255, 250, 240, .82));
+      color: var(--accent-dark);
+      box-shadow: inset 3px 0 0 rgba(166, 66, 50, .82), 0 5px 12px rgba(166, 66, 50, .08);
+    }
+    .site-nav button {
+      cursor: default;
+      opacity: .78;
+    }
+    main {
+      width: min(1240px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+    .hero-card,
+    .summary-card,
+    .poem-summary,
+    .revision-toc,
+    .revision-page {
+      border: 1px solid rgba(184, 148, 97, .34);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 253, 247, .92), rgba(247, 236, 218, .76)),
+        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 7px),
+        var(--paper-strong);
+      box-shadow: var(--shadow-soft);
+    }
+    .hero-card {
+      padding: 30px;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 780;
+      letter-spacing: .12em;
+    }
+    h1 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .hero-card p {
+      max-width: 780px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    .summary-card {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 18px;
+    }
+    .summary-card div {
+      padding: 14px;
+      border: 1px solid rgba(184, 148, 97, .26);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .52);
+    }
+    .summary-card strong {
+      display: block;
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1;
+    }
+    .summary-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 680;
+    }
+    .poem-summary {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
+      padding: 20px;
+    }
+    .poem-summary-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(184, 148, 97, .28);
+    }
+    .poem-summary-head span {
+      color: var(--accent-dark);
+      font-size: 18px;
+      font-weight: 850;
+    }
+    .poem-summary-head strong {
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 780;
+      white-space: nowrap;
+    }
+    .poem-summary-lines {
+      display: grid;
+      gap: 7px;
+    }
+    .poem-summary-lines p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 720;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .revision-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .revision-toc {
+      position: sticky;
+      top: 84px;
+      padding: 18px 16px;
+    }
+    .toc-title {
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 820;
+    }
+    .toc-tree {
+      position: relative;
+      display: grid;
+      gap: 18px;
+    }
+    .toc-group h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 820;
+      line-height: 1.35;
+    }
+    .toc-group h3 span {
+      flex: 0 0 auto;
+      color: var(--accent-dark);
+      font-size: 14px;
+      font-weight: 760;
+    }
+    .toc-docs {
+      position: relative;
+      display: grid;
+      gap: 4px;
+      margin-left: 14px;
+      padding-left: 14px;
+      border-left: 1px solid rgba(184, 148, 97, .36);
+    }
+    .toc-doc {
+      appearance: none;
+      position: relative;
+      width: 100%;
+      padding: 5px 0 5px 8px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.45;
+      text-align: left;
+      cursor: pointer;
+    }
+    .toc-doc::before {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: 50%;
+      width: 11px;
+      height: 1px;
+      background: rgba(184, 148, 97, .36);
+    }
+    .toc-doc.active {
+      color: var(--accent-dark);
+      font-weight: 820;
+    }
+    .toc-doc.active::after {
+      content: "";
+      position: absolute;
+      left: -17px;
+      top: calc(50% - 4px);
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(166, 66, 50, .1);
+    }
+    .content-area {
+      min-width: 0;
+    }
+    .revision-page {
+      display: none;
+      overflow: hidden;
+    }
+    .revision-page.active {
+      display: block;
+    }
+    .article-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px 16px;
+      border-bottom: 1px solid rgba(184, 148, 97, .24);
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .article-meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(166, 66, 50, .1);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 820;
+    }
+    .article-meta em {
+      color: var(--accent-2);
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 760;
+    }
+    .article-head h2 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.22;
+    }
+    .article-source {
+      flex: 0 0 auto;
+      color: var(--muted-2);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: right;
+      max-width: 220px;
+    }
+    .doc-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      padding: 20px 24px 10px;
+    }
+    .doc-text {
+      min-width: 0;
+      padding: 0 2px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .doc-text + .doc-text {
+      padding-left: 18px;
+      border-left: 1px solid rgba(184, 148, 97, .22);
+    }
+    .doc-text.single {
+      margin: 20px 24px 10px;
+    }
+    .doc-text h4 {
+      margin: 0 0 12px;
+      color: var(--accent-dark);
+      font-size: 16px;
+    }
+    .doc-text p {
+      margin: 0 0 12px;
+      padding: 0;
+      border: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+      text-align: justify;
+    }
+    .doc-text p:last-child {
+      margin-bottom: 0;
+    }
+    .bureau-sections {
+      display: grid;
+      gap: 14px;
+      padding: 20px 24px 10px;
+    }
+    .bureau-section {
+      position: relative;
+      padding: 16px 18px;
+      border: 1px solid rgba(184, 148, 97, .26);
+      border-radius: 12px;
+      background: rgba(255, 250, 240, .42);
+    }
+    .bureau-section::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 3px;
+      border-radius: 999px;
+      background: rgba(166, 66, 50, .64);
+    }
+    .bureau-section.compact {
+      max-width: 760px;
+    }
+    .bureau-section.poem::before {
+      background: rgba(40, 106, 102, .72);
+    }
+    .bureau-section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .bureau-section-head span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(40, 106, 102, .1);
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 820;
+    }
+    .bureau-section-head h3 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 17px;
+      line-height: 1.3;
+    }
+    .bureau-lines {
+      display: grid;
+      gap: 9px;
+    }
+    .bureau-lines p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .poem-lines {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, max-content));
+      gap: 10px 28px;
+      align-items: start;
+    }
+    .poem-line {
+      margin: 0;
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 680;
+      letter-spacing: .03em;
+      white-space: nowrap;
+    }
+    .article-pager {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 20px 24px 24px;
+      border-top: 1px solid rgba(184, 148, 97, .18);
+    }
+    .article-nav-button {
+      appearance: none;
+      min-height: 64px;
+      padding: 12px 14px;
+      border: 1px solid rgba(184, 148, 97, .32);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .58);
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: left;
+      cursor: pointer;
+    }
+    .article-nav-button.next {
+      text-align: right;
+    }
+    .article-nav-button strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--accent-dark);
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .article-nav-spacer {
+      min-height: 1px;
+    }
+    .article-nav-button:hover {
+      border-color: rgba(166, 66, 50, .48);
+      background: rgba(166, 66, 50, .07);
+    }
+    .doc-text p:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .legacy-hidden {
+      display: none;
+    }
+    .timeline-item,
+    .chapter-panel,
+    .chapter-title,
+    .doc-list,
+    .revision-doc,
+    .doc-head {
+      display: none;
+    }
+    @media (max-width: 980px) {
+      .hero,
+      .revision-layout,
+      .doc-columns {
+        grid-template-columns: 1fr;
+      }
+      .revision-toc {
+        position: static;
+      }
+      .toc-tree {
+        gap: 14px;
+      }
+      .toc-docs {
+        margin-left: 8px;
+      }
+      .doc-text + .doc-text {
+        padding-left: 0;
+        padding-top: 16px;
+        border-left: 0;
+        border-top: 1px solid rgba(184, 148, 97, .22);
+      }
+    }
+    @media (max-width: 760px) {
+      .site-header-inner {
+        display: block;
+        min-height: 0;
+        padding: 9px 12px 10px;
+      }
+      .site-brand {
+        display: block;
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .site-nav {
+        flex-wrap: nowrap;
+        gap: 7px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .site-nav a,
+      .site-nav button {
+        flex: 0 0 auto;
+        min-height: 30px;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .site-nav::-webkit-scrollbar {
+        display: none;
+      }
+      main {
+        width: min(100% - 24px, 1240px);
+        padding: 18px 0 34px;
+      }
+      .hero-card {
+        padding: 18px;
+      }
+      .summary-card {
+        grid-template-columns: 1fr;
+      }
+      .chapter-title {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+      .doc-head {
+        display: block;
+      }
+      .doc-head span {
+        display: block;
+        margin-top: 6px;
+        white-space: normal;
+      }
+      .article-head {
+        display: block;
+        padding: 18px 18px 14px;
+      }
+      .article-source {
+        display: block;
+        max-width: none;
+        margin-top: 8px;
+        text-align: left;
+      }
+      .doc-columns {
+        padding: 16px 18px 8px;
+      }
+      .doc-text.single {
+        margin: 16px 18px 8px;
+      }
+      .article-pager {
+        grid-template-columns: 1fr;
+        padding: 16px 18px 18px;
+      }
+      .article-nav-button.next {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-brand">延陵吴氏</div>
+      <nav class="site-nav" aria-label="站点一级目录">
+        <a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link" href="./source_migration.html">源流迁徙</a><a class="nav-link active" href="./revisions.html" aria-current="page">历代修谱</a><a class="nav-link" href="./biographies.html">族贤传略</a><a class="nav-link" href="./family_customs.html">家训礼俗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="eyebrow">GENEALOGY REVISION ARCHIVE</p>
+        <h1>历代修谱</h1>
+        <p>按光绪乙未、民国丙戌、辛巳续修与修谱附录四个阶段整理谱序、凡例、谱局芳名等文献。点击左侧章节目录中的文献题名，可切换到对应的独立阅读页。</p>
+      </div>
+      
+      <aside class="poem-summary" aria-label="排行诗">
+        <div class="poem-summary-head">
+          <span>排行诗</span>
+          <strong>自十六世起</strong>
+        </div>
+        <div class="poem-summary-lines">
+          <p>朝廷永大建 國泰福榮昌</p>
+<p>祖德傳振遠 詩書裕後馨</p>
+<p>人文期炳蔚 門閭樂輝煌</p>
+<p>世澤流芳久 家聲克紹長</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="revision-layout">
+      <aside class="revision-toc" aria-label="历代修谱章节目录">
+        <h2 class="toc-title">章节目录</h2>
+        <div class="toc-tree">
+          
+          <section class="toc-group">
+            <h3><span>1895 年</span>光绪乙未修谱</h3>
+            <div class="toc-docs">
+              
+              <button class="toc-doc active" type="button" data-target="guangxu-1895-1">
+                延陵吳氏肇修歷代譜牒文
+              </button>
+              <button class="toc-doc" type="button" data-target="guangxu-1895-2">
+                延陵吴氏重修宗谱旧序
+              </button>
+              <button class="toc-doc" type="button" data-target="guangxu-1895-3">
+                重修譜牒凡例（旧）
+              </button>
+            </div>
+          </section>
+
+          <section class="toc-group">
+            <h3><span>1946 年</span>民国丙戌重修</h3>
+            <div class="toc-docs">
+              
+              <button class="toc-doc" type="button" data-target="minguo-1946-1">
+                延陵吴氏重修宗谱旧序
+              </button>
+            </div>
+          </section>
+
+          <section class="toc-group">
+            <h3><span>2001 年</span>辛巳续修</h3>
+            <div class="toc-docs">
+              
+              <button class="toc-doc" type="button" data-target="xinsi-2001-1">
+                辛巳延陵吳氏續修宗譜序言
+              </button>
+              <button class="toc-doc" type="button" data-target="xinsi-2001-2">
+                新凡例
+              </button>
+            </div>
+          </section>
+
+          <section class="toc-group">
+            <h3><span>附录</span>修谱附录</h3>
+            <div class="toc-docs">
+              
+              <button class="toc-doc" type="button" data-target="appendix-1">
+                延陵吳氏宗譜續修新譜局芳名：
+              </button>
+            </div>
+          </section>
+        </div>
+      </aside>
+      <div class="content-area">
+        
+        <article class="revision-page active" id="guangxu-1895-1" data-article="guangxu-1895-1">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>1895 年</span>
+                <em>光绪乙未修谱</em>
+              </div>
+              <h2>延陵吳氏肇修歷代譜牒文</h2>
+            </div>
+            <span class="article-source">延陵吳氏肇修歷代譜牒文-必仁叩首敬撰.docx</span>
+          </div>
+          
+          <div class="doc-columns">
+            <article class="doc-text">
+              <h4>原文</h4>
+              <p>竊思家之有譜，所以明祖武，尊尊也；所以序昭穆，親親也。始焉以一人之氣而分支分派，後也十百千萬莫可計數，總之實一人之淵源也。</p>
+<p>予吳氏本姬姓，出自周太王之時，泰伯之始受姓發跡之初，已詳言之，無容贅矣。至我國朝，雲礽愈盛，支派益繁，如兩直、江浙、兩廣諸省，名世忠臣代不乏人，總之皆泰伯公之苗裔也。然而支各有派，系自有源。苟無譜以聯絡之，則世系無序，昭穆無別，且有並驅不識、交臂相失者，爲此凜凜。於是當稽其源流，考其始末，自高祖以至曾祖，下及元孫以至雲礽，一昭一穆，固不得而紊矣。猶如水之有源，遡其流而源自合；又如木之有本，循其枝而本自明。雖千里之遙、百代之遠，可得而尋也。亦惟後世子孫，當念前世，無忘先德，箕裘相續，守而勿失，於乃祖光列之休，不永永有賴哉！</p>
+<p>噫！吳氏源流深遠矣。自德俊公以下，違隔九世，迄今數百餘年，未得校訂世系譜牒。至於後世，雖盛弗傳，支派漸覺其多。豈得曰前有所創，後無所因可乎？乃果於今歲之秋，倡叙族衆，纂訂譜牒。各房允諾，捐金饌食，開設譜局。爰立主修、清書、考辨，各房非之無舉也，次之又其次也，諉之無可諉也。是以舉予主修全房任，遣清書對稿。予因幼棄聖門，忝無知識，身惟孤弱，愧無才能，不敢自矜創立，亦不敢自作聰明。第恐世遠年湮，草木難以盡辨，支系難云無差。生終未必盡悉斯舉也，其詳不可得而遠追之，雖思不得其門而考辨之。</p>
+<p>領命者謹慎不懈，致身於局中，朝夕不辭艱辛，彙成手稿，給付梓司，刊刷校對，參考庶免再訛。猶歎上以報先祖之德，下以啟後人之志，使世世子孫無忘木本水源之道也，是卽予之所厚望矣夫。</p>
+<p>旹</p>
+<p>皇清光緒廿一年歲次乙未應鍾月上浣 穀旦 延陵吳氏三十世裔孫國監必仁頓首拜譔</p>
+            </article>
+            <article class="doc-text">
+              <h4>白话文翻译</h4>
+              <p>我私下认为，家族之所以要修撰家谱，是为了彰显祖先的功业，这是尊敬长辈的体现；是为了理顺家族的辈分（昭穆），这是亲近同宗的体现。最初由一个先祖的血脉繁衍出各个分支派系，后来发展到成百上千甚至成千上万，多得无法计算，但归根结底，实际上都源自同一个人的血脉渊源。</p>
+<p>我们吴氏本来姓姬，出自周太王时期。泰伯公最初得姓和发迹的起因，前面已经详细说过了，不必再赘述。到了我们大清朝，后代子孙更加昌盛，支派更加繁多，比如直隶、江浙、两广等各个省份，历代都不乏名扬于世的忠臣，总而言之，他们全都是泰伯公的后裔。然而，各个分支都有自己的派系，世系也都有各自的源头。如果没有家谱来将他们联系起来，那么家族世系就会失去头绪，长幼辈分也就无法区别，甚至会出现走在一起互不认识、擦肩而过却失之交臂的情况，想想真让人感到畏惧啊。因此，应当查考家族的渊源流变，考证其始末，从高祖、曾祖，往下直到玄孙和更远的后代，左昭右穆的辈分顺序，绝对不能让它出现混乱。这就好比水有源头，逆流而上自然能汇聚到一起；又好比树木有根基，顺着枝干自然能找到主干。即使相隔千里之遥、百代之远，也能够追寻到。只有后世子孙，时刻感念前辈先人，不要忘记祖先的美德，继承并发扬祖先的基业，坚守而不丢失，对于祖先光辉荣耀的福泽，难道不能够永远地仰赖吗！</p>
+<p>唉！吴氏的源流实在深远啊。自从德俊公以来，中间隔了九代，到现在已经有数百年，一直没有机会校订家族的世系家谱。到了后世，家族虽然繁盛却未能有家谱流传，只觉得支派渐渐增多。难道可以说前人有所创立，而后人却没有去继承吗？于是，果断在今年秋天，倡议召集族人，编纂修订家谱。各房族人都一致赞同，捐赠钱财和粮饷，设立了修谱局。于是确立了主修、清书（抄写员）、考辨（考证核对）等职位。各房如果不去做这件事就无法完成，推托给别人，别人又推托，实在推脱不掉了。因此，大家推举我担任全房的主修，并派抄写员来核对稿件。我因为从小放弃了科举学业，惭愧没有什么学识，身体单薄，又深感自己没有才能，不敢自夸能担此开创之任，也不敢自作聪明。只怕年代久远，像草木一样繁杂的支系难以完全分辨清楚，世系很难说毫无差错。我终究未必能完全通晓这项庞大的工程，其中的详细情况也无法追溯到很久以前，虽然想去考证却找不到门径。</p>
+<p>接受任务的人都谨慎行事不敢懈怠，全身心投入修谱局中，从早到晚不辞辛劳，汇集成手稿，交付给刻印工匠，排版印刷并进行校对，参考核对以期避免再次出错。我常常感叹，往上以此来回报先祖的美德，往下以此来启发后人的志向，让世世代代的子孙都不要忘记“木有本，水有源”的道理，这就是我最大的期望了！</p>
+<p>以上皆是（我的肺腑之言）。</p>
+<p>大清光绪二十一年（1895年）农历十月上旬吉日 延陵吴氏第三十世孙、国子监生 必仁 叩首敬撰</p>
+            </article>
+          </div>
+          <div class="article-pager">
+            <span class="article-nav-spacer"></span>
+            <button type="button" class="article-nav-button next" data-target="guangxu-1895-2">下一篇<br><strong>延陵吴氏重修宗谱旧序</strong></button>
+          </div>
+        </article>
+
+        <article class="revision-page" id="guangxu-1895-2" data-article="guangxu-1895-2">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>1895 年</span>
+                <em>光绪乙未修谱</em>
+              </div>
+              <h2>延陵吴氏重修宗谱旧序</h2>
+            </div>
+            <span class="article-source">延陵吴氏重修宗谱旧序-大清光绪廿一年.docx</span>
+          </div>
+          
+          <div class="doc-columns">
+            <article class="doc-text">
+              <h4>原文</h4>
+              <p>尝谓家之有谱，犹国之有史也。史以载一代之盛衰，谱以纪一脉之世系，所以春露秋霜，仁人孝子重念木本水源之义，不敢有违也。</p>
+<p>始自鼻祖宣公，遥慕季子之风，追思泰伯、仲雍二公之德，自蜀阆而迁于豫章南丰。其媲美先人，则高风可仰，洵足垂千古也。今忆其三子十八孙之析居各省异郡，旧谱载列详明，而后各支又增修理。惟本支之宗派，于三十一世祖芮公，秦为鄱阳令，甚得江湖闲民，号鄱君；楚立为衡山王；炎刘奋起，仕汉有功，改封为长沙王，卒谥曰文。子孙五王九侯。三子浅封便顷侯，其后散迁饶、广、徽、婺、歙邑篁墩，是为新安发派之祖也。子孙蕃衍，嗣续争光。</p>
+<p>传至始迁祖，自徽婺南关至二十世建述公，生子四：长曰瓒，次曰瑞，二公无出；三曰国乐，转迁广信玉邑西乡三十都后陈，遂卜居焉。德俊公迁居上饶、玉邑二县三十四都瑶岭王家蓬，暨七十都西村、陵江湖新通地、七都西堡而居焉。相继宗修，历代以来，由明及清，数百余年矣。先世诗礼传家，孝友设局于后陈重辑修之，悉著编章，炳如日星，并无断简残编之感。较之从前世系焕然一新者，亦渐觉式微，屈指于今，百有余年矣。恐前代之家乘虽明，今不续修，而后之子孙生衍繁盛，亦无以考究其由来，将何以序昭穆而联族谊也？</p>
+<p>兹幸董首之人振泰、远利、远扬、远冬、远恭、远贵、必发、兆发、金富、诗桂叔侄兄弟等，邀集各支，和同商议重修家谱，无不欣然乐就。同为赞勤，敛赀刊镌，以观厥成。故曰：“莫为之前，虽盛弗传；莫为之后，虽美弗彰。”要皆总系于先人积累之功、恭让之德，有以致之而然也。余等才疏学浅，义不当私，以叙其颠末，陈俚句表以粗衷，俾后之阅者知重修之有自来也，是为序。</p>
+<p>旹</p>
+<p>大清光绪廿一年岁次乙未仲秋月中浣 吉旦 贵邑愚友弟徐龙茂庆华堂顿首拜撰</p>
+            </article>
+            <article class="doc-text">
+              <h4>白话文翻译</h4>
+              <p>人们常说，一个家族有家谱，就像一个国家有历史一样。历史用来记载一个时代的兴衰，家谱用来记录一脉相承的世系，所以每逢春秋节令祭祀，仁人孝子们深念饮水思源、寻根问祖的道理，不敢有丝毫违背。</p>
+<p>从我们的始祖宣公开始，他远远仰慕季子（延陵季子吴札）的风范，追忆缅怀泰伯、仲雍两位先祖的品德，从蜀地阆中迁徙到了豫章南丰。他的品德能与先祖媲美，高尚的风范令人景仰，确实足以流传千古。如今回忆起他的三个儿子、十八个孙子分散居住在各个省份和不同的州郡，过去的旧家谱上记载排列得非常详细明白，之后各个分支又有所增补修订。唯独我们这一支派，到了第三十一世祖先芮公，他在秦朝担任鄱阳县令，非常深得江湖百姓的拥戴，被尊称为“鄱君”；项羽分封他为衡山王；汉朝崛起后，他辅佐汉室立下功劳，被改封为长沙王，去世后谥号为“文”。他的子孙中出了五个王、九个侯。三儿子吴浅被封为便顷侯，他的后代分散迁徙到饶州、广州、徽州、婺州、歙县篁墩等地，这就是新安派的发源始祖。子孙繁衍茂盛，后代不断为家族争光。</p>
+<p>传到最开始迁徙的祖先，从徽州婺源南关传到第二十世建述公，生了四个儿子：老大叫瓒，老二叫瑞，这两位没有留下子嗣；老三叫国乐，辗转迁徙到广信府玉山县西乡三十都的后陈，于是就在这里安家定居了。德俊公迁居到上饶、玉山两县交界的三十四都瑶岭王家蓬，以及七十都的西村、陵江湖新通地、七都西堡等地居住。历代以来相继修订宗谱，从明朝到清朝，已经有几百年的历史了。先辈们以诗礼传家，秉持孝悌友爱的精神，在后陈设立修谱局重新编辑修订家谱，把世系文章记载得像日月星辰一样明亮清晰，完全没有残缺不全的感觉。相比以前焕然一新的世系图谱，现在也渐渐感觉到有些衰落了，屈指算来到现在，已经有一百多年没有修谱了。恐怕前代的家谱虽然明白清晰，但如果现在不继续修撰，以后子孙繁衍昌盛起来，也就没有办法考证他们的来历，将用什么来排定辈分长幼、联络同族的情谊呢？</p>
+<p>如今有幸遇到带头的人——振泰、远利、远扬、远冬、远恭、远贵、必发、兆发、金富、诗桂等叔侄兄弟们，邀请聚集了各个支派，心平气和地共同商议重修家谱的事宜，大家没有不高兴乐意参与的。大家都赞助支持、勤奋出力，筹集资金刻版印刷，以期待修谱大业的完成。所以古人说：“如果没有前人开创，即使家族兴盛也无法流传；如果没有后人继承，即使品德美好也无法彰显。”这些归根结底都维系于先人积累的功绩和谦恭礼让的品德，正因为有这些原因才会如此繁盛。我们这些人虽然才疏学浅，但在大义面前不敢自私推辞，以此来叙述重修家谱的始末，写下这几句粗浅的话语表达我们朴素的心意，让后代阅读家谱的人知道这次重修家谱的渊源和来历，这就作为序言吧。</p>
+<p>时间 大清光绪二十一年（1895年），岁次乙未，农历八月中旬 吉日 贵溪县愚钝的朋友兄弟 徐龙茂 于庆华堂 叩首敬拜撰写</p>
+            </article>
+          </div>
+          <div class="article-pager">
+            <button type="button" class="article-nav-button" data-target="guangxu-1895-1">上一篇<br><strong>延陵吳氏肇修歷代譜牒文</strong></button>
+            <button type="button" class="article-nav-button next" data-target="guangxu-1895-3">下一篇<br><strong>重修譜牒凡例（旧）</strong></button>
+          </div>
+        </article>
+
+        <article class="revision-page" id="guangxu-1895-3" data-article="guangxu-1895-3">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>1895 年</span>
+                <em>光绪乙未修谱</em>
+              </div>
+              <h2>重修譜牒凡例（旧）</h2>
+            </div>
+            <span class="article-source">重修譜牒凡例（旧）.docx</span>
+          </div>
+          
+          <div class="doc-columns">
+            <article class="doc-text">
+              <h4>原文</h4>
+              <p>是譜凡例，昔未常訂，其間體制殊未克當。今特更其舊式，俾歸簡易，庸條具後：</p>
+<p>一、譜之修，有勸懲之道也，顯者詳而微不振者畧焉；有褒貶之義也，賢者書而否而闕焉；有親親之殺也，親者書而疏者闕焉，微意各有在云。</p>
+<p>一、吳姓有延陵派、渤海派，散滿天下。吾祖，延陵派也。標出遷徙他鄉，聯屬書之，識曾元之盛也。顯宦具詳，靖源流也。有若從前派圖、世系、事蹟相同，雖未令合，亦是一宗；如其不同，雖極富貴，斷不敢扳序親支也。</p>
+<p>一、做歐陽氏五世一提之式，以名、諱、字、行、生、卒、塋、娶書列於內。有勳庸、潛德可書者，別有譜紀、贊、傳。其果乏嗣者，則直書止焉；立繼，必書某人第幾子繼某人為嗣。遷徙他鄉莫之考究，則闕而不詳。本支分親疏編次，庶揭派觀圖，因圖求世，以便觀覽云。</p>
+<p>一、凡譜每一世當冠一字為稱首者，宜也。今前派人易勢殊，難於更正。今因重修之後，其近自國樂公遷居玉邑後陳以下，世、國公遷居，不重於前者曰：每歷一世，當承一字為首，雖弈世可以例求云。</p>
+<p>一、先世文浣，儲蓄稍富。在唐宋有膺敕誥者多，因遭兵燹燬而莫存，惜哉！今之所存者，但掇拾於殘篇斷簡之餘。并後之作者曰文翰續錄，以補舊譜之未備。今亦莫能悉補，但於墓刻間錄敢一二以備事目，尙俟後裔廣搜搏採。儻得先世之文翰，則補而輯之，祖宗之潛德幽光有發無隱，又孝敬之大云。</p>
+<p>一、凡先世遺像，舊譜未寫。今因重修之餘，思念祖宗之儀容而不得見，特命甚繪者，因其舊而圖其新，形影相繼，曰遺像圖。俾後之子孫展而玩之，獲覩祖宗儀容儼乎若存，則尊尊親親之念有所興起，是亦作譜之良意云。</p>
+<p>一、族譜之修，眾皆矢公矢慎，勿濫勿私。書行派以序長幼，書傳贊以明行誼，書嫁娶以謹婚姻，書卒塋以昭世守，並無一筆虛浮，使疑信相參也。</p>
+<p>一、凡無嗣立繼者，必穆昭相當，由親及疏；均親者，亦必由長及幼，擇應繼者立之。愛繼者，亦必由親及疎。名分得當，不得以弟為子，以孫為兒，亂名分、起爭端也。</p>
+<p>一、凡後陳國樂公、國公遷居以來，歷年已久。其及遷徙別處，其祖居來龍不得利害不及，妄恣挿塋。其墳山祠堂會上祭田，雖各居一處而與實有分，同嘗其眾；來龍山塘亦有無分者，不得溷爭。</p>
+<p>一、凡山無墳，論遠年近代，固有山而卽有墳者，亦有墳而實無山者，前後來歷事各不同，難以槩論。不得以墳佔山，以山佔墳。</p>
+<p>一、凡累世編集，自宋元以來代有其人，其窮年殫力以遡流源，皆孝子仁人之用心。第時殊世異，有關名氏，袛明末以迄我朝。其間糾合同修，列其名氏於譜首，非有畧前人也，以亦勵後啟耳。後之孝子慈孫，約三世一修；三世不修，則世圖事蹟恐或遺忘。故有尊祖敬宗之心者，斷以是約為程，則百年又煥然矣，有志者其勉之！</p>
+<p>一、譜乃家藏珍物，收護宜密。若盜賣、典當、衒示異族、抄錄，以及蠹朽、遺失、挖補、增加字樣者，族眾追譜滅祭。</p>
+<p>一、祭田若干，務宜矢公矢慎，早完國課，其餘積貯，以為尊祖敬宗之根本也。</p>
+            </article>
+            <article class="doc-text">
+              <h4>白话文翻译</h4>
+              <p>这部族谱的编写体例，过去未曾制定过固定的标准，其中的体例格式往往不够恰当。现在特地更改旧式的写法，使之趋于简单明了，在此将各项条款列举如下：</p>
+<p>一、 修撰族谱，有劝善惩恶的作用，因此对声名显赫的人记载详细，对地位卑微、未能振兴家业的人则记载简略；有褒扬和贬斥的用意，所以对贤能的人予以记载，对不贤的人则省略不记；有亲疏远近的区别，所以对血缘近的记载，血缘远的省略，这些微妙的用意都包含在其中。</p>
+<p>一、 吴姓有延陵派和渤海派，散布在天下各地。我们的祖先属于延陵派。族谱中标明迁徙到外地的族人，并将他们联系起来记载，是为了彰显子孙的繁盛。对显赫的官员予以详细记载，是为了理清家族的源流。如果有前人的派系图、世系和事迹与我们相同的，即使以前没有合并，也属于同一个宗族；如果这些内容不同，对方即使极其富贵，我们也绝不敢攀附认作亲支。</p>
+<p>一、 族谱采用欧阳修发明的“五世一图”的体例，将族人的名、讳、字、排行、出生、死亡、墓地、娶妻等信息记载在内。如果有功勋业绩、隐藏的美德值得记载的，另外在谱记、赞、传中书写。如果确实没有子嗣的，就直接写上“止”（绝嗣）；如果是过继的，必须写明是某人的第几个儿子过继给某人作为后嗣。迁徙到外地无法考证的，就空缺不详细记载。本支系按照亲疏关系进行编排，这样就可以通过翻阅派系和图表，顺着图表查找世系，方便大家阅览。</p>
+<p>一、 族谱中每一代人都应当用一个特定的字作为名字的开头（字辈），这是很合适的。但由于前代的人事变迁、情况不同，现在很难去统一更正。现在借着重修族谱的机会，从近代国乐公迁居玉山县后陈村往下，以及世公、国公迁居之后，为了避免与前人重复，规定：每传一代，都应当统一承接一个字作为名字的开头，这样即使世代交替，也能按照这个规律去追溯。</p>
+<p>一、 先祖文浣公曾经积累了一些财富。在唐宋时期，家族中有很多获得朝廷诰命的人，可惜因为遭遇战火都被烧毁而不复存在了，真是可惜！现在保存下来的，只是从残篇断简中收集来的一点点。加上后人写的文章诗词作为续录，用来弥补旧谱的不足。如今也无法全部补齐，只能从墓碑刻文中抄录一两件来作为参考，还有待后代子孙广泛搜集采纳。如果能得到先辈的文章遗墨，就补充编辑进去，让祖宗隐藏的美德和光辉得以展现而不被埋没，这也是极大的孝敬。</p>
+<p>一、 关于先祖的遗像，旧族谱中没有描绘。现在趁着重修族谱，由于思念祖先的容貌却无从得见，特地请擅长绘画的人，根据旧有的容貌特征描绘出新的画像，形影传承，这叫作“遗像图”。好让后代子孙展开瞻仰时，能看到祖先的仪容，仿佛他们依然健在一样，从而激发起尊祖敬宗、相亲相爱的念头，这也是编修族谱的一片苦心。</p>
+<p>一、 修撰族谱，大家都必须秉公慎重，不能滥写，也不能有私心。记载排行是为了分清长幼，记载传记和赞语是为了彰显品德，记载嫁娶是为了慎重对待婚姻，记载死亡和墓地是为了昭示后人世代守护。全谱没有一笔是虚浮不实的，以免让人半信半疑。</p>
+<p>一、 凡是没有子嗣需要过继的，辈分（昭穆）必须相当，按照从血缘近到血缘远的顺序来选择；如果血缘关系同样亲近的，也必须按照从长到幼的顺序，选择应该过继的人来过继。出于喜爱而收为继子的，也必须遵守由亲到疏的原则。名分必须恰当，绝不能把弟弟认作儿子，把孙子认作儿子，以免扰乱辈分，引起争端。</p>
+<p>一、 凡是后陈村的国乐公、国公迁居以来，年代已经很久远了。后来迁徙到其他地方的族人，如果对祖居地的风水（来龙）没有切身的利害关系，就不能妄自把坟墓乱建在那里。关于坟山、祠堂以及祭祀用的田产，大家虽然各自居住在不同地方，但实际上都享有份额，由大家共同收益；至于祖居地的山脉水塘等也有不分彼此共有的情况，都不允许胡乱争夺。</p>
+<p>一、 凡是有山而没有坟的，或者论及年代远近，确实有山且山上有坟的，也有虽然有坟但实际上不拥有这座山的，这前后的来历和具体情况各不相同，难以一概而论。绝不能借着有坟墓就霸占整座山，也不能借着拥有这座山就霸占别人的坟墓。</p>
+<p>一、 关于历代参与修谱的人，自宋朝、元朝以来每一代都有，他们长年累月、竭尽心力地去追溯家族源流，这都是孝子仁人的用心。只是时代变迁，相关参与修谱者的名字，我们只记录了明朝末年到本朝的人。在这个时期内，将共同参与修谱的人的名字列在族谱的开头，并非是想忽略前人，而是为了勉励后人。后世的孝子贤孙，大约应该每隔三代就重修一次族谱；如果三代不修，世系图表和家族事迹恐怕就会被遗忘。因此，有尊祖敬宗之心的人，必定要以此为规矩，这样家族每隔百年就能焕然一新，有志气的族人应该以此自勉！</p>
+<p>一、 族谱是家族珍藏的宝物，应当严密保管。如果有人将其盗卖、典当、拿去向外姓人炫耀、让他人抄录，或者导致其被虫蛀腐朽、遗失，以及在上面私自挖补、增加字样的，全族的人将追回族谱，并取消他在家族祭祀中的资格。</p>
+<p>一、 家族共有的那些祭祀用田，务必做到公正慎重，早点交齐国家的赋税，剩下的粮食和钱财积攒起来，作为尊祖敬宗（如祭祀、修缮等）的根本保障。</p>
+            </article>
+          </div>
+          <div class="article-pager">
+            <button type="button" class="article-nav-button" data-target="guangxu-1895-2">上一篇<br><strong>延陵吴氏重修宗谱旧序</strong></button>
+            <button type="button" class="article-nav-button next" data-target="minguo-1946-1">下一篇<br><strong>延陵吴氏重修宗谱旧序</strong></button>
+          </div>
+        </article>
+
+        <article class="revision-page" id="minguo-1946-1" data-article="minguo-1946-1">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>1946 年</span>
+                <em>民国丙戌重修</em>
+              </div>
+              <h2>延陵吴氏重修宗谱旧序</h2>
+            </div>
+            <span class="article-source">延陵吴氏重修宗谱旧序-民国三十五年.docx</span>
+          </div>
+          
+          <div class="doc-columns">
+            <article class="doc-text">
+              <h4>原文</h4>
+              <p>谱何为而作也？吾先祖家君虑其屡经岁月，残缺失次而作也。盖古圣人制礼，首重乎宗法；宗法之重，又莫大乎谱书。谱书之作，宗族以之而合，昭穆以之而明，亲疏厚薄之别而著。故家之有谱，而宗法立；宗法立，则有百世不迁宗，有五世则迁之祖，而礼制定矣，情义维矣。今人不知大义，自高、曾、祖、考之外，其余则不识也。一人之来，从何自来也？虽宗不知也，昭穆不知也，亲疏厚薄之别不知也。</p>
+<p>吾于课余之暇，则索诸谱书，考诸事实，参诸经史，自泰伯得姓始，伊始一昭一穆，编辑了然。及至先祖家君凡六十一世，遂成谱帙三本：一泰微公收，一家君收，一保微公收。一保微收去，是为贵溪派；而家君钦徙休石舌山者，承祖庄之书舍也，期解官修于此，遂世居焉。不佞家君余意，聊叙一言于谱首。若后谱书之作与不作，乃见子孙之贤与不贤也。有志者尚可勉诸！</p>
+<p>爰于民国丙戌年之春寒食佳节，诗正、诗名、诗光、裕丰等，深念事过境迁，枝繁派衍，殆不可纪，集合于西村坐庭商议，再事重修支谱。此时无不欣然乐就，共同赞助，乃设局于西堡。谨择十月初六日兴工印刷，至十一月下旬谱告完竣，俾后阅者知重修之来历也。余辈智识浅陋，时间短促，难免错误，希望后学贤达者予以添评，是为序。</p>
+<p>皆维 民国三十五年岁次丙戌建子月 月下浣 吉旦</p>
+<p>三十一世裔孙薰沐顿首拜书</p>
+            </article>
+            <article class="doc-text">
+              <h4>白话文翻译</h4>
+              <p>家谱是为了什么而修撰的呢？这是我的先祖担心家谱历经漫长岁月，出现残缺遗失、世代次序错乱而决定修撰的。古时候的圣人制定礼教，最看重的是宗族法规；而宗法之中最重要的，又莫过于谱书。有了谱书，宗族就能以此团结凝聚，家族的辈分长幼（昭穆）就能以此清晰明了，血脉亲疏厚薄的区别也能彰显出来。所以家族有了家谱，宗法就能确立；宗法确立了，那么百代不变的大宗与五世而分的小宗等礼制就制定下来了，家族的情义也就维系住了。如今的人不懂得这种大义，除了高祖、曾祖、祖父、父亲之外，其余的祖先就不认识了。一个人到底是从哪里来的呢？不仅对自己的宗族不了解，辈分长幼不知道，就连血缘的亲疏远近也不清楚。</p>
+<p>我在公事与课余的闲暇时间，就去搜寻查阅各种谱书，考证历史事实，参照经书史籍。从泰伯公得赐吴姓开始，最初的每一代辈分排位（一昭一穆），都编辑得一清二楚。传到先祖家君这一代共历经六十一世，于是修成了三套家谱卷宗：一套由泰微公收存，一套由家君收存，一套由保微公收存。保微公带走的那一套，后来发展成了贵溪支派；而家君钦公迁居到休石舌山，继承了祖庄的书舍，本期望辞官后在这里专心修谱，于是就世代定居在这里了。我才疏学浅，秉承先祖的遗志，暂且在家谱的卷首写上几句。至于以后的谱书还会不会继续修撰，就能看出子孙后代是否贤明了。有志向的子孙后代一定要以此自勉啊！</p>
+<p>因此，在民国丙戌年（1946年）春天的寒食佳节，诗正、诗名、诗光、裕丰等人，深深感到事过境迁，家族枝繁叶茂、派系繁多，几乎已经难以清晰记载了，于是大家聚集在西村的厅堂里商议，决定再次重修这一支的家谱。这个时候，族人们没有不欣然乐意参与的，大家共同赞助支持，于是在西堡设立了修谱局。我们郑重选定十月初六日开工印刷，到了十一月下旬家谱全部宣告完成，以便让后来的阅读者了解这次重修家谱的来历。我们这些人学识浅薄，加上时间短促，难免会有错误，希望后代学识渊博的贤达之人能够给予增补和指正，以此作为序言。</p>
+<p>大家恭敬共勉。 民国三十五年（1946年）岁次丙戌 十一月（建子月）下旬 吉日 三十一世孙 沐浴更衣 叩首敬书</p>
+            </article>
+          </div>
+          <div class="article-pager">
+            <button type="button" class="article-nav-button" data-target="guangxu-1895-3">上一篇<br><strong>重修譜牒凡例（旧）</strong></button>
+            <button type="button" class="article-nav-button next" data-target="xinsi-2001-1">下一篇<br><strong>辛巳延陵吳氏續修宗譜序言</strong></button>
+          </div>
+        </article>
+
+        <article class="revision-page" id="xinsi-2001-1" data-article="xinsi-2001-1">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>2001 年</span>
+                <em>辛巳续修</em>
+              </div>
+              <h2>辛巳延陵吳氏續修宗譜序言</h2>
+            </div>
+            <span class="article-source">辛巳延陵吳氏續修宗譜序言-2001 年.docx</span>
+          </div>
+          
+          <div class="doc-columns">
+            <article class="doc-text">
+              <h4>原文</h4>
+              <p>系出黃帝之後，泰伯、仲雍二公（一世祖）之孫周章（四世祖）也。周章公受封吳國君，居建康金陵（今南京）遂以國爲氏，始有吳姓。延至夫差公（廿一世）稱王。起公（廿七世）官東河郡守，生植、種、栽、培四子，居延陵，吳姓始有郡。起公之後芮公（三十一世）居長沙，官至長沙王。芮生三子，長子芳公遷會稽（今紹興）次子郢公遷鄱陽吳綱山（今波陽境內），三子淺公遷徽州（今安慶）。傳至少微公（六十五）遷新安。唐乾符元年，少微之子洵進士及第，官至侍郞，其子孫散遷饒、廣、徽、婺、歙邑，創立新安派，洵爲新安始祖也。迨至建述公（廿世）生子四，長曰瓚、次曰瑞、三公無出、四曰國樂。瓚、瑞二公老譜未載，失考。國樂公（廿一世）於明萬曆間遷廣信玉山縣三十都後陳（今樟村）。樂公長子福元公遷上饒新通地，次子福亭公仍留後陳創業。福元生三子，長榮光、次榮奇、三公榮華，奇公無出，惟光、華二公子孫繁盛。光公後遷上邑十都新通地，其長子昌祥公遷玉山縣三十四都瑤嶺王家蓬。華公之子昌良公遷上邑汪村西堡烏石崗。昌吉公遷上邑十都七堡。清乾隆間，昌祥之子傳珍、傳珠二公遷上饒七十都西村。又自昌祥三子祖杰、昌良長子祖龍、玉山樟村昌龍公之子祖桂三公開創了西村、西堡、樟村三地宏偉基業。</p>
+<p>吳氏家族自國樂公於明萬曆間起至今已達四百余年，上述三地人丁已發展到六百有余，可謂人丁興旺，能人賢達，不乏有繼。吳氏家族，淵源流長，世代昌隆。源商周，達秦漢，貫六朝，隆新紀。自古迄今，達二千五百余年，枝繁葉茂，遍及五洲，文官武將，代有人杰，忠孝仁義，輩出吳門。自泰伯、仲雍始，至今已衍百有一世，眞乃旺族大家也。</p>
+<p>盖天下旺宗皆有譜牒，有譜牒則可尊祖敬宗、振作家聲也。然吳氏宗譜自延陵洵公爲一世始祖，繁衍於今已愈三十有七世，清光緒廿一年爲首修，民國三十五年爲再修，距今已隔五十余年，如不續修惟恐以後子孫繁衍昌盛亦無以考，究其由來將何以序昭穆而聯族誼也。故此，於辛巳年元霄前，族人書清偕書旺、書炎、裕樟、裕富、後英、後富等坐庭商議續修宗譜事宜。值此，深得西堡、樟村等族親鼎力支持，謹擇正月初六日興工，至端月譜牒告竣，誠盛舉也。因余輩學識淺陋，時間倉促，難勉有誤，謹望後學賢達予以斧正。譜竣之喜，贅述數語，權當爲序。</p>
+<p>延陵吳氏第三十二世裔孫薰沐拜撰 上饒縣志办編輯張應全執筆 公元二零零一年孟春 吉旦</p>
+            </article>
+            <article class="doc-text">
+              <h4>白话文翻译</h4>
+              <p>我们的世系源自黄帝之后，是泰伯、仲雍二位先祖（一世祖）的孙子周章公（四世祖）的后裔。周章公被分封为吴国国君，居住在建康金陵（现在的南京），于是以国号作为姓氏，从此便有了吴姓。传承到夫差公（二十一世）时称王。起公（二十七世）担任东河郡守，生下植、种、栽、培四个儿子，居住在延陵，吴姓从此便有了郡望（著名的家族地域）。起公之后的芮公（三十一世）居住在长沙，官至长沙王。吴芮生了三个儿子，长子芳公迁居会稽（今绍兴），次子郢公迁居鄱阳吴纲山（今波阳境内），三子浅公迁居徽州（今安庆）。传到少微公（六十五世）时迁居新安。唐朝乾符元年，少微公的儿子洵公考中进士，官至侍郎，他的子孙散居并迁徙到饶州、广州、徽州、婺州、歙县等地，创立了新安派，洵公便是新安派的始祖。到了建述公（二十世）时生了四个儿子，老大叫瓒，老二叫瑞，老三没有子嗣，老四叫国乐。瓒、瑞两位先祖在老家谱里没有记载，已无法考证。国乐公（二十一世）在明朝万历年间迁居到广信玉山县三十都后陈（现在的樟村）。国乐公的长子福元公迁居到上饶新通地，次子福亭公仍然留在后陈创业。福元公生了三个儿子，老大荣光、老二荣奇、老三荣华，荣奇公没有子嗣，只有光、华两公的子孙繁衍茂盛。光公后来迁居到上饶县十都新通地，他的长子昌祥公迁居玉山县三十四都瑶岭王家蓬。华公的儿子昌良公迁居上饶县汪村西堡乌石岗。昌吉公迁居上饶县十都七堡。清朝乾隆年间，昌祥公的儿子传珍、传珠二公迁居上饶七十都西村。另外，由昌祥公的三子祖杰、昌良公的长子祖龙、以及玉山樟村昌龙公的儿子祖桂三位先祖，开创了西村、西堡、樟村三地宏大的基业。</p>
+<p>吴氏家族自从国乐公在明朝万历年间发迹，到现在已经有四百多年了，上述三个地方的人口已经发展到六百多人，可以说是人丁兴旺，能人贤士不断涌现。吴氏家族源远流长，世代繁荣昌盛。我们的渊源可以追溯到商周，经过秦汉，贯穿六朝，在当今新时代更加兴隆。从古至今，长达两千五百多年，枝繁叶茂，子孙遍布世界各地，文臣武将、杰出人才代代都有，忠孝仁义之士在吴家辈出。从泰伯、仲雍开始，到现在已经繁衍了一百零一世，真是一个兴旺的大家族。</p>
+<p>大凡天下的兴旺家族都有家谱，有家谱就可以尊崇祖宗、振兴家族声誉。然而吴氏的家谱自从把延陵的洵公作为一世始祖以来，繁衍到现在已经超过三十七世了，清朝光绪二十一年进行了第一次修谱，民国三十五年进行了第二次修谱，距离现在已经相隔五十多年了，如果不继续修缮，恐怕以后子孙繁衍昌盛了也无从考证，追究其来历，将用什么来排定辈分长幼、联络家族情谊呢？因此，在辛巳年（2001年）元宵节前，族人书清偕同书旺、书炎、裕樟、裕富、后英、后富等人坐在一起商议续修家谱的事情。在这个时候，得到了西堡、樟村等同族亲友的鼎力支持，郑重地选择在正月初六日开工，到了正月结束时家谱就修成了，这真是一件盛大的事情。因为我们这些人学识浅薄，时间又仓促，难免会有错误，真诚地希望后来的学识渊博之人能够加以修正。在宗谱修成的高兴时刻，写下这几句多余的话，暂且作为序言。</p>
+<p>延陵吴氏第三十二世孙 沐浴更衣 恭敬撰写 上饶县志办编辑 张应全 执笔 公元二零零一年早春 吉日</p>
+            </article>
+          </div>
+          <div class="article-pager">
+            <button type="button" class="article-nav-button" data-target="minguo-1946-1">上一篇<br><strong>延陵吴氏重修宗谱旧序</strong></button>
+            <button type="button" class="article-nav-button next" data-target="xinsi-2001-2">下一篇<br><strong>新凡例</strong></button>
+          </div>
+        </article>
+
+        <article class="revision-page" id="xinsi-2001-2" data-article="xinsi-2001-2">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>2001 年</span>
+                <em>辛巳续修</em>
+              </div>
+              <h2>新凡例</h2>
+            </div>
+            <span class="article-source">新凡例-辛巳年正月.docx</span>
+          </div>
+          
+          <article class="doc-text single">
+            <p>一、續修族譜，應以當今黨的路綫、方針、政策為指導，以法律、法規為准繩，實事求是地記述本族子孫所系。如因不育而買養、領養、過繼之子嗣均可入譜。招郎入贅之婿，記原籍、姓名，以免紊宗。</p>
+<p>二、立繼承祧，必於某公名下注明出繼某人，又必須在領繼人名下注明立某公為嗣，庶來歷有因，便於查考。</p>
+<p>三、族中有分遷者，必於某公名下注明分遷某省、某縣、某鄉、某村，庶後便於考据。</p>
+<p>四、全譜采取承前啟後办法，上承始遷祖，下達現在各支脉。以序、譜、傳、圖等形式，以譜系為主體，歐修式樣，記述其名、誕生年、月、日、時，括注公元紀年。文化程度、社會供職，主要業績均入譜牒。卒記年、月、日、時，葬於何地，山向。</p>
+<p>五、上下時限，上接老譜，下限于辛巳年續修新譜擱筆、排版付印前，逾期待下届續修入譜。</p>
+<p>六、時間表述。中華人民共和國成立前，采用舊紀年。清及清以前為帝皇紀年，如光緒某年。中華民國紀年以一九一二年為民國元年类推。中華人民共和國成立後，以公元紀年，括注干支農曆，其生、卒年、月、日、時，按方块字記述。</p>
+<p>七、名字記述，一律按吳氏譜名記述，單名不記，有字、號者加記其字、號。</p>
+<p>八、异姓之子，隨母之子概不入譜。</p>
+<p>九、族中有親過房，及繼出他姓轉宗者，采取自願，可入亦可不入。</p>
+<p>十、譜牒保管者，須謹慎妥善保管，經常翻晒，以免虫蛀鼠咬。謹慎之舉實乃尊祖之美德也。</p>
+<p>（延陵吳氏宗譜）譜局全體成員謹書 辛巳年正月 穀旦</p>
+          </article>
+          <div class="article-pager">
+            <button type="button" class="article-nav-button" data-target="xinsi-2001-1">上一篇<br><strong>辛巳延陵吳氏續修宗譜序言</strong></button>
+            <button type="button" class="article-nav-button next" data-target="appendix-1">下一篇<br><strong>延陵吳氏宗譜續修新譜局芳名：</strong></button>
+          </div>
+        </article>
+
+        <article class="revision-page" id="appendix-1" data-article="appendix-1">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>附录</span>
+                <em>修谱附录</em>
+              </div>
+              <h2>延陵吳氏宗譜續修新譜局芳名：</h2>
+            </div>
+            <span class="article-source">延陵吳氏宗譜續修新譜局芳名.docx</span>
+          </div>
+          
+          <div class="bureau-sections">
+            <section class="bureau-section compact">
+              <div class="bureau-section-head">
+                <span>01</span>
+                <h3>辛巳续修人员记录</h3>
+              </div>
+              <div class="bureau-lines">
+                <p>主修： 書清</p>
+<p>校修梓人： 裕富 裕旺 裕崽 後英</p>
+<p>總理財務： 書旺</p>
+<p>協理局務： 書炎 書榮 裕樟 裕發 裕金 裕炎 後富</p>
+<p>辛巳年正月 吉旦</p>
+              </div>
+            </section>
+            <section class="bureau-section">
+              <div class="bureau-section-head">
+                <span>02</span>
+                <h3>光绪乙未修谱人员与领谱记录</h3>
+              </div>
+              <div class="bureau-lines">
+                <p>光緒廿一年乙未重修首士芳名開列于後</p>
+<p>一糾首： 振德 振泰</p>
+<p>一總理： 遠揚 必發 詩桂 遠利</p>
+<p>一首士： 達冬 詩俊 兆發 詩懷 遠遺 金貴 遠林 興榮 金富 玉田</p>
+<p>光緒廿一年歲次乙未重修領譜字號，茲譜印正，六部字字相符，行行相對，每部二本，編定，孝、友、睦、姻、任、恤爲號，照次序各房收領。 務要什襲莊藏，毋得風雨損壞、蟲傷鼠咬。每歲六月六日，俱係晒過，不得加添字跡，污穢譜牒 ，倘若查對不合，或私通他族，貪賄受利，經族眾公論，罰銀乙兩，責革不貸。</p>
+<p>孝字號 遠利收領</p>
+<p>友字號 遠揚收領</p>
+<p>睦字號 振泰收領</p>
+<p>姻字號 兆發收領</p>
+<p>任字號 必發收領</p>
+<p>恤字號 金富收領</p>
+              </div>
+            </section>
+          </div>
+          <div class="article-pager">
+            <button type="button" class="article-nav-button" data-target="xinsi-2001-2">上一篇<br><strong>新凡例</strong></button>
+            <span class="article-nav-spacer"></span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script>
+    const tocItems = Array.from(document.querySelectorAll(".toc-doc"));
+    const articlePanels = Array.from(document.querySelectorAll(".revision-page"));
+    const pagerButtons = Array.from(document.querySelectorAll(".article-nav-button"));
+    function activateArticle(target, pushHash = true) {
+      if (!articlePanels.some(panel => panel.dataset.article === target)) return;
+      tocItems.forEach(item => item.classList.toggle("active", item.dataset.target === target));
+      articlePanels.forEach(panel => panel.classList.toggle("active", panel.dataset.article === target));
+      const activePanel = articlePanels.find(panel => panel.dataset.article === target);
+      if (activePanel) {
+        activePanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      if (pushHash) {
+        history.pushState(null, "", `#${target}`);
+      }
+    }
+    tocItems.forEach(item => {
+      item.addEventListener("click", () => activateArticle(item.dataset.target));
+    });
+    pagerButtons.forEach(button => {
+      button.addEventListener("click", () => activateArticle(button.dataset.target));
+    });
+    const initialHash = decodeURIComponent(location.hash || "").replace(/^#/, "");
+    if (initialHash) {
+      activateArticle(initialHash, false);
+    }
+    window.addEventListener("popstate", () => {
+      const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
+      if (hash) activateArticle(hash, false);
+    });
+  </script>
+</body>
+</html>

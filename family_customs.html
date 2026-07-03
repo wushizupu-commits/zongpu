@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>家训礼俗｜延陵吴氏</title>
+  <style>
+    :root {
+      --bg: #f1e6d4;
+      --paper: #fbf6ea;
+      --paper-strong: #fffaf0;
+      --ink: #241b14;
+      --muted: #766d5f;
+      --muted-2: #9b8f7d;
+      --line-soft: #e4d7bd;
+      --accent: #a64232;
+      --accent-dark: #783026;
+      --accent-2: #286a66;
+      --copper: #b89461;
+      --shadow-soft: 0 8px 24px rgba(60, 44, 24, 0.09);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 8%, rgba(166, 66, 50, .08), transparent 28%),
+        radial-gradient(circle at 84% 12%, rgba(40, 106, 102, .08), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(80, 59, 33, .025) 0 1px, transparent 1px 8px),
+        linear-gradient(135deg, #f4ead9 0%, var(--bg) 52%, #e8dac4 100%);
+      min-height: 100vh;
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-top: 5px solid #5a2b2d;
+      border-bottom: 1px solid rgba(184, 148, 97, .32);
+      background:
+        linear-gradient(90deg, rgba(255, 250, 240, .96), rgba(247, 236, 218, .9)),
+        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 8px);
+      box-shadow: 0 10px 26px rgba(60, 44, 24, .08);
+    }
+    .site-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 58px;
+      padding: 10px 18px;
+    }
+    .site-brand {
+      flex: 0 0 auto;
+      color: var(--accent-dark);
+      font-size: 17px;
+      font-weight: 820;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav a,
+    .site-nav button {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 31px;
+      padding: 7px 12px;
+      border: 1px solid rgba(184, 148, 97, .38);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .74);
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: 0;
+      box-shadow: 0 4px 10px rgba(60, 44, 24, .05);
+    }
+    .site-nav a.active {
+      border-color: rgba(166, 66, 50, .62);
+      background: linear-gradient(135deg, rgba(166, 66, 50, .12), rgba(255, 250, 240, .82));
+      color: var(--accent-dark);
+      box-shadow: inset 3px 0 0 rgba(166, 66, 50, .82), 0 5px 12px rgba(166, 66, 50, .08);
+    }
+    .site-nav button {
+      cursor: default;
+      opacity: .78;
+    }
+    main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+    .hero-card,
+    .panel,
+    .rule-card,
+    .wind-panel {
+      border: 1px solid rgba(184, 148, 97, .34);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 253, 247, .92), rgba(247, 236, 218, .76)),
+        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 7px),
+        var(--paper-strong);
+      box-shadow: var(--shadow-soft);
+    }
+    .hero-card {
+      padding: 28px 30px;
+      margin-bottom: 20px;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 780;
+      letter-spacing: .12em;
+    }
+    h1 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .hero-card p {
+      max-width: 780px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    .section {
+      margin-top: 22px;
+    }
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 12px;
+    }
+    h2 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    .source-note {
+      color: var(--muted-2);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .wind-panel {
+      padding: 20px 22px;
+    }
+    .motto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+      gap: 10px 14px;
+      margin: 0;
+      padding: 0;
+    }
+    .motto-grid span {
+      display: flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 0 0 12px;
+      border-left: 2px solid rgba(184, 148, 97, .36);
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 690;
+      line-height: 1.35;
+      letter-spacing: .02em;
+    }
+    .rule-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(40, 106, 102, .1);
+      color: var(--accent-2);
+      font-size: 11px;
+      font-weight: 820;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .intro-note {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 14px;
+      padding: 14px 0 16px;
+      border-top: 1px solid rgba(184, 148, 97, .22);
+      border-bottom: 1px solid rgba(184, 148, 97, .22);
+    }
+    .intro-block {
+      min-width: 0;
+    }
+    .intro-block + .intro-block {
+      padding-left: 18px;
+      border-left: 1px solid rgba(184, 148, 97, .18);
+    }
+    .panel {
+      padding: 16px;
+    }
+    .intro-block h3,
+    .panel h3 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 16px;
+    }
+    .intro-block p,
+    .panel p {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .intro-block p:last-child,
+    .panel p:last-child {
+      margin-bottom: 0;
+    }
+    .rule-list {
+      display: grid;
+      gap: 10px;
+    }
+    .rule-card {
+      overflow: hidden;
+    }
+    .rule-card summary {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto 26px;
+      align-items: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 12px 16px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .rule-card summary::-webkit-details-marker {
+      display: none;
+    }
+    .rule-card summary::after {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(166, 66, 50, .1);
+      color: var(--accent);
+      font-weight: 820;
+    }
+    .rule-card[open] summary::after {
+      content: "-";
+    }
+    .rule-card strong {
+      color: var(--ink);
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    .rule-card em {
+      color: var(--muted-2);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 680;
+      white-space: nowrap;
+    }
+    .rule-body {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0 16px 16px;
+    }
+    .rule-body article {
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid rgba(184, 148, 97, .22);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .48);
+    }
+    .rule-body h3 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 15px;
+    }
+    .rule-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.68;
+    }
+    .tail-note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-top: 1px solid rgba(184, 148, 97, .24);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .tail-note p {
+      margin: 0 0 6px;
+    }
+    .tail-note p:last-child {
+      margin-bottom: 0;
+    }
+    .rites-panel {
+      display: grid;
+      gap: 14px;
+      padding: 18px;
+    }
+    .poem-strip {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      padding: 14px 16px;
+      border: 1px solid rgba(166, 66, 50, .16);
+      border-radius: 10px;
+      background: rgba(166, 66, 50, .055);
+    }
+    .poem-strip strong {
+      color: var(--accent-dark);
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: nowrap;
+    }
+    .poem-strip p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .rites-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .rites-article {
+      min-width: 0;
+      padding: 14px 16px;
+      border: 1px solid rgba(184, 148, 97, .24);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .48);
+    }
+    .rites-article h3 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 16px;
+    }
+    .rites-article p {
+      margin: 0 0 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(184, 148, 97, .16);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.68;
+    }
+    .rites-article p:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    @media (max-width: 900px) {
+      .intro-note,
+      .rule-body,
+      .rites-columns {
+        grid-template-columns: 1fr;
+      }
+      .intro-block + .intro-block {
+        padding-left: 0;
+        padding-top: 12px;
+        border-left: 0;
+        border-top: 1px solid rgba(184, 148, 97, .18);
+      }
+    }
+    @media (max-width: 760px) {
+      .site-header-inner {
+        display: block;
+        min-height: 0;
+        padding: 9px 12px 10px;
+      }
+      .site-brand {
+        display: block;
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .site-nav {
+        flex-wrap: nowrap;
+        gap: 7px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .site-nav a,
+      .site-nav button {
+        flex: 0 0 auto;
+        min-height: 30px;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .site-nav::-webkit-scrollbar {
+        display: none;
+      }
+      main {
+        width: min(100% - 24px, 1180px);
+        padding: 18px 0 34px;
+      }
+      .hero-card {
+        padding: 18px;
+      }
+      .section-header {
+        display: block;
+      }
+      .source-note {
+        display: block;
+        margin-top: 6px;
+        white-space: normal;
+      }
+      .wind-panel {
+        padding: 16px;
+      }
+      .motto-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px 10px;
+      }
+      .motto-grid span {
+        min-height: 28px;
+        font-size: 13px;
+      }
+      .poem-strip {
+        display: block;
+      }
+      .poem-strip strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+      .rule-card summary {
+        grid-template-columns: 38px minmax(0, 1fr) 24px;
+      }
+      .rule-card em {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-brand">延陵吴氏</div>
+      <nav class="site-nav" aria-label="站点一级目录">
+        <a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link" href="./source_migration.html">源流迁徙</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link" href="./biographies.html">族贤传略</a><a class="nav-link active" href="./family_customs.html" aria-current="page">家训礼俗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero-card">
+      <p class="eyebrow">FAMILY RULES & CUSTOMS</p>
+      <h1>家训礼俗</h1>
+      <p>收录族谱文献中的家风、家训与冠婚丧祭之礼，先以家风短训立其纲，再以十二条家训分述孝弟忠信、礼义廉耻与礼俗规范。</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>新家風四十言</h2>
+        <span class="source-note">来源：新家風四十言.docx</span>
+      </div>
+      <div class="wind-panel">
+        <div class="motto-grid" aria-label="新家风四十言短句">
+        
+          <span>兒媳孝順父母</span>
+
+          <span>夫妻妯娌和睦</span>
+
+          <span>兄弟互帮互助</span>
+
+          <span>宗族同苦同樂</span>
+
+          <span>少者尊老敬賢</span>
+
+          <span>求知用功苦學</span>
+
+          <span>務農講究科技</span>
+
+          <span>做工杜絕懶惰</span>
+
+          <span>經商守信買賣</span>
+
+          <span>為人忠誠運作</span>
+
+          <span>讀書志在聖賢</span>
+
+          <span>當官為民創業</span>
+
+          <span>報國赤胆忠心</span>
+
+          <span>執法堅持公正</span>
+
+          <span>不義之財勿取</span>
+
+          <span>清白廉政潔身</span>
+
+          <span>居家力戒訴訟</span>
+
+          <span>訴訟必遺禍根</span>
+
+          <span>害人之心莫有</span>
+
+          <span>處世謹慎防人</span>
+
+          <span>團結异姓鄰里</span>
+
+          <span>凡事不宜強爭</span>
+
+          <span>遇事讓人三分</span>
+
+          <span>日後如同拾金</span>
+
+          <span>因事與人糾紛</span>
+
+          <span>三思忍耐禍平</span>
+
+          <span>安份尊紀守法</span>
+
+          <span>秉公正直為人</span>
+
+          <span>嫁女莫索重聘</span>
+
+          <span>擇婿注重品行</span>
+
+          <span>娶媳當求淑女</span>
+
+          <span>人品道德必循</span>
+
+          <span>晏客勿忘熱情</span>
+
+          <span>交友勿忘忠誠</span>
+
+          <span>貧者不行盜窃</span>
+
+          <span>富者不忘貧民</span>
+
+          <span>持家勤勞節儉</span>
+
+          <span>洒掃清潔門庭</span>
+
+          <span>家規家風祖訓</span>
+
+          <span>族人尊照執行</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>家訓計十二條</h2>
+        <span class="source-note">来源：家訓計十二條.docx</span>
+      </div>
+      <div class="intro-note">
+        <article class="intro-block">
+          <h3>原文总序</h3>
+          <p>詩曰：“天生蒸民，有物有則。”書曰：“惟民生厚，因物以遷。”是知人匪無良訓之宜亟於是。摭古典，采方言，淺近易曉者，編爲十二條：孝、弟、忠、信以訓其心，禮、義、廉、耻以訓其身，冠、婚、喪、祭以訓其俗。予將以此爲式穀之資，汝後人尤當此爲燕翼之謀，欽哉弗棄！</p>
+        </article>
+        <article class="intro-block">
+          <h3>白话导读</h3>
+          <p>《诗经》上说：“上天生育了万民，万事万物都有其法则。”《尚书》上说：“人的本性本来是淳厚的，但会因为外在事物的环境而发生改变。”由此可知，人们不能没有良好的教诲，迫切需要以此来约束自己。我摘录古代典籍，采集地方俗语中浅显易懂的内容，编成十二条：用“孝、悌、忠、信”来训导内心的品德，用“礼、义、廉、耻”来规范自身的行为，用“冠、婚、丧、祭”来教化家族的风俗。我将把这些作为教导子孙向善的凭借，你们后代更应当把这当作庇荫子孙的长远谋划，恭敬地遵守，千万不要废弃！</p>
+        </article>
+      </div>
+      <div class="rule-list">
+        
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">01</span>
+            <strong>孝</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>一日孝 何謂孝？盖孝者，所以事親也。百行之原，立身之本。聖人訓弟子之職，頂頭就說個“入則孝”。蓋以人生皆本於父母，十月懷胎，三年乳哺，推乾就濕，撫我鞠我，劬勞萬狀，若不可言，其昊天罔極也。古人有見于此，於冬溫而夏凊，昏定而晨省；出則必告，反則必面；父母怒不悅而撻之流血，不敢疾怨；起敬起孝也。生事之以禮，死葬之以禮，祭之以禮。故慈烏反哺，羔羊跪乳，禽獸且知孝道，况人爲萬物之靈者乎！凡我子孫，當以古人爲法，不可流于禽獸。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第一条：孝 什么是孝？孝，就是侍奉双亲的道理。它是各种德行的源头，是为人处世的根本。圣人教导弟子的本分，第一句话就说“在家要孝顺父母”。因为人的生命都源于父母，十月怀胎，三年哺乳，母亲总是把干爽的地方留给孩子，自己睡在潮湿的地方；抚养我们，教育我们，辛苦到了极点，难以用言语表达，这种恩情就像苍天一样广阔无边。古人认识到了这一点，所以在冬天让父母温暖，在夏天让父母清凉，晚上服侍父母安睡，早晨向父母请安；出门必定禀告，回家必定当面问候；即使父母发怒不高兴打出血来，也不敢有任何怨恨，这都是发自内心的敬爱与孝顺。父母活着时要按礼节侍奉，去世后要按礼节安葬，祭祀时也要按礼节进行。所以乌鸦有反哺之恩，羊羔有跪乳之义，禽兽尚且懂得孝道，何况人是万物之灵呢！凡是我的子孙，都应当以古人为榜样，绝不能堕落得连禽兽都不如。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">02</span>
+            <strong>弟</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>二曰弟 何謂弟？蓋弟者，所以事長也。孟子曰：“徐行後長者謂之弟。”不觀之物乎？彼竹節之生則有上有下，鴻鴈之飛則有後有先，確乎不渝。凡我子孫，務宜相好無尤，取其讓，舍其爭。以世間最難得者兄弟，必怡怡如也。見尊長，坐則擡身，立則拱手，言則從容，行則隨後。彼雖愚于我，不可以賢知先之也；雖貧賤於我，不可以富貴加之也。鄉黨且然，况宗族乎！故堯舜之爲大聖人，亦不外乎孝弟而已矣。此又後輩之所當知。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第二条：悌 什么是悌？悌，就是侍奉兄长的道理。孟子说：“慢步走在长者后面就叫做悌。”难道没有观察过万物吗？那竹子生长有上有下，大雁飞行有后有先，这是确立不变的规律。凡是我的子孙，务必和睦相处，不要彼此怨恨，要提倡相互谦让，摒弃争斗。世间最难得的就是兄弟，一定要保持和悦相亲的样子。见到尊长，坐着时要起身，站立时要拱手致敬，说话要从容温和，走路要跟在长者后面。他们虽然可能比我愚钝，但不能仗着自己聪明就在他们面前逞能；他们虽然可能比我贫贱，但不能仗着自己富贵就在他们面前傲慢。对待同乡的人尚且应该如此，何况是同宗族的亲人呢！所以尧舜之所以成为大圣人，也不外乎是做好了孝悌罢了。这也是后辈应当明白的道理。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">03</span>
+            <strong>忠</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>三曰忠 忠者何謂也？盡已之心之謂也。事君而不盡其心，則爲奸臣，爲佞臣，爲聚歛之臣。當時非之，後世唾罵，輕則斥罷之，重則誅戮之。是必思：君之爵祿我者，非徒富貴我也，以作忠望于我也；我之事是君者，非徒容悅爲也，當盡忠報其國也。于事社稷，君曰可，吾曰否，害在生靈；君曰是，吾曰非。公爾忘私，國爾忘家。天下有道，則疏附先後，制法於未亂，保邦未於危，爲萬世之謀，勿爲一時之計；斯時多故，則禦災捍患，爲生民保章，爲天子干誠，天下之計，勿謂一身之謀。此達之忠也。若窮而在下，則以爲人謀不忠曰省言焉。忠信，州里可行也，蠻貊亦可行也。吾子孫不可不一念不忠。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第三条：忠 什么是忠？就是竭尽自己的心力。侍奉君王如果不尽心，就会成为奸臣、佞臣、搜刮民财的臣子。当时的人会非议他，后世的人会唾骂他，轻则被罢官免职，重则被诛杀。所以一定要想到：君王赐予我爵位和俸禄，并非只是为了让我享受富贵，而是期望我能尽忠；我侍奉君王，并非只是为了阿谀奉承讨其欢心，而是应当尽忠报国。在关系国家社稷的事情上，如果君王说可以，而我认为不行，是因为这会危害百姓；君王说是，而我认为不是，这都是出于公心而忘却私利，为了国家而忘却小家。天下太平有道的时候，要亲近贤才，在动乱未发生前就制定好法度，在国家未遇到危险前就保卫好国家，要为万世的长远谋划，不要只图一时的打算；如果国家多灾多难，就要抵御灾害和外患，做保护百姓的屏障，做天子的忠诚守卫，要考虑天下的计谋，不要只顾自身的利益。这是身居高位者的忠诚。如果出身贫寒地位低下，就要以“替人办事是不是没有尽心竭力”来每天反省自己。忠信，在乡里是行得通的，在偏远蛮荒之地也是行得通的。我的子孙决不可有任何一念不忠。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">04</span>
+            <strong>信</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>四曰信 信者何謂也？循物無違之謂也。孔子曰：“主忠信。”子夏曰：“與朋友交，言而有信。”一聖一賢皆見人當以信實於主。孔子曰：“人而無信，不知其可也。大車無輗，小車無軏，其何以行之哉？”信之於人大矣！故雞非鳳比，不爽曉晦之期；鴈乃禽倫，每守春秋之候。信也。人備五常，兼萬善，靈於庶物者也。苟有不信，則內欺於心，外欺乎人。仕焉不可以獲上而治民，處焉不可以悅親而信友。學爲虛文，業爲虛假。親戚畔之，鄉里疑之。聖人去食去兵，而不去信也。蓋以自古皆有死，人無信不立耳。苟能信焉，則陰陽信而兩儀運，四時信而百物生出；則君任之爲股肱，民依之爲父母；處則吐辭爲經，行則出言爲度也。奉爲耆龜，敬爲神明。近者任，遠者倚，豚魚可感也。吾子孫不可一念不信。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第四条：信 什么是信？信，就是遵循事物规律而不违背承诺。孔子说：“为人要以忠信为主。”子夏说：“与朋友交往，说话要讲信用。”这两位圣贤都指出了做人应当以诚信为根本。孔子又说：“一个人如果不讲信用，真不知道他怎么能立身处世。就像大车没有车辕前端与车横木衔接的木销，小车没有皮带，它靠什么行走呢？”诚信对于人来说太重要了！所以，鸡虽然不能和凤凰相比，但它报晓的时间从不差错；大雁虽然只是禽鸟，却每年都能坚守春秋迁徙的节候。这就是信。人具备仁义礼智信五常，兼具各种善德，是万物中最有灵性的。如果人不讲信用，在内就是欺骗自己的良心，在外就是欺骗他人。做官就无法获得上级的信任去治理百姓，居家就无法让父母高兴、得到朋友的信任。求学就成了虚有其表，做事就成了弄虚作假。亲戚会背叛他，乡里人会怀疑他。所以圣人宁可去掉粮食、去掉军队，也不去掉信用。因为自古以来人终究一死，但如果没有信用，就无法在世上立足。如果能做到诚实守信，就能像阴阳有信而天地运转，四季有信而万物生长一样；君主就会把你当作左膀右臂来重用，百姓就会把你当作父母来依靠；平日里说出的话可以成为经典，做出的事可以成为法度。人们会把你像神明一样敬奉。近处的人信任你，远处的人依赖你，甚至连蠢笨的小猪小鱼也能被感化。我的子孙决不可有任何一念不讲信用。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">05</span>
+            <strong>禮</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>五曰禮 禮者，屢也可，不斯須去身者也。故堯之光恭克讓，舜之溫恭允塞，禹之祗臺德先，湯之罔不祗肅，文之敬止，武之敬勝，周公之吐握，孔子之恂恂，孟子之立正位，皆有見於是禮者。在天爲天秩，在人爲人常。體之則可以爲聖賢，失之則同歸於禽獸，誠非玉帛之謂也。是故君臣由是禮，則君明臣良；父子由是禮，則父慈子孝；兄弟由是禮，則兄友弟恭；夫婦由是禮，則夫和婦順；朋友由是禮，則無言不及義之失。得志與民由之，則禮讓成俗，禮教成風；不得志則獨行其道，則明無人非，幽無鬼責。謂其爲出入禮門之君子可也，謂其爲禮義由賢者出可也。吾子孫當守之以禮。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第五条：礼 什么是礼？礼是人应当践行的准则，是片刻也不能离开自身的。所以尧的光明恭敬而能让贤，舜的温和恭敬而天下充实，禹的敬天重德，商汤的无不恭敬肃穆，周文王的敬重止于至善，周武王的以敬胜怠，周公的吐哺握发（求贤若渴），孔子的温和恭敬，孟子的立于天地之正位，这些都是在礼上的具体体现。礼，在天体现为自然秩序，在人体现为伦理纲常。能身体力行就能成为圣贤，失去了它就与禽兽无异，这确实不仅仅是指进贡玉帛这类形式。因此，君臣之间依循礼，就会君主明智、臣子贤良；父子之间依循礼，就会父亲慈爱、儿子孝顺；兄弟之间依循礼，就会兄长友爱、弟弟恭敬；夫妇之间依循礼，就会丈夫和睦、妻子柔顺；朋友之间依循礼，就不会出现说话不合道义的过失。得志时和百姓一起践行它，就能让礼让成为社会习俗，让礼教蔚然成风；不得志时独自践行自己的原则，就能做到在明处没有人的非议，在暗处没有鬼神的责罚。这样的人，称他为懂得出入礼义之门的君子是可以的，称他为展现了贤者礼义风范的人也是可以的。我的子孙应当用礼来约束自己。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">06</span>
+            <strong>義</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>六曰義 義者，宜也，天理之當然，人事之準則也。孔子曰：“君子喻於義”，“君子義以爲質”，“君子義以爲上”。又曰：“君子有勇而無義爲亂，小人有勇而無義爲盜。”孟子曰：“亦有仁義而已矣。”義者，人之正路也。舍正路而不由，哀哉！又曰：“無禮無義，人役也。”尊德樂義，則可以囂囂矣。是聖賢千言萬語，無非欲人由于義也。故義之於君臣也，朋友以義合也。有此二者方可以行其義，郎至一言一行，一進一退，一取一予，皆當爲義。是比富與貴，人之所欲也，非其義也，祿之以天下弗顧也，繫馬千駟弗視也；貧與賤，人之所惡也，非其義也，一介不以與人，一介不以取諸人。孔子不以衞卿之得動心而退，必以義；曾子不以晉楚之富動心，而曰“我以吾義”；孟子不以萬鍾之祿動心，而曰“舍生取義”。有周恤之義，無害人之心；有自重之義，無足恭之態。如是而謂其爲比義之君子可也，謂其爲當時之義士可也。凡我子孫當制之以義。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第六条：义 什么是义？义，就是适宜，是天理的必然，也是人事的准则。孔子说：“君子懂得的是道义”，“君子把道义作为立身的根本”，“君子把道义看得最崇高”。又说：“君子如果只有勇敢而不讲道义就会作乱，小人如果只有勇敢而不讲道义就会沦为强盗。”孟子说：“只要有仁义就足够了。”义，是人生的正道。放着正道不走，多么可悲啊！又说：“没有礼没有义的人，只能做受人奴役的人。”如果能尊崇道德、乐于道义，就可以悠然自得无所欲求了。可见圣贤们千言万语，无非是想让人们顺乎道义行事。所以，道义存在于君臣之间，朋友之间也是靠道义结合的。有了这两个前提才可以推行道义，乃至于一言一行，一进一退，一取一予，都应当符合道义。就像富贵，虽然是人人渴望的，但如果不符合道义，即使把天下的财富都作为俸禄赐给他，他也不屑一顾，即使有成千上万匹马拉的马车，他也不看一眼；贫贱，虽然是人人厌恶的，但如果不符合道义，他一毫不随便给人，也一毫不随便拿别人的。孔子不被卫国卿相的职位所动心而辞退，必然是出于道义；曾子不被晋国、楚国的财富所动心，说“我坚守我的道义”；孟子不被极其丰厚的俸禄所动心，说“为了道义可以舍弃生命”。要有周济别人的义举，没有伤害别人的心思；要有自尊自重的气节，没有过分逢迎谄媚的姿态。能做到这样，称他为崇尚道义的君子是可以的，称他为当时的义士也是可以的。凡我子孙，都应当用义来克制约束自己。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">07</span>
+            <strong>廉</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>七曰廉 廉者，有分辨，臨財無苟得之謂也。故以廉名者，必非巢、由其人，務光其輩，而後可尚也。苟道義無虧，則舜受堯封，禹承舜禪，亦不害其廉。以不廉名者，非必盜跖其爲，齊人其行，而後爲失也。是以原思有宰粟之辭，孔子曰：“毋！以與爾鄰里鄉黨乎！”受之無害于廉也。齊王有兼金之餽，孟子曰：“予未有處也。焉有君子而可以貨取乎？”辭之足以明廉也。彼不義，兄居惡用覜匕？豈不名廉然，辟兄離母，絕人道之大倫，其廉失之矯。耕稼有莘，道樂堯舜，何心于廉然？非義非道，一介有所不取，其廉乃爲是。廉之當办也如此。有志于廉者，願學孔、孟、伊尹，勿爲仲子，其廉斯至矣。凡我子孫，當思以廉自勵。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第七条：廉 什么是廉？廉，就是明辨是非，面对钱财不随便苟得。所以，真正以廉洁闻名的人，未必非要是像巢父、许由那样隐居不仕，或者像务光那样跳水自尽的人，才值得推崇。如果道义上没有亏欠，那么舜接受尧的禅让，禹接受舜的禅让，也不损害他们的廉洁。被指责为不廉洁的人，未必非要像大盗盗跖那样作恶，或者像齐人乞讨祭食那样厚颜无耻，才算是丧失了廉洁。因此，原思做孔子家宰时推辞俸禄，孔子说：“不要推辞！把这些粮食分给你的邻里乡亲吧！”接受正当的俸禄并不会损害廉洁。齐王赠送丰厚的金子给孟子，孟子说：“我还没有可以安置它的理由。哪里有君子可以用金钱来收买的呢？”推辞掉不该拿的财物足以表明廉洁。像陈仲子那样认为哥哥的俸禄是不义之财，住在哥哥家难道要用那不义之钱买的饭勺吃饭吗？这样难道不叫廉洁吗？但他避开哥哥、离开母亲，断绝了人伦大道，他的这种廉洁就显得太矫情了。伊尹在有莘国的郊野种地，以尧舜的道义为乐，他哪里有刻意去追求廉洁的虚名呢？但不符合道义的，他一丝一毫都不会去取，这才是真正的廉洁。对待廉洁就应该如此。有志于廉洁的人，希望能向孔子、孟子、伊尹学习，不要学陈仲子那样走极端，这样就能达到真正的廉洁了。凡我子孙，应当常思以廉洁来勉励自己。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">08</span>
+            <strong>耻</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>八曰耻 耻者，有羞愧，能有所不爲之謂也。孟子曰：“人不可以無耻。無耻之耻，無耻矣。”又曰：“不耻不若人，何若人有？”是耻之於人大矣。故鑽穴隙相窺，踰墻相從，可耻之事也。禦人國門，穿窬境內，可耻之行也。非耻之當戒者乎？先正保衡曰：“於弗克俾厥後爲堯舜，其心愧耻，若撻之于市朝。”用耻之人也。古者言之不出，耻躬之不逮也，知耻之士也。非耻之當法者乎？孔子不飲盜泉之水，耻其名之不正也；鍾離意不拜金珠之賜，耻其來之不潔也。巢棲而莫辨，禽之所以無耻也；穴處而苟同，獸之所以無耻也。人能存得耻字，則愧勵激昂，不惟不干刑憲，不愧幽獨，希聖希賢亦不難矣。凡我子孫當以耻自知。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第八条：耻 什么是耻？耻，就是懂得羞愧，能够坚持有所不为。孟子说：“人不可以没有羞耻心。如果能把不知羞耻视为耻辱，那就不会再有无耻的事情发生了。”又说：“不以自己不如别人为耻，又怎么能赶上别人呢？”可见羞耻心对人来说太重要了。所以，钻墙洞互相偷看，翻越围墙私自相会，这是可耻的事情。在国境线上抵御敌人，在国内却做翻墙越货的勾当，这是可耻的行为。难道这不是羞耻心应当告诫我们要避免的吗？先贤伊尹说：“如果不能使我的君王成为像尧舜一样的圣明君主，我心里就会感到羞愧耻辱，就像在热闹的集市上被人鞭打一样。”这是善于运用羞耻心的人。古人说话不轻易出口，是因为以自己的行动赶不上言辞为耻，这是懂得羞耻的人。难道这不是因为羞耻心而应当效法的吗？孔子不喝“盗泉”里的水，是觉得它的名字不端正；钟离意不接受金珠的赏赐，是耻于这财富来路不清白。鸟在巢中栖息而不知分辨，是因为禽鸟没有羞耻心；兽在洞穴中苟且群居，是因为野兽没有羞耻心。人只要心里能存着一个“耻”字，就会因为心怀愧疚而激励自己奋发向上，不仅不会触犯国家刑法，在暗室独处时也能问心无愧，这样想要成为圣贤也就不是难事了。凡我子孙，应当用知耻来时刻警醒自己。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">09</span>
+            <strong>冠</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>九曰冠 司馬溫公曰：“冠者成人之道也。成人者，將責爲人子、爲人弟、爲人臣、爲人少者之行也。將責四者之行於人，其禮可不重歟？”冠禮之廢久矣，近世以來，人情尤爲輕薄，生子猶飲乳，已加巾帽，有官者爲之制公服以弄之，過十歲猶總角者亦鮮矣。責彼以四者之行，豈能知之？故往往自幼至長愚騃如一，由不知成人之道故也。古人雖稱二十而冠，不可猝廢，若敦厚好古之君子，俟其子年十五以上，能通《孝經》、《論語》，粗知禮義之方然後冠之，斯爲美矣。善哉斯言，吾子孫當以法。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第九条：冠（成年礼） 司马光曾说：“冠礼，是宣告一个人成年的仪式。既然成年了，就要要求他履行做儿子、做弟弟、做臣子、做晚辈的种种行为规范。要用这四种行为规范来要求一个人，这个加冠的礼仪怎么能不重视呢？”然而，冠礼被废弃已经很久了。近代以来，世风尤其轻浮浅薄，有的孩子还在吃奶，就已经给他们戴上了成人的巾帽；做官的人家甚至给小孩子做官服当玩具穿，超过十岁还留着儿童发髻的都很少了。这样去要求他们履行成人的四种行为规范，他们哪里能懂呢？所以，现在的子弟往往从懂事到长大成人，始终像个不懂事的孩童一样，这就是因为他们不懂得成人的道理。古人虽然规定二十岁才举行冠礼，这规矩不能突然废除，但如果是敦厚淳朴、喜好古道的人家，可以等到孩子十五岁以上，能够通读《孝经》、《论语》，大致懂得礼义的道理之后，再为他举行冠礼，这样就非常好了。司马光这话说的太好了，我的子孙应当以此为效法。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">10</span>
+            <strong>婚禮</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>十曰婚禮 夫婦人倫之大，上以承先祖，下以繼後嗣，可不謹？婚配之家，必先請明尊長，合議可否。閥閱必期相稱，不可慕其富貴、棄其貧賤。戴禮曰：“娶其嫁女，必擇孝弟世有行義者，則子孫慈愛孝弟，不敢淫暴。鳳凰生而有仁義之意，虎豹生而有貪戾之心，無養虎豹移害天下，婦壻不可不擇甚矣。”胡文定公曰：“嫁女必須服吾家者，勝吾家則女之事人必欽必戒；娶婦必須不如吾家者，不如吾家則婦之事舅姑必執婦道，不可不知。”若我子孫，不問名分微賤逆亂之家，貪財私對者，不許與祭會拜，削譜除名。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第十条：婚礼 夫妇关系是人伦中的大事，往上关系到承继祖先，往下关系到繁衍子嗣，怎么能不谨慎呢？在结亲的时候，必须要先请示长辈，共同商议是否合适。两家的门第家风一定要讲求匹配，千万不能贪慕对方富贵，或者嫌弃对方贫贱。《礼记》上说：“娶妻或嫁女，一定要选择那些世世代代有孝悌和道义品行的家庭，这样生下的子孙也会慈爱孝顺，不敢去做淫荡粗暴的事。凤凰生来就带有仁义的气质，虎豹生来就怀有贪婪暴戾的本性，不要养了虎豹去祸害天下，所以挑选媳妇和女婿，绝不能不慎重！”胡寅曾说：“嫁女儿，必须嫁给家境或地位略高于自家的人家，因为对方高过自家，女儿去侍奉公婆丈夫时就一定会恭敬谨慎；娶媳妇，必须娶家境略逊于自家的人家，因为对方不如自家，媳妇侍奉公婆时就一定会恪守妇道，这些道理不可不知。”如果我的子孙，不顾及名分，与出身微贱、大逆不道的人家结亲，或者贪图钱财私自定下婚约的，一律不许参加家族的祭祀活动，并在族谱中除名。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">11</span>
+            <strong>喪禮</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>十一曰喪禮 喪禮者，人子送終之道，當以哀痛慘怛爲本，以衣衾棺槨爲念。孟子曰：“養生者不足以當大事，惟送死可以當大事。”以人子不可使有後日之悔，雖曰喪稱人家之有無，貧而厚葬不循禮也，然君子不以天下儉其親，寧過于厚，無過于薄。古者父母之喪，既殯食粥，齊衰疏食飲水，不食菜菓；既虞卒哭，疏食飲水，不食菜菓；期而小祥，食菜菓；又期而大祥，食醢醬；中月而禫，飲醴酒。食者居喪無敢公然飲酒食肉者。凡我子孫，不得匿喪成婚，不得飲酒食肉，不得暴露不葬，不得癈凶爲吉會赴筵席，犯者罪之。且喪禮久廢，人家又多惑于老佛之誆，云爲死者滅罪資福，虛費錢糧。鳴呼！父母本無罪也，而歿爲破獄解懺，人子逆取其過而加之罪，其爲不孝大矣！今宜革之，遵守家禮。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第十一条：丧礼 丧礼，是为人子女为父母送终的道义，应当以发自内心的哀痛悲伤为根本，以准备好衣物棺椁为念。孟子说：“活着的时候赡养父母还不算尽了最大的事，只有妥善办理父母的丧事才算得上是最大的事。”因为作为子女，不能让自己在日后留下遗憾。虽说办丧事要根据家境的贫富来定，贫穷人家倾家荡产去厚葬是不符合礼制的，但是君子绝不能为了省钱而在安葬父母的事上吝啬，宁可稍微丰厚一些，也绝不可过于简陋。古人遇到父母去世，在灵柩停放期间只能喝粥，穿着粗麻丧服时只能吃粗粮喝冷水，不能吃蔬菜瓜果；下葬后的虞祭和卒哭祭之后，依然吃粗粮喝冷水，不吃蔬菜瓜果；满一周年举行小祥祭祀时，才可以吃些蔬菜瓜果；再满一周年举行大祥祭祀时，才可以吃些酱醋调料；再过一个月举行禫祭除服后，才可以喝点淡酒。古人在服丧期间，是绝没有人敢公然大吃大喝、吃肉饮酒的。凡是我的子孙，在居丧期间绝对不能隐瞒丧事去结婚，不能饮酒吃肉，不能让长辈的遗体暴露在外迟迟不安葬，也不能把丧事当作喜事来办、去赴宴应酬，违犯的人要受到惩处。况且，古老的丧礼已经废除很久了，现在的人家多被佛教道教的说法所迷惑，说什么要为死者做法事灭罪祈福，白白浪费钱财。唉！父母本来就没有罪过，死后却要为他们做“破狱解忏”的法事，这是子女凭空捏造父母的过失并把罪名强加给他们，这真是天大的不孝啊！现在应该把这些陋习都革除掉，严格遵守正统的家礼。</p>
+            </article>
+          </div>
+        </details>
+
+        <details class="rule-card">
+          <summary>
+            <span class="rule-index">12</span>
+            <strong>祭禮</strong>
+            <em>原文 / 白话</em>
+          </summary>
+          <div class="rule-body">
+            <article>
+              <h3>原文</h3>
+              <p>十二曰祭禮 祭者，報本追遠之道。是以豺祭獸，獺祭魚，皆知報本，况於人乎？然非仁孝誠敬，不足以與此。孔子所以“祭如在，祭神如神在”，則曰“吾不與祭，如不祭”。凡遇祭祀，必先一日執事者謂宗子及尊長，選童年聰俊子弟與祭。與祭子孫，齊整衣冠，赴堂習儀演禮，毋得臨期懵然不知起倒，失儀慢祖。且祭必貴早，蓋東方未明，祖宗神氣未散，從而宴享，庶得其所。苟惰慢相仍，遲及日中方集，苟且拜獻，祭畢而歸，殊非家法。必執事之人陳設於五鼓之時，祭之人會集於黎明之始。敢有廢時失事，行禮不恭，跛倚欠伸，噦噫唾嗽，一切失容之事，違者叱罰，少者倍之。散胙飮酒，止許七行，庶能飮者有節，不能飮者有待，不許互相扳勸，以致譁失禮。</p>
+            </article>
+            <article>
+              <h3>白话文</h3>
+              <p>第十二条：祭礼 祭祀，是报答祖先恩德、追念先人的途径。连豺狼在吃猎物前都要先陈列祭祀，水獭在吃鱼前也要先摆开祭祀，动物尚且知道报本，何况是人呢？然而，如果不是心怀仁孝诚敬，就不足以参与祭祀。孔子说“祭祀祖先就像祖先真在面前一样，祭祀神明就像神明真在面前一样”，还说“如果我不亲自参与祭祀，就跟没有祭祀一样”。凡是遇到祭祀活动，主事的人必须提前一天告知宗子和族中长辈，挑选聪明俊秀的少年子弟参与祭祀。参与祭祀的子孙，必须穿戴整齐，提前到祠堂学习演练祭祀的礼仪，绝不能到了正式祭祀时还懵懵懂懂不知道何时起立何时跪拜，这会丧失礼仪、怠慢祖先。而且祭祀一定要趁早，因为在天还没亮的时候，祖先的神灵之气还没有散去，这时候供奉祭品，祖宗的神灵才能得到享用。如果因为懒惰懈怠，拖拉到中午才集合，敷衍了事地拜一拜献上祭品，祭祀完就走，这绝不是我们家的规矩。负责操办的人必须在五更天（凌晨三至五点）就陈设好祭品，参与祭祀的人必须在天刚亮时就全部集合完毕。如果有人敢错过时间耽误祭祀，或者行礼时态度不恭敬，身体歪斜依靠、打哈欠伸懒腰、打嗝咳嗽吐痰，以及做出一切有失体统的举动，违犯的人要受到严厉的呵斥和处罚，年轻不懂事的还要加倍处罚。祭祀结束后分享祭肉和饮酒时，最多只允许敬酒七巡，这样可以让能喝酒的人有所节制，不能喝酒的人也能应付得来，绝不允许互相拉扯劝酒，以免大声喧哗而丧失了体统。</p>
+            </article>
+          </div>
+        </details>
+      </div>
+      <div class="tail-note">
+        <p>凡此十二條，我之子孫務宜謹識，爲燕翼之謀，以垂不朽。</p>
+<p>十六世孫以親舊述。</p>
+<p>以上这十二条家训，我的子孙们务必认真铭记，以此作为庇护子孙的长远谋划，让它流传百世而不朽。 （第十六世孙根据先辈亲旧的遗训记录整理。）</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>晦庵朱熹赋诗云 / 及期祭掃文</h2>
+        <span class="source-note">来源：晦庵朱熹赋诗云-及期祭掃文.docx</span>
+      </div>
+      <div class="panel rites-panel">
+        <div class="poem-strip">
+          <strong>朱熹诗云</strong>
+          <p>晦庵朱熹赋诗云： 吴氏幽居谱牒联，德基慶衍繼先綿。 此時聚集根源祖，流芳忠烈萬古傳。</p>
+        </div>
+        <div class="rites-columns">
+          <article class="rites-article">
+            <h3>祭掃文原文</h3>
+            <p>及期祭掃文： 吾人經天緯地、康民護物，賴有此身，且從何處而來也？思未有身，先有父；以及吾祖、吾曾祖、吾高祖、吾始祖，以及始祖之無窮高，如天厚如地，豈忘耶？</p>
+<p>是以古來逢春秋之節，定祭掃之期，使人乘時報本，觸景興思，良有以也。但人輕視此身，則不知祖宗生期，不識祖諱，不知某公墓在何地，某地墓何公，俱渺然無知。且人不祭掃，茅草必閉塞，墳瑩必致損壞，而祖宗墓不受坤吉氣，被然氣欺壓，陰風逼穴，骸骨消鑠；或遭樹根穿穴纏屍，甚且被人侵、被人沒。而祖宗在于九泉之下，亦弗識有子有孫，安望承蔭獲福耶？</p>
+<p>興言及此，頗覺傷心！自果從來也，既有此身，必思父母，必有祖宗，是生我根源，豈忍忘也？祭掃實我生大事務，要因時標掛，不致愆期，則賢子賢孫矣。此今日之望于後人也，特書譜書自警。旹。</p>
+<p>民國三十五年歲次丙戌，黃鍾月下浣。 三十一世裔孫 敬书。</p>
+          </article>
+          <article class="rites-article">
+            <h3>白话文翻译</h3>
+            <p>及期祭掃文白话文翻译：我们人类能够经天纬地、护国安民，全赖有这个身体。但我们从何而来呢？在我们的身体存在之前，先有父亲，然后有祖父、曾祖父、高祖父、始祖……直至无穷无尽的祖先。他们的德行如天高、如地厚，我们怎能忘记呢？</p>
+<p>所以，古往今来，每逢春秋二祭的节气，人们都会定下祭扫的日期。这让我们能够顺应时节，报答先祖的恩德，通过祭祀来引发对先祖的缅怀，这样做是有深刻道理的。</p>
+<p>但如果人们轻视了这一点，不知道祖宗的生卒日期，不记得先祖的讳名，不知道哪位先祖葬在哪里，或者只知道墓地而不知道安葬的是哪位先祖，这就成了浑然不知的无本之人。如果人们不去祭扫，坟墓就会被茅草封塞，墓穴也会因年久失修而损坏。这样一来，祖先的墓穴就无法享受到大地的福气（坤吉之气），反而受到恶劣环境（然气欺压、阴风逼穴）的侵蚀，骸骨受损；甚至可能遭到树根穿透缠绕，更有甚者被他人侵占、毁坏。如果祖先在九泉之下，都不知道自己还有后代子孙在世，又怎能指望他们显灵庇佑、赐予福分呢？</p>
+<p>想到这里，我心中倍感伤感。追溯本源，既然我们拥有了这个身体，就一定要思念父母和祖宗，这是我们生命的根本，怎能忍心忘记呢？祭扫祖先，实际上是我们生命中极为重要的大事。我们一定要按照时节去完成，不能错过期限，这样才称得上是贤德的子孙。这就是我今天对后人的殷切期望，所以特地写进族谱里，用来警示自己和后人。</p>
+<p>民国三十五年（1946年）丙戌岁，十一月（黄钟月）下浣（下旬）。 三十一世裔孙 敬上。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

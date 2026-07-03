@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>源流迁徙｜延陵吴氏</title>
+  <style>
+    :root {
+      --bg: #f1e6d4;
+      --paper: #fbf6ea;
+      --paper-strong: #fffaf0;
+      --paper-warm: #f7ecda;
+      --ink: #241b14;
+      --muted: #766d5f;
+      --muted-2: #9b8f7d;
+      --line: #c8b891;
+      --line-soft: #e4d7bd;
+      --accent: #a64232;
+      --accent-dark: #783026;
+      --accent-2: #286a66;
+      --copper: #b89461;
+      --shadow: 0 18px 42px rgba(60, 44, 24, 0.14);
+      --shadow-soft: 0 8px 24px rgba(60, 44, 24, 0.09);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(166, 66, 50, .08), transparent 28%),
+        radial-gradient(circle at 84% 12%, rgba(40, 106, 102, .08), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(80, 59, 33, .025) 0 1px, transparent 1px 8px),
+        linear-gradient(135deg, #f4ead9 0%, var(--bg) 52%, #e8dac4 100%);
+      min-height: 100vh;
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-top: 5px solid #5a2b2d;
+      border-bottom: 1px solid rgba(184, 148, 97, .32);
+      background:
+        linear-gradient(90deg, rgba(255, 250, 240, .96), rgba(247, 236, 218, .9)),
+        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 8px);
+      box-shadow: 0 10px 26px rgba(60, 44, 24, .08);
+    }
+    .site-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 58px;
+      padding: 10px 18px;
+    }
+    .site-brand {
+      flex: 0 0 auto;
+      color: var(--accent-dark);
+      font-size: 17px;
+      font-weight: 820;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav a,
+    .site-nav button {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 31px;
+      padding: 7px 12px;
+      border: 1px solid rgba(184, 148, 97, .38);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .74);
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: 0;
+      box-shadow: 0 4px 10px rgba(60, 44, 24, .05);
+    }
+    .site-nav a.active {
+      border-color: rgba(166, 66, 50, .62);
+      background: linear-gradient(135deg, rgba(166, 66, 50, .12), rgba(255, 250, 240, .82));
+      color: var(--accent-dark);
+      box-shadow: inset 3px 0 0 rgba(166, 66, 50, .82), 0 5px 12px rgba(166, 66, 50, .08);
+    }
+    .site-nav button {
+      cursor: default;
+      opacity: .78;
+    }
+    main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(260px, .75fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 20px;
+    }
+    .hero-card,
+    .panel {
+      border: 1px solid rgba(184, 148, 97, .34);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 253, 247, .92), rgba(247, 236, 218, .78)),
+        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 7px),
+        var(--paper-strong);
+      box-shadow: var(--shadow-soft);
+    }
+    .hero-card {
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: 28px;
+      bottom: 24px;
+      width: 110px;
+      height: 110px;
+      border: 1px solid rgba(166, 66, 50, .22);
+      border-radius: 999px;
+      opacity: .45;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 780;
+      letter-spacing: .12em;
+    }
+    h1 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .hero-card p {
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 18px;
+    }
+    .stat {
+      min-height: 82px;
+      padding: 14px;
+      border: 1px solid rgba(184, 148, 97, .3);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .62);
+    }
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 680;
+    }
+    .section {
+      margin-top: 22px;
+    }
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 12px;
+    }
+    h2 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    .source-note {
+      color: var(--muted-2);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .panel {
+      padding: 22px;
+    }
+    .route-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .route-entry {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      align-items: start;
+      gap: 10px;
+      min-height: 0;
+      padding: 9px 0;
+      border-top: 1px solid rgba(184, 148, 97, .18);
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.55;
+      break-inside: avoid;
+    }
+    .route-entry::before {
+      display: none;
+    }
+    .route-entry:nth-child(-n+3) {
+      border-top: 0;
+    }
+    .route-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      height: 20px;
+      border-radius: 999px;
+      background: rgba(40, 106, 102, .1);
+      color: var(--accent-2);
+      font-size: 10px;
+      font-weight: 800;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .article p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .branch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .branch-card {
+      padding: 0;
+      border: 1px solid rgba(184, 148, 97, .32);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .68);
+      overflow: hidden;
+    }
+    .branch-card summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 42px;
+      padding: 10px 14px;
+      color: var(--accent-dark);
+      font-size: 15px;
+      font-weight: 760;
+      cursor: pointer;
+      list-style: none;
+    }
+    .branch-card summary::-webkit-details-marker {
+      display: none;
+    }
+    .branch-card summary::after {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: rgba(40, 106, 102, .1);
+      color: var(--accent-2);
+      font-weight: 820;
+    }
+    .branch-card[open] summary::after {
+      content: "-";
+    }
+    .branch-card summary em {
+      margin-left: auto;
+      color: var(--muted-2);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 680;
+      white-space: nowrap;
+    }
+    .branch-card ul {
+      padding: 0 14px 10px;
+    }
+    h3 {
+      margin: 0 0 12px;
+      color: var(--accent-dark);
+      font-size: 17px;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      position: relative;
+      padding: 8px 0 8px 18px;
+      border-top: 1px solid rgba(184, 148, 97, .18);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    li:first-child {
+      border-top: 0;
+    }
+    li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 17px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-2);
+      opacity: .74;
+    }
+    .compact-list {
+      columns: 3;
+      column-gap: 22px;
+    }
+    .compact-list li {
+      break-inside: avoid;
+    }
+    .article {
+      display: grid;
+      gap: 10px;
+    }
+    .article p {
+      padding: 0 0 10px;
+      border-bottom: 1px solid rgba(184, 148, 97, .18);
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .article p:first-child {
+      color: var(--ink);
+      font-weight: 680;
+    }
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .sub-panel {
+      padding: 18px;
+      border: 1px solid rgba(184, 148, 97, .26);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .55);
+    }
+    .sub-panel h3 {
+      margin-bottom: 12px;
+    }
+    .jizi-columns {
+      gap: 12px;
+    }
+    .jizi-columns .sub-panel {
+      padding: 14px 16px;
+      background: rgba(255, 250, 240, .42);
+      box-shadow: none;
+    }
+    .jizi-columns .sub-panel h3 {
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    .jizi-columns .article {
+      gap: 8px;
+    }
+    .jizi-columns .article p {
+      padding-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+    .reading-guide {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      border-top: 1px solid rgba(184, 148, 97, .18);
+      border-bottom: 1px solid rgba(184, 148, 97, .16);
+      background: rgba(255, 250, 240, .24);
+    }
+    .guide-card {
+      min-height: 0;
+      padding: 0 10px;
+      border-left: 1px solid rgba(184, 148, 97, .22);
+    }
+    .guide-card:first-child {
+      border-left: 0;
+      padding-left: 2px;
+    }
+    .guide-card h3 {
+      margin: 0 0 4px;
+      color: var(--accent);
+      font-size: 13px;
+    }
+    .guide-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+    @media (max-width: 980px) {
+      .hero,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+      .route-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .route-entry:nth-child(-n+3) {
+        border-top: 1px solid rgba(184, 148, 97, .18);
+      }
+      .route-entry:nth-child(-n+2) {
+        border-top: 0;
+      }
+      .branch-grid {
+        grid-template-columns: 1fr;
+      }
+      .reading-guide {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 760px) {
+      .site-header-inner {
+        display: block;
+        min-height: 0;
+        padding: 9px 12px 10px;
+      }
+      .site-brand {
+        display: block;
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .site-nav {
+        flex-wrap: nowrap;
+        gap: 7px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .site-nav a,
+      .site-nav button {
+        flex: 0 0 auto;
+        min-height: 30px;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .site-nav::-webkit-scrollbar {
+        display: none;
+      }
+      main {
+        width: min(100% - 24px, 1180px);
+        padding: 18px 0 34px;
+      }
+      .hero-card,
+      .panel {
+        padding: 16px;
+      }
+      .route-list {
+        grid-template-columns: 1fr;
+      }
+      .route-entry:nth-child(-n+2) {
+        border-top: 1px solid rgba(184, 148, 97, .18);
+      }
+      .route-entry:first-child {
+        border-top: 0;
+      }
+      .compact-list {
+        columns: 1;
+      }
+      .section-header {
+        display: block;
+      }
+      .source-note {
+        display: block;
+        margin-top: 6px;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-brand">延陵吴氏</div>
+      <nav class="site-nav" aria-label="站点一级目录">
+        <a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link active" href="./source_migration.html" aria-current="page">源流迁徙</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link" href="./biographies.html">族贤传略</a><a class="nav-link" href="./family_customs.html">家训礼俗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="eyebrow">SOURCE & MIGRATION ARCHIVE</p>
+        <h1>源流迁徙</h1>
+        <p>按老谱，吴氏出自黄帝之后，仲雍之孙也。至周章公受封吴国，遂以国为氏。芮公居长沙，又传至洵公，由篁墩迁居婺源，为婺邑之始焉。迨至国乐公，迁居广信府玉山西乡三十都后陈。</p>
+      </div>
+      <div class="stats panel">
+        <div class="stat"><strong>30</strong><span>主干迁派</span></div>
+<div class="stat"><strong>6</strong><span>派下分支</span></div>
+<div class="stat"><strong>40</strong><span>分支条目</span></div>
+<div class="stat"><strong>30</strong><span>联宗三十派</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>吴氏宗支迁派总图</h2>
+        <span class="source-note">来源：吴氏宗支迁派总图：.docx</span>
+      </div>
+      <div class="panel">
+        <ol class="route-list">
+          
+          <li class="route-entry">
+            <span class="route-index">01</span>
+            <span>泰伯仲雍公隐居蛮</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">02</span>
+            <span>周章居吴国建康金陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">03</span>
+            <span>文公，字季楫，号诸樊，迁越州萧山县西陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">04</span>
+            <span>行公，字季植，号祭，迁渤海东陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">05</span>
+            <span>忠公，字季檑，号夷昧，迁虢州关乡北陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">06</span>
+            <span>鸿公迁新安</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">07</span>
+            <span>信公，字季札，居常州晋陵县</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">08</span>
+            <span>裔公，居苏州吴江县</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">09</span>
+            <span>起公，字碧阌，周威烈王时居东河郡守</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">10</span>
+            <span>植、种、裁、培四公其居延陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">11</span>
+            <span>芮公，长子芳公迁会稽，次子郢公迁鄱阳吴纲山，三子浅公迁徽州</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">12</span>
+            <span>伟公，居延陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">13</span>
+            <span>倜公，居鄱阳吴纲山</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">14</span>
+            <span>经公，字伯济，迁渤海东陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">15</span>
+            <span>绪公，字伯旒，迁鄱阳吴纲山</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">16</span>
+            <span>文资公，迁衢州</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">17</span>
+            <span>伯靳公，居渤海东陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">18</span>
+            <span>伯昕公，迁杭州泉塘岗</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">19</span>
+            <span>昊公，字叔辉，迁广信上饶县吴村</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">20</span>
+            <span>昌公，字叔耀，迁乐平吴口</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">21</span>
+            <span>德阅公，居渤海东陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">22</span>
+            <span>德闵公，居会稽延陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">23</span>
+            <span>罕公，居越州萧山西陵</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">24</span>
+            <span>室公，居延陵虎溪</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">25</span>
+            <span>潓公，字季瑛，居建康新亭钟山至广明间，巢兵大乱，是时蜂起，移避歙州篁墩迁为</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">26</span>
+            <span>智公，字德珍，居浮梁简潭</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">27</span>
+            <span>仁公，字德玑，居休甯岺山</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">28</span>
+            <span>圣公，字德璒，迁婺源人安里莒君山</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">29</span>
+            <span>义公，字德瑞，迁休甯金村复迁乐平官庄</span>
+          </li>
+
+          <li class="route-entry">
+            <span class="route-index">30</span>
+            <span>端公，字德渊，迁婺源官坑樟桐树下</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>派下分支</h2>
+        <span class="source-note">按原文“派下”分组整理</span>
+      </div>
+      <div class="branch-grid">
+        
+          <details class="branch-card">
+            <summary>
+              <span>智公派下</span>
+              <em>7 条</em>
+            </summary>
+            <ul><li>道公，字季经，迁乐平吴坂</li>
+<li>德公，字季绍，迁乐平塘坞</li>
+<li>仁公，字季纬，迁乐平</li>
+<li>礼公，字季绎，居浮梁白水陇</li>
+<li>英公，字季逞，迁乐平官庄</li>
+<li>葩公，字季炳，迁乐平吴口</li>
+<li>萌公，字季旻，迁乐平鏊石</li></ul>
+          </details>
+
+          <details class="branch-card">
+            <summary>
+              <span>仁公派下</span>
+              <em>9 条</em>
+            </summary>
+            <ul><li>挺公，字彦义，迁休甯岺溪口</li>
+<li>兴公，字伟甯，居岺山</li>
+<li>荣公，字伟安，迁信州复迁德兴</li>
+<li>茂公，字伟富，迁开化吴坡</li>
+<li>欺公，字伟道，居溪口</li>
+<li>欺公，字伟德，迁婺源锡林里松梅湾</li>
+<li>欣公，字伟仁，迁查山湖祥源</li>
+<li>钦公，字伟智，迁乐平云田</li>
+<li>娃公，字世显，迁休甯查山湖祥源</li></ul>
+          </details>
+
+          <details class="branch-card">
+            <summary>
+              <span>祖一公派下</span>
+              <em>8 条</em>
+            </summary>
+            <ul><li>陈福公，字仲祥，迁沙洋</li>
+<li>子寿公，迁银洪井坞</li>
+<li>泰三公，迁墩溪</li>
+<li>克其公，迁德兴</li>
+<li>克彦公，迁德兴深溪</li>
+<li>仁清公，迁德邑</li>
+<li>正泰公，迁德邑环溪</li>
+<li>林公迁，本邑岺西</li></ul>
+          </details>
+
+          <details class="branch-card">
+            <summary>
+              <span>陈珪公派下</span>
+              <em>3 条</em>
+            </summary>
+            <ul><li>良保公，迁婺源四十六都巴塘下坞施冲居焉</li>
+<li>佛童公，迁婺邑山棘岭背</li>
+<li>思通公 山棘岭背</li></ul>
+          </details>
+
+          <details class="branch-card">
+            <summary>
+              <span>祖四公派下</span>
+              <em>5 条</em>
+            </summary>
+            <ul><li>永成公，字日名，迁居婺邑十九都汪坑槎上，其 弟兴隆共居焉</li>
+<li>思圣公，迁德兴七都西源</li>
+<li>廷贵公，复迁六都铜川张家坂</li>
+<li>思财公，由德邑七都复迁信州兴安县陈邬</li>
+<li>佛生公，迁婺源折岭脚土名东坑焉居</li></ul>
+          </details>
+
+          <details class="branch-card">
+            <summary>
+              <span>少微公派下</span>
+              <em>8 条</em>
+            </summary>
+            <ul><li>择仁公，迁婺邑吴田</li>
+<li>元召公由吴田迁德邑十七都上田郑家园</li>
+<li>择民公，迁信州上饶县</li>
+<li>桂公，由莒君山居蕉源</li>
+<li>天爵公，由樵源迁十五都蜜川裡田坞</li>
+<li>大明公，迁乐平大東關</li>
+<li>紹祖公，迁德興新營</li>
+<li>瀚公，迁盤田</li></ul>
+          </details>
+      </div>
+    </section>
+
+    <section class="section two-column">
+      <div>
+        <div class="section-header">
+          <h2>淳熙联宗三十派</h2>
+        </div>
+        <div class="panel">
+          <p class="eyebrow">朱淳熙八年联宗三十派各居總派</p>
+          <ul class="compact-list">
+            <li>婺源賦春廸吉公</li>
+<li>婺邑莒君山叔繹公</li>
+<li>休甯溪口思禮公</li>
+<li>休甯萬安街彦富公</li>
+<li>休甯流口彦獻公</li>
+<li>欽州巖寺街彦恭公</li>
+<li>休甯山尙彦甯公</li>
+<li>信州桐樹橋彦睦公</li>
+<li>休甯大連彦安公</li>
+<li>欽州向杲彦禮公</li>
+<li>婺源董村彦清公</li>
+<li>樂平官庄彦壯公</li>
+<li>休甯溪口彦義公</li>
+<li>婺源荻坑伯善公</li>
+<li>婺源羅田叔緩公</li>
+<li>浮梁白水隴季繹公</li>
+<li>婺源街東隅季緯公</li>
+<li>婺源錫林叔綸公</li>
+<li>樂平祚埠叔光公</li>
+<li>浮竹沙洋仲祥公</li>
+<li>樂平葛源叔熙公</li>
+<li>弋陽松橋叔老公</li>
+<li>德邑東叔照公</li>
+<li>婺邑官坑文伯公</li>
+<li>鄱陽吳綱山叔仁公</li>
+<li>婺源二都季昊公</li>
+<li>婺源清華叔全公</li>
+<li>休甯查山偉仁公</li>
+<li>海川上市隆四公</li>
+<li>查山戴坑世顯公</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="section-header">
+          <h2>国乐以后迁派</h2>
+        </div>
+        <div class="panel">
+          <ul>
+            <li>國樂公，遷廣信玉西三十都後陳</li>
+<li>福元公，遷居廣信上饒新通地</li>
+<li>昌祥公，遷居玉邑三十四都瑶嶺王家蓬</li>
+<li>傳珍公，復遷上邑七十都西村</li>
+<li>昌良公，遷上邑七都西堡塢石崗</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>延陵季子攷</h2>
+        <span class="source-note">来源：延陵季子考证.docx</span>
+      </div>
+      <div class="reading-guide" aria-label="延陵季子考证导读">
+        
+          <article class="guide-card">
+            <h3>考证对象</h3>
+            <p>辨析本支是否可以直接附会为延陵季子之后，而不是单纯歌颂季札贤名。</p>
+          </article>
+
+          <article class="guide-card">
+            <h3>写作缘由</h3>
+            <p>回应修谱中“攀附名贤”的倾向，强调世系应受时代、世次、史志和谱序校验。</p>
+          </article>
+
+          <article class="guide-card">
+            <h3>核心观点</h3>
+            <p>季子可被尊为吴氏先贤，但“祭祀尊崇”不等同于本支血缘承嗣。</p>
+          </article>
+      </div>
+      <div class="two-column jizi-columns">
+        <article class="sub-panel article">
+          <h3>原文</h3>
+          <p>按：季札，壽夢第四子也。賢則賢矣，以其高子臧之節而讓國也，封於延陵，是為延陵季子。九十年餘卒，葬常州晉陵縣北七十里申浦之西。子禮卒，葬於嬴博之間。季子封之高四尺，孔子以為合禮，是已。</p>
+<p>然則今所傳者，吳公子光之後，終纍、夫差也。終纍為楚所殺，夫差嗣位報仇，後復為越所敗。生三子：鴻、友、地。鴻逃新安，不嗣。友傳八世而生芮，為長沙王。芮生四子：曰臣、曰郢、曰淺、曰陽。臣歷四世無嗣，各支另起圖。郢再世無嗣，陽三世無嗣。其封便頂侯而遷新安者，淺公也，《少微公譜序》可徵。</p>
+<p>四傳至千秋，坐酎金免侯。及長陵詔復家，編氓。長陵五傳生演、漢、治。演為安陽侯，漢為廣平侯，治為展親侯，皆以漢功也。演無嗣，治再傳無嗣，漢再傳亦無嗣。封其從子旴為平春侯，以奉漢後。旴傳三世而生文質，遷衢。文質生子應之，居新安。歷十四世生艮、生源。源為五采山支；艮郎（即），少微公之祖也。</p>
+<p>然則，少微而上，並未見有延陵季子苗裔。其延州子姓繁衍，或亦吳姓各派盤踞其間也，季子無與焉，季子於新安更無與焉。乃近世修譜者，蔓纏藤繞，以自附於延陵季子之後，豈考覈之未真邪？</p>
+<p>且其言曰：“泰伯三十一世孫芮封長沙王”，是矣，而芮非季子後也。又云：“少微公居新安矣”，是，而少微非季子後也。又謂：“六十七世明十四公授歙縣令，次除休陽令”，予考諸郡縣誌，未得其名。且明去少微公僅七世，少微既非季子後，明公獨為季子後乎？甚至吳公治平、第一、隱之不飲貪泉，咸搜入譜，此不特魚目混珠，視彼拜汾陽之墓者尤為可恥！</p>
+<p>總之，明十四公既為少微公七世孫，自不得舍少微為季子後。修譜者苟以明公為祖，則不當妄附季子；設以明為季子後，則不當妄附少微公：無一可者也。今試以吳王芮等而上之，歷七世，曾有季札傳派否？等而下之，歷二十五世，少微公生焉，于中傳派，曾有季子之後承嗣否？一代接一代，不可易也。乃如季子世世廟食不絕，則以其賢而祀典不磨，理固然也。若援此杜撰，以季子為本派支祖，誤矣。吾非臆說也，稽諸載籍，班班可考，夫固不得妄附季子也。故作《延陵季子攷》。</p>
+        </article>
+        <article class="sub-panel article">
+          <h3>白话文翻译</h3>
+          <p>考证认为：季札是吴王寿梦的第四个儿子。他确实非常贤明，以类似高子臧那样的高尚节操将国君之位让给了哥哥，被封在延陵，因此被称为“延陵季子”。他活了九十多岁去世，葬在常州晋陵县往北七十里的申浦西面。他的儿子“礼”去世后，葬在嬴、博两地之间。季子为他堆起了四尺高的坟土，孔子认为这符合礼制，事实确实如此。</p>
+<p>然而，如今社会上流传的世系，其实是吴国公子光（即吴王阖闾）的后代，最终传到了终纍、夫差。终纍被楚国所杀，夫差继承王位为他报仇，后来又被越国打败。夫差生了三个儿子：鸿、友、地。鸿逃到了新安，没有留下子嗣。友传了八代生下了吴芮，被封为长沙王。吴芮生了四个儿子：分别叫臣、郢、浅、阳。吴臣传了四代后没有子嗣，各个支系只好另立家谱。吴郢传到第二代没有子嗣，吴阳传到第三代也没有子嗣。继承了侯爵之位并迁居到新安的，是吴浅公，这在《少微公谱序》中是可以查证的。</p>
+<p>吴浅往下传了四代到了千秋，因为“酎金不如法”（祭祀用的金子成色不足）被免去了侯爵。到了长陵（汉惠帝）时期，下诏恢复其家族，编为平民。长陵之后往下传了五代，生了演、汉、治。演被封为安阳侯，汉被封为广平侯，治被封为展亲侯，这都是凭借他们在汉朝的功劳获得的。演没有子嗣，治传到第二代绝嗣，汉传到第二代也绝嗣了。于是朝廷将汉的侄子旴封为平春侯，以此来延续汉的香火。旴传了三代生了文质，迁居到衢州。文质的儿子应之，居住在新安。又过了十四代生下了艮和源。源是五采山那一支的祖先；而艮，就是少微公的祖先。</p>
+<p>既然如此，那么从少微公往上追溯，并没有看到有延陵季子的后代。延州这个地方子孙繁衍，或许也有吴姓的其他分支盘踞在那里，但这跟季子没有什么关系，季子和新安这个地方更是毫无瓜葛。可是近代的修谱之人，生拉硬扯、东拼西凑，非要把自己附会成延陵季子的后代，这难道不是因为考证得不够真实准确吗？</p>
+<p>况且他们的家谱中说：“泰伯的第三十一世孙吴芮被封为长沙王”，这话是对的，但吴芮并不是季子的后代。家谱中又说：“少微公居住在新安”，这也是对的，但少微公同样不是季子的后代。家谱中还说：“第六十七世的明十四公被任命为歙县县令，后来又担任休阳县令”，我查阅了相关的郡县志，并没有找到他的名字。而且明十四公距离少微公只有七代的间隔，既然少微公都不是季子的后代，明十四公又怎么可能单单是季子的后代呢？甚至他们还把吴国治平时期的第一等隐士、那个经过贪泉而不饮的吴隐之，也都搜罗写进家谱里。这种做法不仅是鱼目混珠，比起那些乱认祖宗、错拜了汾阳王郭子仪坟墓的人，更加让人感到可耻！</p>
+<p>总而言之，明十四公既然是少微公的第七世孙，自然不能撇开少微公而去认季子为祖先。修谱的人如果把明十四公当作祖先，就不应该妄自附会季子；如果假设明十四公是季子的后人，那就不应该妄自附会少微公：这两种说法互相矛盾，没一个能立得住脚。现在我们试着从吴王吴芮往上推算，历经七代，中间有季札传下来的分支吗？再往下推算，历经二十五代生下了少微公，这中间的传承里，有过季子的后代来继承香火吗？血脉一代接一代，是不能随意更改的。正如季子世世代代享受祭祀不断绝，是因为他品德高尚使得祭典永存，这在情理上本来就是理所当然的。但如果以此为借口凭空捏造，把季子当作自己这一派的分支始祖，那就大错特错了。我这番话并非凭空臆断，查考各种典籍史料，记载得清清楚楚，确实不能胡乱附会为季子的后代。因此，我写下了这篇《延陵季子考》。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

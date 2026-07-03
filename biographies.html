@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>族贤传略｜延陵吴氏</title>
+  <style>
+    :root {
+      --bg: #f1e6d4;
+      --paper: #fbf6ea;
+      --paper-strong: #fffaf0;
+      --ink: #241b14;
+      --muted: #766d5f;
+      --muted-2: #9b8f7d;
+      --line-soft: #e4d7bd;
+      --accent: #a64232;
+      --accent-dark: #783026;
+      --accent-2: #286a66;
+      --copper: #b89461;
+      --shadow-soft: 0 8px 24px rgba(60, 44, 24, 0.09);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(166, 66, 50, .08), transparent 28%),
+        radial-gradient(circle at 84% 12%, rgba(40, 106, 102, .08), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(80, 59, 33, .025) 0 1px, transparent 1px 8px),
+        linear-gradient(135deg, #f4ead9 0%, var(--bg) 52%, #e8dac4 100%);
+      min-height: 100vh;
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-top: 5px solid #5a2b2d;
+      border-bottom: 1px solid rgba(184, 148, 97, .32);
+      background:
+        linear-gradient(90deg, rgba(255, 250, 240, .96), rgba(247, 236, 218, .9)),
+        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 8px);
+      box-shadow: 0 10px 26px rgba(60, 44, 24, .08);
+    }
+    .site-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 58px;
+      padding: 10px 18px;
+    }
+    .site-brand {
+      flex: 0 0 auto;
+      color: var(--accent-dark);
+      font-size: 17px;
+      font-weight: 820;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav a,
+    .site-nav button {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 31px;
+      padding: 7px 12px;
+      border: 1px solid rgba(184, 148, 97, .38);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .74);
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: 0;
+      box-shadow: 0 4px 10px rgba(60, 44, 24, .05);
+    }
+    .site-nav a.active {
+      border-color: rgba(166, 66, 50, .62);
+      background: linear-gradient(135deg, rgba(166, 66, 50, .12), rgba(255, 250, 240, .82));
+      color: var(--accent-dark);
+      box-shadow: inset 3px 0 0 rgba(166, 66, 50, .82), 0 5px 12px rgba(166, 66, 50, .08);
+    }
+    main {
+      width: min(1240px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+    .hero,
+    .bio-toc,
+    .bio-page {
+      border: 1px solid rgba(184, 148, 97, .34);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 253, 247, .92), rgba(247, 236, 218, .76)),
+        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 7px),
+        var(--paper-strong);
+      box-shadow: var(--shadow-soft);
+    }
+    .hero {
+      margin-bottom: 22px;
+      padding: 30px;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 780;
+      letter-spacing: .12em;
+    }
+    h1 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .hero p:last-child {
+      max-width: 820px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    .bio-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .bio-toc {
+      position: sticky;
+      top: 84px;
+      padding: 18px 16px;
+    }
+    .bio-toc-title {
+      margin: 0 0 16px;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 820;
+    }
+    .bio-toc-list {
+      display: grid;
+      gap: 7px;
+    }
+    .bio-toc-item {
+      appearance: none;
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+    .bio-toc-item strong {
+      display: block;
+      color: inherit;
+      font-size: 13px;
+      font-weight: 760;
+      line-height: 1.35;
+    }
+    .bio-toc-item span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted-2);
+      font-size: 11px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .bio-toc-item.active {
+      border-color: rgba(166, 66, 50, .28);
+      background: rgba(166, 66, 50, .07);
+      color: var(--accent-dark);
+      box-shadow: inset 3px 0 0 rgba(166, 66, 50, .75);
+    }
+    .bio-page {
+      display: none;
+      overflow: hidden;
+    }
+    .bio-page.active {
+      display: block;
+    }
+    .bio-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px 16px;
+      border-bottom: 1px solid rgba(184, 148, 97, .24);
+    }
+    .bio-id-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+    .bio-id-list span {
+      display: inline-flex;
+      min-height: 22px;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(40, 106, 102, .1);
+      color: var(--accent-2);
+      font-size: 11px;
+      font-weight: 760;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    .bio-head h2 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.22;
+    }
+    .bio-source {
+      flex: 0 0 auto;
+      max-width: 220px;
+      color: var(--muted-2);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: right;
+    }
+    .bio-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      padding: 20px 24px 10px;
+    }
+    .bio-text {
+      min-width: 0;
+      padding: 0 2px;
+    }
+    .bio-text + .bio-text {
+      padding-left: 18px;
+      border-left: 1px solid rgba(184, 148, 97, .22);
+    }
+    .bio-text.single {
+      margin: 20px 24px 10px;
+    }
+    .bio-text h3 {
+      margin: 0 0 12px;
+      color: var(--accent-dark);
+      font-size: 16px;
+    }
+    .bio-text p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+      text-align: justify;
+    }
+    .bio-pager {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 20px 24px 24px;
+      border-top: 1px solid rgba(184, 148, 97, .18);
+    }
+    .bio-nav-button {
+      appearance: none;
+      min-height: 64px;
+      padding: 12px 14px;
+      border: 1px solid rgba(184, 148, 97, .32);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .58);
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: left;
+      cursor: pointer;
+    }
+    .bio-nav-button.next {
+      text-align: right;
+    }
+    .bio-nav-button strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--accent-dark);
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    @media (max-width: 980px) {
+      .bio-layout,
+      .bio-columns {
+        grid-template-columns: 1fr;
+      }
+      .bio-toc {
+        position: static;
+      }
+      .bio-text + .bio-text {
+        padding-left: 0;
+        padding-top: 16px;
+        border-left: 0;
+        border-top: 1px solid rgba(184, 148, 97, .22);
+      }
+    }
+    @media (max-width: 760px) {
+      .site-header-inner {
+        display: block;
+        min-height: 0;
+        padding: 9px 12px 10px;
+      }
+      .site-brand {
+        display: block;
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .site-nav {
+        flex-wrap: nowrap;
+        gap: 7px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .site-nav a,
+      .site-nav button {
+        flex: 0 0 auto;
+        min-height: 30px;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .site-nav::-webkit-scrollbar {
+        display: none;
+      }
+      main {
+        width: min(100% - 24px, 1240px);
+        padding: 18px 0 34px;
+      }
+      .hero {
+        padding: 18px;
+      }
+      .bio-head {
+        display: block;
+        padding: 18px 18px 14px;
+      }
+      .bio-source {
+        display: block;
+        max-width: none;
+        margin-top: 8px;
+        text-align: left;
+      }
+      .bio-columns {
+        padding: 16px 18px 8px;
+      }
+      .bio-text.single {
+        margin: 16px 18px 8px;
+      }
+      .bio-pager {
+        grid-template-columns: 1fr;
+        padding: 16px 18px 18px;
+      }
+      .bio-nav-button.next {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-brand">延陵吴氏</div>
+      <nav class="site-nav" aria-label="站点一级目录">
+        <a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link" href="./source_migration.html">源流迁徙</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link active" href="./biographies.html" aria-current="page">族贤传略</a><a class="nav-link" href="./family_customs.html">家训礼俗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">BIOGRAPHICAL ARCHIVE</p>
+      <h1>族贤传略</h1>
+      <p>收录宗谱中人物传、行传、颂赞与谱牒文。点击左侧目录可切换文献；若世系族谱中的人物有对应传略，详情看板中会提供跳转入口。</p>
+    </section>
+    <section class="bio-layout">
+      <aside class="bio-toc" aria-label="族贤传略目录">
+        <h2 class="bio-toc-title">文献目录</h2>
+        <div class="bio-toc-list">
+          
+          <button class="bio-toc-item active" type="button" data-target="bio-1">
+            <strong>国乐公傳</strong>
+          </button>
+
+          <button class="bio-toc-item" type="button" data-target="bio-2">
+            <strong>良榮公行傳</strong>
+          </button>
+
+          <button class="bio-toc-item" type="button" data-target="bio-3">
+            <strong>詩明公傳</strong>
+          </button>
+
+          <button class="bio-toc-item" type="button" data-target="bio-4">
+            <strong>書森公傳</strong>
+          </button>
+
+          <button class="bio-toc-item" type="button" data-target="bio-5">
+            <strong>四老颂赞</strong>
+          </button>
+
+          <button class="bio-toc-item" type="button" data-target="bio-6">
+            <strong>徐老孺人傳</strong>
+          </button>
+
+          <button class="bio-toc-item" type="button" data-target="bio-7">
+            <strong>肇修仕珍公譜牒文</strong>
+          </button>
+
+          <button class="bio-toc-item" type="button" data-target="bio-8">
+            <strong>肇修延陵子祥公譜牒文</strong>
+          </button>
+        </div>
+      </aside>
+      <div class="bio-content">
+        
+        <article class="bio-page active" id="bio-1" data-article="bio-1">
+          <div class="bio-head">
+            <div>
+              <h2>國樂公傳</h2>
+            </div>
+            <span class="bio-source">国乐公傳.docx</span>
+          </div>
+          
+          <div class="bio-columns">
+            <article class="bio-text">
+              <h3>原文</h3>
+              <p>公諱樂，字智仁，婺南人也。與余同事有年，相設曰：幼時遊廣，時運不齊而歸，涕泣與弟而言曰：吾上有二兄，皆康強而早世，何在吾乎？弟曰：兄何言哉？天必報施善人，其不爽也。復遊江右，而至玉邑南街居焉。貿易經商，家道興隆，創置田庫以貽子孫，而聲聞日著。娶梅溪金氏，內助稱賢，生三子，勤儉純謹，大有父風。余以贊發潛德之幽光，誌善人之遺行，有著表焉。是為傳。</p>
+            </article>
+            <article class="bio-text">
+              <h3>白话翻译</h3>
+              <p>国乐公，名讳叫乐，字智仁，是婺南地区人。我和他共事多年。他曾跟我回忆：自己年轻时去两广一带谋生闯荡，奈何时运不济，只能失意回乡。他哭着对弟弟说：“我上面还有两位兄长，原本身体都康健强壮，却都早早离世，如今只剩下我了。” 弟弟劝慰他说：“兄长何必说这种丧气话？上天一定会善待、报答善良的人，绝对不会辜负好人。”</p>
+<p>之后他又去往江西一带经商谋生，最终定居在玉山县南街。他常年经商做买卖，家业渐渐兴旺发达，购置田地、家产留给后代子孙，名声也一天天远近闻名。 他迎娶了梅溪的金氏为妻子，夫人贤良淑德，是很好的贤内助。夫妻二人生下三个儿子，几个孩子都勤劳节俭、品性淳朴谨慎，很有父亲当年的风范。</p>
+<p>我写下这篇传记，用来彰显他不为人知的美好德行，记录这位善人留下的高尚品行，让他的事迹被后人知晓，于是写下了这篇小传。</p>
+            </article>
+          </div>
+          <div class="bio-pager">
+            <span class="bio-nav-spacer"></span>
+            <button type="button" class="bio-nav-button next" data-target="bio-2">下一篇<br><strong>良榮公行傳</strong></button>
+          </div>
+        </article>
+
+        <article class="bio-page" id="bio-2" data-article="bio-2">
+          <div class="bio-head">
+            <div>
+              <h2>良榮公行傳</h2>
+            </div>
+            <span class="bio-source">良榮公行傳.docx</span>
+          </div>
+          
+          <div class="bio-columns">
+            <article class="bio-text">
+              <h3>原文</h3>
+              <p>從來物本乎天，人本乎祖。祖宗孫子，血脉相承，本支百世，永爲聯屬者也。然必立譜以叙之，字行以辨之，而後某爲祖父，某爲伯叔，某爲兄弟、子與孫，世系昭穆可按譜而知也。</p>
+<p>吾族吳氏，自昌祥公以前，世系可核，昭穆相當。孫枝蕃衍，散處四方，不必贅辭，由是支分而派别矣。公以後，遷居樟村廿九都后陳地坊，旋居七十都後管書村地坊。公輩上，字行昭穆班已可考；公輩下，族大蕃衍，不爲之溯所自出，則居址、孫枝俱不可考，即男女之庚名、嫁娶，祖宗之生歿、塋所，亦未詳焉。</p>
+<p>後來繩繩繼繼，纘添無窮，亦大可賀。此特草創云耳。若夫刊刷印本，分房守執，潤色盡善，是又望夫後之賢者，力任其職，則光前裕後，合族有榮，皆其功矣。勉之，望之！旹。</p>
+<p>大清光緒廿一年歲次乙未應鍾月上澣 穀旦 姻晚生 王克初 頓首拜譔</p>
+            </article>
+            <article class="bio-text">
+              <h3>白话翻译</h3>
+              <p>自古以来，世间万物都本源于天，而人类则本源于祖先。祖宗与子孙之间血脉相承，即使繁衍百代分出众多支系，也永远是紧密相连的共同体。然而，必须编纂族谱来记录世系，用字辈来分辨长幼，这样以后谁是祖父、谁是伯叔、谁是兄弟及子孙，家族的世代统绪和辈分长幼，就可以按照族谱查考得一清二楚。</p>
+<p>我们吴氏一族，自昌祥公以前，家族的世系都可以核查，长幼辈分也都很清晰。后来子孙繁衍茂盛，散居在四面八方，这里就不必多说了，家族也因此分出了不同的支系和派别。昌祥公之后，（家族）迁居到了樟村二十九都后陈地坊，不久又移居到七十都后管书村地坊。昌祥公以上的先辈，字辈和长幼次序都已经考证清楚；而昌祥公以下的后代，因为家族过于庞大繁衍众多，如果不为他们追本溯源，那么他们的居住地、子孙的去向就都无从查考了，乃至男女的生辰八字、名字、婚嫁情况，以及祖宗的生卒年月和墓地所在，也就都无法详细知晓了。</p>
+<p>后来家族子孙一代代绵延不断地继承繁衍，无穷无尽，这也是非常值得庆贺的。这次修缮族谱只不过是一个初步的草创罢了。至于将来真正刊印成书、分发给各房保存，以及进一步修改润色做到尽善尽美，这就又要寄希望于后代中的贤能之士，努力担当起这份重任了。如果能做到光宗耀祖、造福后人，让全家族都感到荣耀，那都是他们的功劳。在此勉励大家，也对大家寄予厚望！共勉。</p>
+<p>大清光绪二十一年（1895年），岁次乙未，农历十月（应钟月）上旬 吉日 姻亲晚辈 王克初 磕头拜撰</p>
+            </article>
+          </div>
+          <div class="bio-pager">
+            <button type="button" class="bio-nav-button" data-target="bio-1">上一篇<br><strong>國樂公傳</strong></button>
+            <button type="button" class="bio-nav-button next" data-target="bio-3">下一篇<br><strong>詩明公傳</strong></button>
+          </div>
+        </article>
+
+        <article class="bio-page" id="bio-3" data-article="bio-3">
+          <div class="bio-head">
+            <div>
+              <h2>詩明公傳</h2>
+            </div>
+            <span class="bio-source">詩明公傳.docx</span>
+          </div>
+          
+          <article class="bio-text single">
+            <p>詩明公諱明，西堡遠桂之次子也。生於光緒乙巳年四月廿一日。明公出身寒門，七歲喪父，八歲入學，十二歲母親無力供讀，輟學在家幫人放牛受盡人間艱辛。長大後憑靠天賦，虛心好學，拜師學醫。學徒三年後，一方面繼續鑽研中醫外科，另一方面研究民間中草藥秘方，嘗盡百草千藥，對医治疔瘡、癤毒、瘋濕等疾病術大進，名揚饒城内外。成家後，夫妻恩愛，夫唱婦隨，生活日盈。明公興趣廣泛，性格開朗，常以狩獵、捉甲魚爲樂，既可延年益壽，又可改善生活，一舉两得。明公不僅醫術精湛，而且醫德高尚，經常濟困扶危，送醫送藥，救死扶傷，具有高尚的人道主義思想。在饒北鄉村，無人不讚，深受人敬。明公爲人正直、作風正派、言行一致、禮義家風。直接薰陶着晚輩，膝下三子均從父業，專心骨傷科，在饒東古鎮頗具聲望，三兄弟從事醫務專業，老二書華升任上饒市第三人民醫院院長。</p>
+<p>詩明公，晚年生活豐富，福壽齊天，四世同堂，室下有二十余丁，在西堡可謂德高望重。公元一九九六年四月十二日病故，享壽九十有三。</p>
+<p>上饒縣志辦張應全拜撰 辛巳年孟春 吉旦</p>
+          </article>
+          <div class="bio-pager">
+            <button type="button" class="bio-nav-button" data-target="bio-2">上一篇<br><strong>良榮公行傳</strong></button>
+            <button type="button" class="bio-nav-button next" data-target="bio-4">下一篇<br><strong>書森公傳</strong></button>
+          </div>
+        </article>
+
+        <article class="bio-page" id="bio-4" data-article="bio-4">
+          <div class="bio-head">
+            <div>
+              <h2>書森公傳</h2>
+            </div>
+            <span class="bio-source">書森公傳.docx</span>
+          </div>
+          
+          <article class="bio-text single">
+            <p>書森公諱森，字學森，光緒辛巳年八月廿二日建生，公元一九五七年四月十四日卒，享壽七十有四。由于出身寒門，父母無力供學。雖爲農夫，但人聰慧，辛勤勞作，靠勤儉之手養育六口之家。于一九二七年二月，離鄉背井，携妻帶子，奔赴浙江衢縣山坑桐樹坪寓居帮人做紙。一九三四年佃田十六畝，購買茅竹山十五畝，生活出現轉機，一九四五年構建新房三間二廂。新中國成立後，翻身作主，又建屋一幢。森公身處异境，善待鄉鄰，自律自重，深得人敬。森公教子勤學，增長知識，兒孫達賢。四子裕乾，有一定文化知識，解放後當上干部入了黨。曾任初、高級社長，村黨支部書記，鄉黨委委員等職及縣市人大代表。孫後良，于一九六九年參軍，退伍後被選爲村委主任，玄孫馨宏，攻讀有成，一玖玖三年考取軍事院校，繼而考取碩士，海軍上尉軍銜，現在北京國防科學研究院供職。</p>
+<p>森公後裔，如此争光，出息不凡，備受家族推崇，乃吾祖之慰也。</p>
+<p>上饒縣志辦張應全拜撰 辛巳年孟春 吉旦</p>
+          </article>
+          <div class="bio-pager">
+            <button type="button" class="bio-nav-button" data-target="bio-3">上一篇<br><strong>詩明公傳</strong></button>
+            <button type="button" class="bio-nav-button next" data-target="bio-5">下一篇<br><strong>元杰公繆老孺人雙容上讚</strong></button>
+          </div>
+        </article>
+
+        <article class="bio-page" id="bio-5" data-article="bio-5">
+          <div class="bio-head">
+            <div>
+              <h2>元杰公繆老孺人雙容上讚</h2>
+            </div>
+            <span class="bio-source">四老颂赞.docx</span>
+          </div>
+          
+          <article class="bio-text single">
+            <p>平生耿直　和睦鄉鄰　白手興家　大厦落成 户立上玉　稅置千零　生子有五　克振家聲 開族四房　百有餘丁　椿萱並茂　給畫容形 芝孫萬代　禴祀蒸嘗</p>
+<p>裔孫必仁仝侄詩桂拜題</p>
+<p>德顺公赞曰</p>
+<p>延陵舊第人 耕讀伴日月 撒下兩粒籽 詩贊順公德</p>
+<p>義門家風正 節儉隨光陰 珍珠萬代興 吳門出賢能</p>
+<p>傳珍公赞曰</p>
+<p>傳承先考志 兒時好學問 雖是種田漢 西村小天地</p>
+<p>創業振家聲 長大明事理 卻把詩書論 上玉譽仕珍</p>
+<p>傳珠公赞曰</p>
+<p>伯仲父母定 深耕多打糧 日出作田去 腹中飽經論</p>
+<p>富貴靠人勤 苦讀增才干 夜裡習詩文 仕珠人上人</p>
+          </article>
+          <div class="bio-pager">
+            <button type="button" class="bio-nav-button" data-target="bio-4">上一篇<br><strong>書森公傳</strong></button>
+            <button type="button" class="bio-nav-button next" data-target="bio-6">下一篇<br><strong>徐老孺人傳</strong></button>
+          </div>
+        </article>
+
+        <article class="bio-page" id="bio-6" data-article="bio-6">
+          <div class="bio-head">
+            <div>
+              <h2>徐老孺人傳</h2>
+            </div>
+            <span class="bio-source">徐老孺人傳.docx</span>
+          </div>
+          
+          <article class="bio-text single">
+            <p>徐氏福秀老孺人，生於光緒戊戌年六月初四日。由於家中貧寒，十三歲嫁進吳門，成爲詩光室下。嗣後，以吳家爲重，勤勞節儉，漿洗縫補，操里持外，敬重公婆，照顧丈夫，教育兒女，負重度過一生，享壽九十有七，在當地堪稱佳話。</p>
+<p>徐氏夫妻恩愛，和睦如初。生活上尤先考慮家人，事事順着丈夫，在病重期間，更加體貼入微，盡心盡力。在一九五三年，丈夫病故，遵循婦道，從一而終，在逆境中艱苦奮斗，勤儉持家有方，使家中經濟、生活逐漸好轉。</p>
+<p>鄰娌相處，以禮忍讓，心地善良，助人爲樂，接貧濟困，村里鄉外備受推崇。尚有家規，嚴教子女，寬于待人，求得子媳、賢孫孝敬愛戴，深得眾稱德高望重。</p>
+<p>古稀後老孺人，性格開朗，滿面笑容，子孫滿堂，室下有男女八十余丁，飽享五世同堂。同時，在文化發展上，名下兒女子孫有初中、高中數名，中專两名、大專两名。爲國爲民發揮應有作用，可謂人才興旺。</p>
+<p>上饒縣志辦張應全拜撰 辛巳年孟春 吉旦</p>
+          </article>
+          <div class="bio-pager">
+            <button type="button" class="bio-nav-button" data-target="bio-5">上一篇<br><strong>元杰公繆老孺人雙容上讚</strong></button>
+            <button type="button" class="bio-nav-button next" data-target="bio-7">下一篇<br><strong>肇修仕珍公譜牒文</strong></button>
+          </div>
+        </article>
+
+        <article class="bio-page" id="bio-7" data-article="bio-7">
+          <div class="bio-head">
+            <div>
+              <h2>肇修仕珍公譜牒文</h2>
+            </div>
+            <span class="bio-source">肇修仕珍公譜牒文.docx</span>
+          </div>
+          
+          <div class="bio-columns">
+            <article class="bio-text">
+              <h3>原文</h3>
+              <p>自天子以至於庶人，莫不有其家，亦莫不有所宗。迨世遠事殊，源流未分，縱橫雜揉，若水之萬派、木之千枝。非作譜牒，無以詳其源而求其本；不知姓之所出，親疏何辨？尊卑何別？恩義何由而篤乎？</p>
+<p>噫！延陵吳氏，自泰伯公之時、賜姓之始，修其祖廟，陳其宗器，設其裳衣，薦其時食。敬其所尊，愛其所親，昭穆左右，咸歸受同共敬之中。後之人亦必用其禮以寓之，善繼前人之志，善述前人之事，所以綿世澤而存廟者哉！</p>
+<p>追憶先翁，人中之麟，英氣豪邁，逸然出塵。克勤克儉，克寬克仁。敦篤戚誼，濟困扶危。力事農業，日積月累，乃弘其基。荒年有餘，惠及鄉鄰。天眷有德，以裁以培。自玉西王家蓬，復遷於上邑七十都西村境地，爰居爰處，于林之下。堂構相承，燕翼貽謀。階前挺秀，如駒如雛；孫支並茂，蘭蕙皆馨。以德致福，宜享期頤。嗟乎！何中道而立，高山仰止。一疾遽遊，優游爾休。泰山其頹，良木其壞。欲見無形，欲聞無語。生者長懷，死者雖已，事跡彰彰，瞭然如指掌。吾乃為翁拜手稽首，傳誌述頌，贊序於推本之說。所謂永錫不匱者，使世世子孫其尙念茲也哉！</p>
+<p>旹</p>
+<p>皇清光緒廿一年歲次乙未應鍾月上浣 穀旦 姻晚生鉛峰章氏廷洋拜譔</p>
+            </article>
+            <article class="bio-text">
+              <h3>白话翻译</h3>
+              <p>从天子直到平民百姓，没有谁没有自己的家庭，也没有谁没有自己的宗族祖先。等到年代久远、世事变迁，支脉源流分辨不清，往往纵横交错杂乱，就像水有万千条支流，树有成千上万的枝干一样。如果不修撰家谱，就无法详细了解源流并追溯根本；不知道姓氏的由来，怎么分辨亲疏？怎么区别尊卑？家族的恩义又从何处加深呢？</p>
+<p>唉！延陵吴氏，从泰伯公那个时代、被赐予姓氏的初期开始，就修建祖宗庙宇，陈列祭祀器具，备好宗族祭服，敬献应时的祭品。尊敬长辈，爱护亲族，宗庙里的牌位按照“昭穆”（左为昭，右为穆）的顺序排列，大家都沐浴在共同的敬意之中。后代的子孙也必须用这样的礼仪来寄托敬意，善于继承前人的志愿，善于传述前人的事迹，这就是使得家族福泽绵延、宗庙得以长存的原因啊！</p>
+<p>追忆逝去的先祖（仕珍公），他是人中麒麟，英气豪迈，超凡脱俗。他极其勤劳节俭，又十分宽厚仁慈。他非常看重亲戚间的情谊，常常救济困苦、扶助危难。他致力于农业生产，日积月累，扩大了家族的基业。遇到灾荒之年，家里还有结余，能够恩惠乡邻。上天眷顾有德之人，对他加以庇护栽培。他从玉西王家蓬，又搬迁到了上邑七十都西村这个地方，在这里安家落户，居住在山林之下。子孙后代继承他的家业，他为后代作了长远的谋划。台阶前的子孙们挺拔秀美，像良驹和雏凤一般出类拔萃；孙辈繁衍茂盛，如同兰草和蕙草一样散发着美德的芳香。以他的品德本该得到长寿的福报，理应活到百岁（期颐）。唉！为何他却中途离世，他的人品就像高山一样让人仰慕。一场急病让他猝然离世，长眠安息。这宛如泰山崩塌，栋梁毁坏。想见他的面容却看不到形体，想听他的教诲却听不到声音。活着的人长久地怀念他，逝去的人虽然已经离开，但他的生平事迹却光辉显著，让人了如指掌。我于是为先祖叩首致敬，写下这篇传记来颂扬他，在这篇追本溯源的谱牒里作序赞美。正所谓“上天赐予的福泽绵延不绝”，希望世世代代的子孙们都能永远铭记这些啊！</p>
+<p>以上皆是（我的肺腑之言）。</p>
+<p>大清光绪二十一年（1895年）农历十月上旬吉日 姻家晚辈、铅峰人 章廷洋 敬拜撰写</p>
+            </article>
+          </div>
+          <div class="bio-pager">
+            <button type="button" class="bio-nav-button" data-target="bio-6">上一篇<br><strong>徐老孺人傳</strong></button>
+            <button type="button" class="bio-nav-button next" data-target="bio-8">下一篇<br><strong>肇修延陵子祥公譜牒文</strong></button>
+          </div>
+        </article>
+
+        <article class="bio-page" id="bio-8" data-article="bio-8">
+          <div class="bio-head">
+            <div>
+              <h2>肇修延陵子祥公譜牒文</h2>
+            </div>
+            <span class="bio-source">肇修延陵子祥公譜牒文.docx</span>
+          </div>
+          
+          <div class="bio-columns">
+            <article class="bio-text">
+              <h3>原文</h3>
+              <p>嘗思功德之報，昭如日星；紀載之傳，垂諸金石。此源深者流長，而本茲者葉茂也。若夫天生蒸民，有物有則，民之秉彞，好是懿德。是知人生於世，及其聞一善言、見一善行，則拳拳服膺而有不失之心存焉者，豈無陰德以報哉？</p>
+<p>述憶先翁，樸直冲夷，氣局不常。仰不愧天，俯不怍人。處己以忠，待物以恕，藹然如陽春之融；風規峻整，踐履端凝，凜然如秋霜之烈。恭者不侮，儉者不奪，餘慶所被，積德流芳。吁嗟哲人，一代人傑也。</p>
+<p>翁者，自新通地遷居於鉛屏之下、玉西王家蓬勝地。世守勿替，勤儉自律，端方自持，創業垂統，德孚於鄉。天篤其祥，苗裔其昌，照格冥冥，螽斯蟄蟄。非翁之陰德功勳，其何以致是之盛耶？斯時也，皆有榮其高名，盛福於無窮。翁之為人，真與天地合德矣！詳哉乎言之，無容贅矣，故序之於譜。</p>
+<p>序之於譜者，親親之道也。志於道，盍亦盡其全者乎？盡其全者，盍亦知其先者乎？知其先者，則亦知其淵源之自者矣。</p>
+<p>旹</p>
+<p>皇清光緒廿一年歲次乙未小陽月上浣 穀旦 姻晚生鉛峰章氏廷洋拜譔</p>
+            </article>
+            <article class="bio-text">
+              <h3>白话翻译</h3>
+              <p>我常常想到，一个人所建立的功德，其回报和影响就像日月星辰一样昭著；而将其事迹记录下来，便可以像刻在金石上一样长久流传。水源深，河流才能绵延长远；树根牢固，枝叶才能繁茂。</p>
+<p>上天生育众民，使万事万物都有一定的法则。人们天生所秉持的常理，便是喜爱美好的品德。因此，一个人生活在世上，只要听到一句有益的善言，见到一件美好的善行，就会牢牢记在心中，努力遵循，不愿遗忘。这样的人，难道不会因为暗中积下的善德而得到福报吗？</p>
+<p>回想先祖老先生，他为人朴实正直、平和坦荡，气度格局非同寻常。抬头无愧于上天，低头无愧于世人。他以忠诚的态度要求自己，以宽恕仁厚的态度对待他人。和蔼的时候，如同春日阳光般温暖融洽；而在品行原则方面，又严肃端正，举止稳重，凛然如秋霜一般严正。</p>
+<p>恭敬的人不会侮慢别人，节俭的人不会侵夺他人。他一生积累的德行，给后代留下了深厚的福泽，也使美德和声名长久流传。令人感叹的是，这样一位贤明之人，实在称得上是一代人杰。</p>
+<p>老先生从新通地方迁居到铅屏山下、玉西王家蓬这一处风水优美的地方。此后世代居住于此，未曾迁离。他勤劳节俭，严格要求自己；为人端正，坚守操行；开创家业，并为后世子孙树立了长远的根基，在乡里享有很高的声望。</p>
+<p>上天厚赐吉祥，使他的后代日益兴旺；他的精神和福泽在冥冥之中庇佑子孙，使子孙繁衍众多。假如不是老先生生前暗中积累了深厚的德行和功业，又怎么能够形成今日这样兴盛的局面呢？</p>
+<p>到了如今，后人都以他的崇高名声为荣耀，也承受着绵延无穷的福泽。老先生的为人，确实可以说与天地的德性相契合。关于他的美德，已经不需要再作过多赘述，因此特地将这些事迹写入族谱之中。</p>
+<p>把先人的事迹写入族谱，是体现亲爱、尊敬族人的道理。立志遵行正道，怎么能够不把这件事做得完整呢？要想做得完整，又怎么能够不了解自己的祖先呢？了解了祖先，也就能够知道家族世系和根源是从哪里传承而来的了。</p>
+<p>时在大清光绪二十一年，岁次乙未，农历十月上旬吉日。</p>
+<p>姻亲后辈、铅峰章氏廷洋恭敬撰写。</p>
+<p>白话翻译</p>
+<p>创修延陵子祥公家谱序文</p>
+<p>我常常思考，一个人做了功德之事所得到的善报，就像日月星辰那样明亮显著；而那些被文字记载流传下来的事迹，则如同铭刻在金石之上一样永垂不朽。这就是所谓的源头深远，水流自然就长；根基牢固，枝叶自然就茂盛。上天生育了黎民百姓，万物都有其法则，而老百姓秉持的本性常理，就是喜爱美好的品德。因此可以知道，人生活在这世上，如果听到一句好话、看到一件善事，就能诚心诚意地信奉，并在心中牢记不忘，老天难道会没有暗中的福报来回报他吗？</p>
+<p>追忆逝去的先祖（指子祥公），他为人朴实耿直、平和谦逊，气度非同寻常。他做事对上不愧对天地，对下不愧对他人。他严格要求自己，忠诚尽职，对待他人则宽容体谅。他待人接物和蔼可亲，就像阳春三月般让人感到温暖融洽；但他讲求规矩时又非常严格，行为端正庄重，令人敬畏，如同秋天的严霜一样凛冽。他待人恭敬，所以不会招致他人的侮辱；生活俭朴，所以财富不会轻易散失。他留下的福泽庇荫着后人，积累的德行流芳百世。哎！这样一位充满智慧的哲人，真是一代豪杰啊。</p>
+<p>先祖从“新通”这个地方，搬迁到了“铅屏”山下、“玉西王家蓬”这块风水宝地居住。他世代坚守优良传统从不废止，用勤劳节俭来约束自己，品行端正，开创了家业并将其传承给后代，他的高尚品德在乡里深受众人的信服。上天赐予了他深厚的吉祥，让他的后代子孙繁衍昌盛，冥冥之中得到了庇佑，子嗣就像螽斯（寓意多子多孙的昆虫）一样绵延不绝。如果不是先祖积累的阴德和功绩，又怎么能达到这样繁盛的地步呢？如今这个时候，后人们都以他的高尚名望为荣，享受着无穷的福气。先祖的为人，真正是与天地的美德相契合了！这些事迹已经说得很详细了，不需要再过多赘述，因此将这些话写成序言，收录在家谱之中。</p>
+<p>将这些事迹写成序言收录进家谱，是为了体现敬爱、和睦亲族的伦理道德。既然有心追求这种亲族之道，难道不应该尽可能做到完美周全吗？想要做到完美周全，难道不应该了解自己的祖先吗？了解了自己的祖先，也就知道自己家族血脉渊源的来历了。</p>
+<p>以上皆是（我的肺腑之言）。</p>
+<p>大清光绪二十一年（1895年）农历十月上旬吉日 姻家晚辈、铅峰人 章廷洋 敬拜撰写</p>
+            </article>
+          </div>
+          <div class="bio-pager">
+            <button type="button" class="bio-nav-button" data-target="bio-7">上一篇<br><strong>肇修仕珍公譜牒文</strong></button>
+            <span class="bio-nav-spacer"></span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script>
+    const tocItems = Array.from(document.querySelectorAll(".bio-toc-item"));
+    const articlePanels = Array.from(document.querySelectorAll(".bio-page"));
+    const pagerButtons = Array.from(document.querySelectorAll(".bio-nav-button"));
+    function activateArticle(target, pushHash = true) {
+      if (!articlePanels.some(panel => panel.dataset.article === target)) return;
+      tocItems.forEach(item => item.classList.toggle("active", item.dataset.target === target));
+      articlePanels.forEach(panel => panel.classList.toggle("active", panel.dataset.article === target));
+      const activePanel = articlePanels.find(panel => panel.dataset.article === target);
+      if (activePanel) activePanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (pushHash) history.pushState(null, "", `#${target}`);
+    }
+    tocItems.forEach(item => item.addEventListener("click", () => activateArticle(item.dataset.target)));
+    pagerButtons.forEach(button => button.addEventListener("click", () => activateArticle(button.dataset.target)));
+    const initialHash = decodeURIComponent(location.hash || "").replace(/^#/, "");
+    if (initialHash) activateArticle(initialHash, false);
+    window.addEventListener("popstate", () => {
+      const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
+      if (hash) activateArticle(hash, false);
+    });
+  </script>
+</body>
+</html>
