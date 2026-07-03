@@ -470,17 +470,17 @@
     .article-pager {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 20px 24px 24px;
+      gap: 16px;
+      padding: 14px 24px 22px;
       border-top: 1px solid rgba(184, 148, 97, .18);
     }
     .article-nav-button {
       appearance: none;
-      min-height: 64px;
-      padding: 12px 14px;
-      border: 1px solid rgba(184, 148, 97, .32);
-      border-radius: 10px;
-      background: rgba(255, 250, 240, .58);
+      min-height: 0;
+      padding: 8px 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
       color: var(--muted);
       font: inherit;
       font-size: 12px;
@@ -491,9 +491,26 @@
     .article-nav-button.next {
       text-align: right;
     }
+    .article-nav-button::before,
+    .nav-inline-arrow {
+      color: var(--accent-2);
+      font-size: 13px;
+      font-weight: 820;
+    }
+    .article-nav-button::before {
+      content: "← ";
+    }
+    .article-nav-button.next::before {
+      content: "";
+    }
+    .nav-inline-arrow {
+      display: inline-block;
+      margin-left: 4px;
+      transform: translateY(-1px);
+    }
     .article-nav-button strong {
       display: block;
-      margin-top: 3px;
+      margin-top: 2px;
       color: var(--accent-dark);
       font-size: 14px;
       overflow: hidden;
@@ -504,16 +521,12 @@
       min-height: 1px;
     }
     .article-nav-button:hover {
-      border-color: rgba(166, 66, 50, .48);
-      background: rgba(166, 66, 50, .07);
+      color: var(--accent-dark);
     }
     .doc-text p:last-child {
       margin-bottom: 0;
       padding-bottom: 0;
       border-bottom: 0;
-    }
-    .legacy-hidden {
-      display: none;
     }
     .timeline-item,
     .chapter-panel,
@@ -743,7 +756,7 @@
           </div>
           <div class="article-pager">
             <span class="article-nav-spacer"></span>
-            <button type="button" class="article-nav-button next" data-target="guangxu-1895-2">下一篇<br><strong>延陵吴氏重修宗谱旧序</strong></button>
+            <button type="button" class="article-nav-button next" data-target="guangxu-1895-2">下一篇 <span class="nav-inline-arrow">→</span><br><strong>延陵吴氏重修宗谱旧序</strong></button>
           </div>
         </article>
 
@@ -780,7 +793,7 @@
           </div>
           <div class="article-pager">
             <button type="button" class="article-nav-button" data-target="guangxu-1895-1">上一篇<br><strong>延陵吳氏肇修歷代譜牒文</strong></button>
-            <button type="button" class="article-nav-button next" data-target="guangxu-1895-3">下一篇<br><strong>重修譜牒凡例（旧）</strong></button>
+            <button type="button" class="article-nav-button next" data-target="guangxu-1895-3">下一篇 <span class="nav-inline-arrow">→</span><br><strong>重修譜牒凡例（旧）</strong></button>
           </div>
         </article>
 
@@ -834,7 +847,7 @@
           </div>
           <div class="article-pager">
             <button type="button" class="article-nav-button" data-target="guangxu-1895-2">上一篇<br><strong>延陵吴氏重修宗谱旧序</strong></button>
-            <button type="button" class="article-nav-button next" data-target="minguo-1946-1">下一篇<br><strong>延陵吴氏重修宗谱旧序</strong></button>
+            <button type="button" class="article-nav-button next" data-target="minguo-1946-1">下一篇 <span class="nav-inline-arrow">→</span><br><strong>延陵吴氏重修宗谱旧序</strong></button>
           </div>
         </article>
 
@@ -869,7 +882,7 @@
           </div>
           <div class="article-pager">
             <button type="button" class="article-nav-button" data-target="guangxu-1895-3">上一篇<br><strong>重修譜牒凡例（旧）</strong></button>
-            <button type="button" class="article-nav-button next" data-target="xinsi-2001-1">下一篇<br><strong>辛巳延陵吳氏續修宗譜序言</strong></button>
+            <button type="button" class="article-nav-button next" data-target="xinsi-2001-1">下一篇 <span class="nav-inline-arrow">→</span><br><strong>辛巳延陵吳氏續修宗譜序言</strong></button>
           </div>
         </article>
 
@@ -903,7 +916,7 @@
           </div>
           <div class="article-pager">
             <button type="button" class="article-nav-button" data-target="minguo-1946-1">上一篇<br><strong>延陵吴氏重修宗谱旧序</strong></button>
-            <button type="button" class="article-nav-button next" data-target="xinsi-2001-2">下一篇<br><strong>新凡例</strong></button>
+            <button type="button" class="article-nav-button next" data-target="xinsi-2001-2">下一篇 <span class="nav-inline-arrow">→</span><br><strong>新凡例</strong></button>
           </div>
         </article>
 
@@ -934,7 +947,7 @@
           </article>
           <div class="article-pager">
             <button type="button" class="article-nav-button" data-target="xinsi-2001-1">上一篇<br><strong>辛巳延陵吳氏續修宗譜序言</strong></button>
-            <button type="button" class="article-nav-button next" data-target="appendix-1">下一篇<br><strong>延陵吳氏宗譜續修新譜局芳名：</strong></button>
+            <button type="button" class="article-nav-button next" data-target="appendix-1">下一篇 <span class="nav-inline-arrow">→</span><br><strong>延陵吳氏宗譜續修新譜局芳名：</strong></button>
           </div>
         </article>
 
