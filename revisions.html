@@ -107,8 +107,10 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) 320px;
       gap: 18px;
-      align-items: stretch;
-      margin-bottom: 22px;
+      align-items: end;
+      margin-bottom: 28px;
+      padding: 10px 0 24px;
+      border-bottom: 1px solid rgba(184, 148, 97, .28);
     }
     .hero-card,
     .summary-card,
@@ -124,7 +126,11 @@
       box-shadow: var(--shadow-soft);
     }
     .hero-card {
-      padding: 30px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
     .eyebrow {
       margin: 0 0 12px;
@@ -177,7 +183,12 @@
       flex-direction: column;
       justify-content: center;
       min-height: 100%;
-      padding: 20px;
+      padding: 6px 0 6px 22px;
+      border: 0;
+      border-left: 1px solid rgba(184, 148, 97, .34);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
     .poem-summary-head {
       display: flex;
@@ -221,13 +232,19 @@
     .revision-toc {
       position: sticky;
       top: 84px;
-      padding: 18px 16px;
+      padding: 6px 0 6px 18px;
+      border: 0;
+      border-left: 1px solid rgba(184, 148, 97, .28);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
     .toc-title {
-      margin: 0 0 18px;
-      color: var(--ink);
-      font-size: 18px;
-      font-weight: 820;
+      margin: 0 0 16px;
+      color: var(--muted-2);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: .08em;
     }
     .toc-tree {
       position: relative;
@@ -238,9 +255,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      margin: 0 0 8px;
+      margin: 0 0 7px;
       color: var(--ink);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 820;
       line-height: 1.35;
     }
@@ -253,10 +270,10 @@
     .toc-docs {
       position: relative;
       display: grid;
-      gap: 4px;
-      margin-left: 14px;
-      padding-left: 14px;
-      border-left: 1px solid rgba(184, 148, 97, .36);
+      gap: 2px;
+      margin-left: 11px;
+      padding-left: 13px;
+      border-left: 1px solid rgba(184, 148, 97, .24);
     }
     .toc-doc {
       appearance: none;
@@ -264,6 +281,7 @@
       width: 100%;
       padding: 5px 0 5px 8px;
       border: 0;
+      border-radius: 6px;
       background: transparent;
       color: var(--muted);
       font: inherit;
@@ -285,6 +303,7 @@
     .toc-doc.active {
       color: var(--accent-dark);
       font-weight: 820;
+      background: rgba(166, 66, 50, .045);
     }
     .toc-doc.active::after {
       content: "";
@@ -303,6 +322,9 @@
     .revision-page {
       display: none;
       overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 253, 247, .78), rgba(251, 246, 234, .58));
+      box-shadow: none;
     }
     .revision-page.active {
       display: block;
@@ -398,9 +420,10 @@
     .bureau-section {
       position: relative;
       padding: 16px 18px;
-      border: 1px solid rgba(184, 148, 97, .26);
+      border: 0;
+      border-top: 1px solid rgba(184, 148, 97, .22);
       border-radius: 12px;
-      background: rgba(255, 250, 240, .42);
+      background: rgba(255, 250, 240, .22);
     }
     .bureau-section::before {
       content: "";
@@ -477,13 +500,14 @@
     .article-nav-button {
       appearance: none;
       min-height: 0;
-      padding: 8px 0;
+      padding: 10px 0;
       border: 0;
       border-radius: 0;
       background: transparent;
-      color: var(--muted);
+      color: rgba(118, 109, 95, .86);
       font: inherit;
       font-size: 12px;
+      font-weight: 680;
       line-height: 1.45;
       text-align: left;
       cursor: pointer;
@@ -493,7 +517,7 @@
     }
     .article-nav-button::before,
     .nav-inline-arrow {
-      color: var(--accent-2);
+      color: currentColor;
       font-size: 13px;
       font-weight: 820;
     }
@@ -511,8 +535,9 @@
     .article-nav-button strong {
       display: block;
       margin-top: 2px;
-      color: var(--accent-dark);
+      color: currentColor;
       font-size: 14px;
+      font-weight: 760;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -590,7 +615,7 @@
         padding: 18px 0 34px;
       }
       .hero-card {
-        padding: 18px;
+        padding: 0 0 18px;
       }
       .summary-card {
         grid-template-columns: 1fr;

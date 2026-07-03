@@ -1,4 +1,4 @@
-:root {
+    :root {
       --bg: #efe5d4;
       --canvas: #f6efdf;
       --paper: #fbf6ea;
@@ -271,7 +271,7 @@
     }
 
     .detail-actions {
-      margin: 2px 0 18px;
+      margin: 14px 0 22px;
     }
 
     .detail-actions[hidden] {
@@ -281,32 +281,56 @@
     .biography-link {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      min-height: 34px;
+      gap: 9px;
+      min-height: 38px;
       max-width: 100%;
-      padding: 7px 12px;
-      border: 1px solid rgba(40, 106, 102, .24);
+      padding: 8px 14px;
+      border: 1px solid rgba(40, 106, 102, .22);
       border-radius: 999px;
-      background: rgba(40, 106, 102, .055);
+      background: linear-gradient(180deg, rgba(40, 106, 102, .08), rgba(40, 106, 102, .04));
       color: var(--accent-2);
-      font-size: 12.5px;
-      font-weight: 740;
-      line-height: 1;
+      font-size: 13px;
+      font-weight: 760;
+      line-height: 1.35;
       text-decoration: none;
-      box-shadow: inset 0 0 0 1px rgba(255, 250, 240, .72);
+      box-shadow: 0 8px 18px rgba(40, 106, 102, .06);
+      transition: border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    .biography-link span {
+      flex: 0 0 auto;
+      color: rgba(40, 106, 102, .72);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .biography-link strong {
+      min-width: 0;
+      overflow: hidden;
+      color: currentColor;
+      font-weight: 780;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .biography-link::after {
       content: "↗";
-      color: rgba(40, 106, 102, .78);
+      flex: 0 0 auto;
+      color: currentColor;
       font-size: 12px;
       transform: translateY(-1px);
     }
 
     .biography-link:hover {
-      border-color: rgba(166, 66, 50, .38);
-      background: rgba(166, 66, 50, .08);
-      color: var(--accent-dark);
+      border-color: rgba(40, 106, 102, .34);
+      background: linear-gradient(180deg, rgba(40, 106, 102, .12), rgba(40, 106, 102, .06));
+      box-shadow: 0 10px 22px rgba(40, 106, 102, .08);
+      transform: translateY(-1px);
+    }
+
+    .biography-link:focus-visible {
+      outline: 2px solid rgba(40, 106, 102, .24);
+      outline-offset: 3px;
     }
 
     .lineage-chip {

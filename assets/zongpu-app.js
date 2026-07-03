@@ -1537,7 +1537,7 @@ const NODE_W = 176;
       detailNotice.innerHTML = warnings.length ? `<div class="notice">${warnings.map(escapeText).join("<br>")}</div>` : "";
       if (node.biographyLink && node.biographyLink.url) {
         detailActions.hidden = false;
-        detailActions.innerHTML = `<a class="biography-link" href="${escapeText(node.biographyLink.url)}">查看族贤传略：${escapeText(node.biographyLink.title || node.name)}</a>`;
+        detailActions.innerHTML = `<a class="biography-link" href="${escapeText(node.biographyLink.url)}" aria-label="查看族贤传略：${escapeText(node.biographyLink.title || node.name)}"><span>查看族贤传略</span><strong>${escapeText(node.biographyLink.title || node.name)}</strong></a>`;
       } else {
         detailActions.hidden = true;
         detailActions.innerHTML = "";
