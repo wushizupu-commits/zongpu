@@ -1588,12 +1588,12 @@ const NODE_W = 176;
 
     function findNodeByPersonRouteId(value) {
       const normalized = normalizePersonRouteId(value);
-      const loose = loosePersonRouteId(value);
       if (!normalized) return null;
-      return DATA.nodes.find(node => {
-        const nodeId = normalizePersonRouteId(node.id);
-        return nodeId === normalized || loosePersonRouteId(node.id) === loose;
-      }) || null;
+      const exact = DATA.nodes.find(node => normalizePersonRouteId(node.id) === normalized);
+      if (exact) return exact;
+      const loose = loosePersonRouteId(value);
+      const looseMatches = DATA.nodes.filter(node => loosePersonRouteId(node.id) === loose);
+      return looseMatches.length === 1 ? looseMatches[0] : null;
     }
 
     function revealPersonFromRoute() {
