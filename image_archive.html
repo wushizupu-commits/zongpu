@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>宗族图志｜延陵吴氏</title>
+  <style>
+    :root {
+      --bg:#f1e6d4; --paper:#fbf6ea; --paper-strong:#fffaf0; --paper-2:#fffaf0; --ink:#241b14; --muted:#766d5f; --muted-2:#9b8f7d;
+      --line-soft:#e4d7bd; --accent:#a64232; --accent-dark:#783026; --accent-2:#286a66; --jade:#286a66; --line:#e4d7bd; --copper:#b89461; --shadow:0 8px 24px rgba(60, 44, 24, .09); --shadow-soft:0 8px 24px rgba(60, 44, 24, .09); --radius:12px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); font-family:"Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", "PMingLiU", serif; background:radial-gradient(circle at 12% 8%, rgba(166,66,50,.08), transparent 28%), radial-gradient(circle at 84% 12%, rgba(40,106,102,.08), transparent 30%), repeating-linear-gradient(0deg, rgba(80,59,33,.025) 0 1px, transparent 1px 8px), linear-gradient(135deg, #f4ead9 0%, var(--bg) 52%, #e8dac4 100%); min-height:100vh; }
+    .site-header { position:sticky; top:0; z-index:20; border-top:4px solid #4b2a2d; border-bottom:1px solid rgba(209,190,156,.58); background:#fbf3e8; box-shadow:0 6px 16px rgba(60,44,24,.035); }
+    .site-header-inner { display:flex; align-items:center; gap:32px; min-height:72px; padding:14px 34px 15px; }
+    .site-brand { flex:0 0 auto; color:var(--accent-dark); font-weight:820; font-size:24px; letter-spacing:.03em; white-space:nowrap; }
+    .site-nav { display:flex; flex-wrap:wrap; gap:14px; margin:0; padding:0; }
+    .site-nav a,
+    .site-nav button { appearance:none; position:relative; display:inline-flex; align-items:center; justify-content:center; min-height:38px; color:rgba(88,82,71,.86); text-decoration:none; padding:9px 15px; border:1px solid transparent; border-radius:999px; background:transparent; font:inherit; font-size:15px; font-weight:760; line-height:1; white-space:nowrap; letter-spacing:0; box-shadow:none; transition:color .18s ease, background .18s ease, border-color .18s ease; }
+    .site-nav a:hover { border-color:transparent; color:var(--accent-dark); background:rgba(166,66,50,.06); }
+    .site-nav a.active { border-color:transparent; color:var(--accent-dark); background:rgba(166,66,50,.10); }
+    .site-nav button { cursor:default; opacity:.78; }
+    main { width:min(1240px, calc(100% - 40px)); margin:0 auto; padding:34px 0 56px; }
+    .hero { display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:18px; align-items:stretch; margin-bottom:28px; padding:10px 0 24px; border-bottom:1px solid rgba(184,148,97,.28); }
+    .archive-toc, .archive-section { border:1px solid rgba(184,148,97,.34); border-radius:12px; background:linear-gradient(180deg, rgba(255,253,247,.92), rgba(247,236,218,.76)), repeating-linear-gradient(90deg, rgba(116,88,48,.025) 0 1px, transparent 1px 7px), var(--paper-2); box-shadow:var(--shadow); }
+    .hero-card { padding:0; background:transparent; border:0; box-shadow:none; }
+    .hero-card h1 { margin:0 0 12px; color:var(--accent-dark); font-size:clamp(34px, 5vw, 58px); line-height:1.05; }
+    .hero-card p:last-child { margin:0; color:var(--muted); line-height:1.8; font-size:16px; }
+    .eyebrow { margin:0 0 12px; color:var(--accent); font-size:13px; font-weight:780; letter-spacing:.12em; }
+    .hero-side { padding:4px 0 4px 18px; display:grid; align-content:center; border-left:3px solid rgba(166,66,50,.32); }
+    .hero-side strong { display:block; color:var(--accent-dark); font-size:24px; }
+    .hero-side span { color:var(--muted); margin-top:10px; line-height:1.7; }
+    .archive-layout { display:grid; grid-template-columns:280px minmax(0,1fr); gap:18px; align-items:start; }
+    .archive-toc { position:sticky; top:84px; padding:6px 0 6px 18px; border:0; border-left:1px solid rgba(184,148,97,.28); border-radius:0; background:transparent; box-shadow:none; }
+    .toc-title { margin:0 0 16px; color:var(--muted-2); font-size:12px; font-weight:760; letter-spacing:.08em; }
+    .toc-docs { display:grid; gap:2px; }
+    .toc-doc { appearance:none; position:relative; width:100%; border:0; border-radius:6px; background:transparent; color:var(--muted); padding:7px 8px 7px 14px; text-align:left; font:inherit; font-size:13px; line-height:1.35; font-weight:760; cursor:pointer; }
+    .toc-doc::before { content:""; position:absolute; left:2px; top:16px; width:5px; height:5px; border-radius:999px; background:rgba(184,148,97,.42); }
+    .toc-doc span { display:block; margin-bottom:4px; min-width:0; color:var(--muted-2); font-size:11px; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; letter-spacing:.08em; }
+    .toc-doc.active { color:var(--accent-dark); background:rgba(166,66,50,.045); box-shadow:none; }
+    .toc-doc.active::before { background:var(--accent); box-shadow:0 0 0 3px rgba(166,66,50,.08); }
+    .archive-section { display:none; overflow:hidden; }
+    .archive-section.active { display:block; }
+    .section-head { display:flex; justify-content:space-between; gap:18px; align-items:start; padding:28px 30px 22px; border-bottom:1px solid rgba(184,148,97,.24); }
+    .section-head h2 { margin:0; color:var(--accent-dark); font-size:34px; }
+    .section-head span { color:var(--muted-2); font-size:14px; white-space:nowrap; }
+    .section-intro { margin:22px 30px 0; padding:16px 18px; border-left:3px solid rgba(40,106,102,.45); background:rgba(40,106,102,.045); color:var(--muted); line-height:1.85; }
+    .section-intro p { margin:0 0 10px; }
+    .section-intro p:last-child { margin-bottom:0; }
+    .poem-intro { border-left-color:rgba(166,66,50,.46); background:rgba(166,66,50,.035); }
+    .poem-group-title { margin:0 0 14px; color:var(--accent-dark); font-size:20px; font-weight:900; }
+    .poem-grid { display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:12px; }
+    .poem-card { padding:13px 14px; border:1px solid rgba(184,148,97,.26); border-radius:10px; background:rgba(255,253,247,.55); }
+    .poem-card h3 { margin:0 0 9px; color:var(--jade); font-size:16px; line-height:1.25; }
+    .poem-card p { margin:0; color:var(--ink); line-height:1.85; font-size:14px; white-space:normal; }
+    .source-link { display:inline-flex; align-items:center; gap:7px; margin-top:4px; color:var(--accent-dark); border:1px solid rgba(166,66,50,.14); border-radius:999px; background:rgba(166,66,50,.10); padding:7px 12px; font-size:13px; font-weight:780; text-decoration:none; }
+    .source-link::after,
+    .node-links a::after { content:""; flex:0 0 auto; width:8px; height:8px; border-top:1.4px solid currentColor; border-right:1.4px solid currentColor; opacity:.72; transform:rotate(45deg) translate(-1px, 1px); }
+    .source-link:hover, .node-links a:hover { border-color:rgba(166,66,50,.22); color:var(--accent-dark); background:rgba(166,66,50,.14); }
+    .image-grid { padding:26px 30px 32px; display:grid; gap:24px; }
+    .image-card { border:1px solid rgba(184,148,97,.30); border-radius:12px; background:linear-gradient(180deg, rgba(255,253,247,.84), rgba(251,246,234,.60)); overflow:hidden; box-shadow:0 5px 16px rgba(60,44,24,.055); }
+    .image-open { display:block; width:100%; padding:0; border:0; background:#f7f0e2; cursor:zoom-in; }
+    .image-open img { display:block; width:100%; max-height:72vh; object-fit:contain; background:#f7f0e2; }
+    .image-caption { display:flex; justify-content:space-between; gap:18px; padding:17px 18px; border-top:1px solid rgba(184,148,97,.22); align-items:start; }
+    .image-caption h3 { margin:0 0 5px; font-size:22px; color:var(--ink); }
+    .image-caption p { margin:0; color:var(--muted); font-size:14px; }
+    .node-links { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; min-width:210px; }
+    .node-links a { display:inline-flex; align-items:center; gap:7px; color:var(--accent-dark); border:1px solid rgba(166,66,50,.14); background:rgba(166,66,50,.10); border-radius:999px; padding:8px 12px; font-size:13px; font-weight:780; text-decoration:none; white-space:nowrap; }
+    .image-notes { padding:0 18px 18px; color:var(--muted); line-height:1.85; font-size:15px; }
+    .image-notes p { margin:10px 0 0; }
+    .translation-note { margin-top:18px; padding-top:15px; border-top:1px solid rgba(184,148,97,.28); }
+    .note-section h4,
+    .translation-note h4 { margin:0 0 8px; color:var(--accent-dark); font-size:16px; }
+    .lightbox { position:fixed; inset:0; z-index:100; display:none; background:rgba(37,31,24,.82); padding:22px; }
+    .lightbox.active { display:grid; grid-template-rows:auto minmax(0,1fr); gap:14px; }
+    .lightbox-bar { display:flex; justify-content:space-between; align-items:center; color:#fff7e8; }
+    .lightbox-bar strong { font-size:18px; }
+    .lightbox-close { appearance:none; border:1px solid rgba(255,247,232,.45); background:rgba(255,247,232,.1); color:#fff7e8; border-radius:10px; width:42px; height:42px; font-size:26px; cursor:pointer; }
+    .lightbox img { max-width:100%; max-height:100%; margin:auto; object-fit:contain; box-shadow:0 18px 50px rgba(0,0,0,.38); }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns:1fr; }
+      .hero-card h1 { font-size:34px; }
+      .archive-layout { grid-template-columns:1fr; }
+      .archive-toc { position:static; }
+      .section-head { display:block; padding:22px; }
+      .section-head span { display:block; margin-top:8px; }
+      .poem-grid { grid-template-columns:1fr; }
+      .image-grid { padding:18px; } .image-caption { display:block; } .node-links { justify-content:flex-start; margin-top:12px; min-width:0; }
+      .image-open img { max-height:58vh; }
+    }
+    @media (max-width: 760px) {
+      .site-header-inner { display:block; min-height:0; padding:9px 12px 10px; }
+      .site-brand { display:block; margin:0 0 8px; font-size:15px; }
+      .site-nav { flex-wrap:nowrap; gap:7px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+      .site-nav a,
+      .site-nav button { flex:0 0 auto; min-height:30px; padding:6px 10px; font-size:12px; }
+      .site-nav::-webkit-scrollbar { display:none; }
+      main { width:min(100% - 24px, 1240px); padding:18px 0 34px; }
+      .hero { padding:0 0 18px; }
+      .hero-card p:last-child { font-size:15px; line-height:1.72; }
+      .hero-side { padding:14px 0 0; border-left:0; border-top:1px solid rgba(184,148,97,.24); }
+      .archive-toc { padding:6px 0 6px 14px; }
+      .image-caption h3 { font-size:20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><div class="site-brand">延陵吴氏</div><nav class="site-nav" aria-label="站点一级目录"><a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link" href="./source_migration.html">源流迁徙</a><a class="nav-link active" href="./image_archive.html" aria-current="page">宗族图志</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link" href="./biographies.html">族贤传略</a><a class="nav-link" href="./family_customs.html">家训礼俗</a></nav></div></header>
+  <main>
+    <section class="hero">
+      <div class="hero-card"><p class="eyebrow">CLAN IMAGE ARCHIVE</p><h1>宗族图志</h1><p>汇集先祖画像、符溪图志与祖茔图志。页面以原图为主体，保留文档题名与说明文字；点击图片可查看高清大图，带有 ID 的图像可跳转到对应世系节点。</p></div>
+      <aside class="hero-card hero-side"><strong>图像为主，文字为辅</strong><span>这些图志承载的是宗族记忆的视觉部分：人物仪容、祠堂地理、祖茔方位。阅读时可先看图，再回到题名、说明与世系节点中互相参照。</span></aside>
+    </section>
+    <section class="archive-layout">
+      <aside class="archive-toc" aria-label="宗族图志目录"><h2 class="toc-title">图志目录</h2><div class="toc-docs"><button class="toc-doc active" type="button" data-target="ancestors"><span>01</span>先祖画像</button><button class="toc-doc " type="button" data-target="fuxi"><span>02</span>符溪图志</button><button class="toc-doc " type="button" data-target="tombs"><span>03</span>祖茔图志</button></div></aside>
+      <div class="archive-content">
+      <section class="archive-section active" id="ancestors" data-section="ancestors">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">ARCHIVAL IMAGE RECORDS</p>
+            <h2>先祖画像</h2>
+          </div>
+          <span>来源：先祖画像.docx</span>
+        </div>
+        <div class="section-intro"><p>先祖遗像</p><p>根据《重修譜牒凡例（旧）》载：</p><p>凡先世遺像，舊譜未寫。今因重修之餘，思念祖宗之儀容而不得見，特命甚繪者，因其舊而圖其新，形影相繼，曰遺像圖。俾後之子孫展而玩之，獲覩祖宗儀容儼乎若存，則尊尊親親之念有所興起，是亦作譜之良意云。</p><a class="source-link" href="./revisions.html#guangxu-1895-3" target="_blank" rel="noopener">查看《重修譜牒凡例（旧）》</a></div>
+        <div class="image-grid">
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/ancestors_01.png" data-title="處士國樂公容像" aria-label="查看高清大图：處士國樂公容像">
+              <img src="assets/image_archive/ancestors_01.png" alt="處士國樂公容像" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>處士國樂公容像</h3>
+                <p>處士國樂公容像</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G21-GLG-03" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/ancestors_02.png" data-title="耆賓元杰公容像" aria-label="查看高清大图：耆賓元杰公容像">
+              <img src="assets/image_archive/ancestors_02.png" alt="耆賓元杰公容像" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>耆賓元杰公容像</h3>
+                <p>耆賓元杰公容像</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G26-ZJG-03" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/ancestors_06.png" data-title="祖龙公容像" aria-label="查看高清大图：祖龙公容像">
+              <img src="assets/image_archive/ancestors_06.png" alt="祖龙公容像" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>祖龙公容像</h3>
+                <p>祖龙公容像</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G26-ZLG-01" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/ancestors_07.png" data-title="祖桂公容像" aria-label="查看高清大图：祖桂公容像">
+              <img src="assets/image_archive/ancestors_07.png" alt="祖桂公容像" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>祖桂公容像</h3>
+                <p>祖桂公容像</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G26-ZGG-01" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/ancestors_03.png" data-title="德顺公容像" aria-label="查看高清大图：德顺公容像">
+              <img src="assets/image_archive/ancestors_03.png" alt="德顺公容像" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>德顺公容像</h3>
+                <p>德顺公容像</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G27-DSG-001" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/ancestors_04.png" data-title="傳珍公容像" aria-label="查看高清大图：傳珍公容像">
+              <img src="assets/image_archive/ancestors_04.png" alt="傳珍公容像" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>傳珍公容像</h3>
+                <p>傳珍公容像</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G28-CZG-01" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/ancestors_05.png" data-title="傳珠公容像" aria-label="查看高清大图：傳珠公容像">
+              <img src="assets/image_archive/ancestors_05.png" alt="傳珠公容像" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>傳珠公容像</h3>
+                <p>傳珠公容像</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G28-CZG-02" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article></div>
+      </section>
+      <section class="archive-section " id="fuxi" data-section="fuxi">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">ARCHIVAL IMAGE RECORDS</p>
+            <h2>符溪图志</h2>
+          </div>
+          <span>来源：符溪图志.docx</span>
+        </div>
+        <div class="section-intro poem-intro">
+          <h3 class="poem-group-title">符溪基詩</h3>
+          <div class="poem-grid">
+            <article class="poem-card">
+              <h3>《牛墩牧笛》</h3>
+              <p>不釣長江不讀書<br>晨昏牛坂效騎驢<br>樵風沐雨橫牛背<br>萬斛塵寰弄笛舒</p>
+            </article>
+            <article class="poem-card">
+              <h3>《池塘清流》</h3>
+              <p>一泓清塘淵符溪<br>水前牛墩月滿堤<br>晝夜長流原不舍<br>如斯即道會心稽</p>
+            </article>
+            <article class="poem-card">
+              <h3>《毬場娛客》</h3>
+              <p>登台石砌築毬場<br>好待賓客恣徜徉<br>寄語遊人舒放曠<br>莫為沉醉打毬郎</p>
+            </article>
+            <article class="poem-card">
+              <h3>《丹桂園》</h3>
+              <p>須信家風慶有餘<br>玉山瑤水麗仙居<br>兒孫滿目丹桂秀<br>百尺樓中萬卷書</p>
+            </article>
+            <article class="poem-card">
+              <h3>《竹林護》</h3>
+              <p>茂林修竹地<br>君此護宅新<br>疑是羲皇世<br>都無京洛塵<br>紛華誰與語<br>虛白自為鄉<br>應笑五陵道<br>驅乜車馬人</p>
+            </article>
+          </div>
+        </div>
+        <div class="image-grid">
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/fuxi_01.png" data-title="符溪祠图" aria-label="查看高清大图：符溪祠图">
+              <img src="assets/image_archive/fuxi_01.png" alt="符溪祠图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>符溪祠图</h3>
+                <p>符溪祠图</p>
+              </div>
+              
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/fuxi_02.png" data-title="宗祠地理绘图" aria-label="查看高清大图：宗祠地理绘图">
+              <img src="assets/image_archive/fuxi_02.png" alt="宗祠地理绘图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>宗祠地理绘图</h3>
+                <p>宗祠地理绘图</p>
+              </div>
+              
+            </div>
+            
+          </article>
+        </div>
+      </section>
+      <section class="archive-section " id="tombs" data-section="tombs">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">ARCHIVAL IMAGE RECORDS</p>
+            <h2>祖茔图志</h2>
+          </div>
+          <span>来源：祖茔图志.docx</span>
+        </div>
+        <div class="image-grid">
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_01.png" data-title="昌祥公墓图" aria-label="查看高清大图：昌祥公墓图">
+              <img src="assets/image_archive/tombs_01.png" alt="昌祥公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>昌祥公墓图</h3>
+                <p>昌祥公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G25-CXG-01" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_07.png" data-title="昌良公墓图" aria-label="查看高清大图：昌良公墓图">
+              <img src="assets/image_archive/tombs_07.png" alt="昌良公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>昌良公墓图</h3>
+                <p>昌良公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G25-CLG-01" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_02.png" data-title="元杰公墓图" aria-label="查看高清大图：元杰公墓图">
+              <img src="assets/image_archive/tombs_02.png" alt="元杰公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>元杰公墓图</h3>
+                <p>元杰公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G26-ZJG-03" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_08.png" data-title="德汉公墓图" aria-label="查看高清大图：德汉公墓图">
+              <img src="assets/image_archive/tombs_08.png" alt="德汉公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>德汉公墓图</h3>
+                <p>德汉公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G27-DHG-03" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_03.png" data-title="振臣公墓图" aria-label="查看高清大图：振臣公墓图">
+              <img src="assets/image_archive/tombs_03.png" alt="振臣公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>振臣公墓图</h3>
+                <p>振臣公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G29-ZCG-01" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_04.png" data-title="振兴公墓图" aria-label="查看高清大图：振兴公墓图">
+              <img src="assets/image_archive/tombs_04.png" alt="振兴公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>振兴公墓图</h3>
+                <p>振兴公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G29-ZXG-02" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_05.png" data-title="振荣公墓图" aria-label="查看高清大图：振荣公墓图">
+              <img src="assets/image_archive/tombs_05.png" alt="振荣公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>振荣公墓图</h3>
+                <p>振荣公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G29-ZRG-03" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_11.png" data-title="遠元公墓图" aria-label="查看高清大图：遠元公墓图">
+              <img src="assets/image_archive/tombs_11.png" alt="遠元公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>遠元公墓图</h3>
+                <p>遠元公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G30-YYG-03" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_10.png" data-title="遠旺公墓图" aria-label="查看高清大图：遠旺公墓图">
+              <img src="assets/image_archive/tombs_10.png" alt="遠旺公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>遠旺公墓图</h3>
+                <p>遠旺公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G30-YWG-01x" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_09.png" data-title="遠榮公墓图" aria-label="查看高清大图：遠榮公墓图">
+              <img src="assets/image_archive/tombs_09.png" alt="遠榮公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>遠榮公墓图</h3>
+                <p>遠榮公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G30-YRG-01x" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            
+          </article>
+          <article class="image-card">
+            <button class="image-open" type="button" data-src="assets/image_archive/tombs_06.png" data-title="書有公墓图" aria-label="查看高清大图：書有公墓图">
+              <img src="assets/image_archive/tombs_06.png" alt="書有公墓图" loading="lazy">
+            </button>
+            <div class="image-caption">
+              <div>
+                <h3>書有公墓图</h3>
+                <p>書有公墓图</p>
+              </div>
+              <div class="node-links"><a href="index.html?person=G32-SYG-01" target="_blank" rel="noopener">查看对应节点</a></div>
+            </div>
+            <div class="image-notes"><div class="note-section"><h4>原文</h4><p>上系先伯書有吳公之墓圖也。先伯性和謙，少疾言厲色，昆仲間尤怡怡可風。壯年娶妻，因意見枘鑿，遂令大歸，嗣不續。雖親友頻勸，皆婉辭卻之。視三侄猶同子女，教養備至。數十年同堂共炊，從無間言。</p><p>壽踰七旬，易簀時，豐曾以承繼事請，祇點首而已。繼囑云：「汝侄輩永久不忘我，墓田何須承繼？」云已，言猶在耳，事難忘心。謹撰事實，以誌于墓圖之左，俾子孫皆有所矜式耳。</p><p>胞侄裕豐謹誌。</p></div><div class="translation-note"><h4>白话文翻译</h4><p>上边所画的，是先伯为有吴公所作的墓地图。</p><p>先伯性情温和谦逊，很少对人声色严厉。在兄弟之间，他尤其和睦友爱，足以成为众人的榜样。年轻时，他曾娶妻成家，后来因夫妻意见不合、彼此难以相处，便让妻子返回娘家，此后也没有再续娶，因此未能留下子嗣。</p><p>亲友们虽然多次劝他重新成家或安排继嗣，他都婉言拒绝了。他把三个侄子看作自己的亲生儿女，对他们的教育和抚养十分周到。几十年来，大家同住一堂、共同生活，彼此之间从来没有说过不和睦的话。</p><p>先伯活到七十多岁。临终之时，我曾就立嗣继承之事向他请示，他只是点了点头。随后又嘱咐说：</p><p>“只要你们这些侄辈永远不忘记我，我的墓地、祭田又何必一定要另立继承人呢？”</p><p>他说过的这些话，至今仿佛仍在耳边回响；这件事也一直深深留在我的心中，难以忘怀。</p><p>因此，我谨将先伯一生的实际事迹记录下来，写在墓图的左边，使后世子孙都能有所效法，并以他的品行为榜样。</p><p>亲侄裕丰谨慎敬录。</p></div></div>
+          </article>
+        </div>
+      </section></div>
+    </section>
+  </main>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="高清大图预览"><div class="lightbox-bar"><strong></strong><button class="lightbox-close" type="button" aria-label="关闭">×</button></div><img alt=""></div>
+  <script>
+    const tocItems = Array.from(document.querySelectorAll('.toc-doc'));
+    const sections = Array.from(document.querySelectorAll('.archive-section'));
+    function activateSection(target, pushHash = true) {
+      if (!sections.some(section => section.dataset.section === target)) return;
+      tocItems.forEach(item => item.classList.toggle('active', item.dataset.target === target));
+      sections.forEach(section => section.classList.toggle('active', section.dataset.section === target));
+      if (pushHash) history.replaceState(null, '', '#' + target);
+      const active = sections.find(section => section.dataset.section === target);
+      if (active) active.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    tocItems.forEach(item => item.addEventListener('click', () => activateSection(item.dataset.target)));
+    const initial = decodeURIComponent(location.hash.replace('#',''));
+    if (initial) activateSection(initial, false);
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxTitle = lightbox.querySelector('strong');
+    document.querySelectorAll('.image-open').forEach(button => button.addEventListener('click', () => {
+      lightboxImg.src = button.dataset.src;
+      lightboxImg.alt = button.dataset.title || '';
+      lightboxTitle.textContent = button.dataset.title || '高清大图';
+      lightbox.classList.add('active');
+    }));
+    function closeLightbox() { lightbox.classList.remove('active'); lightboxImg.removeAttribute('src'); }
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>

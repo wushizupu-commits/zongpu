@@ -1535,9 +1535,25 @@ const NODE_W = 176;
       const orphan = DATA.orphanFathers.find(item => item.childKey === key);
       if (orphan) warnings.push(`生父 ID「${orphan.fatherId}」未在表中找到，因此作为根分支显示。`);
       detailNotice.innerHTML = warnings.length ? `<div class="notice">${warnings.map(escapeText).join("<br>")}</div>` : "";
+      const actionLinks = [];
       if (node.biographyLink && node.biographyLink.url) {
+        actionLinks.push({
+          url: node.biographyLink.url,
+          label: "祖贤传略",
+          title: node.biographyLink.title || node.name,
+        });
+      }
+      for (const link of node.imageArchiveLinks || []) {
+        if (!link || !link.url) continue;
+        actionLinks.push({
+          url: link.url,
+          label: link.label || "先祖画像",
+          title: link.title || "相关图志",
+        });
+      }
+      if (actionLinks.length) {
         detailActions.hidden = false;
-        detailActions.innerHTML = `<a class="biography-link" href="${escapeText(node.biographyLink.url)}" aria-label="查看族贤传略：${escapeText(node.biographyLink.title || node.name)}"><span>查看族贤传略</span><strong>${escapeText(node.biographyLink.title || node.name)}</strong></a>`;
+        detailActions.innerHTML = actionLinks.map(link => `<a class="biography-link" href="${escapeText(link.url)}" title="${escapeText(link.title)}" aria-label="${escapeText(link.label)}：${escapeText(link.title)}"><span>${escapeText(link.label)}</span></a>`).join("");
       } else {
         detailActions.hidden = true;
         detailActions.innerHTML = "";
@@ -1776,7 +1792,7 @@ const NODE_W = 176;
         .node text {
           fill:#241b14;
           letter-spacing:0;
-          font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+          font-family:"Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC","SimSun","PMingLiU",serif;
         }
         .node .name { font-size:13.5px; font-weight:760; }
         .node .id { fill:rgba(86,75,62,.82); font-size:10.5px; font-weight:620; }

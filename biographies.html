@@ -24,8 +24,7 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", "PMingLiU", serif;
       color: var(--ink);
       background:
         radial-gradient(circle at 12% 8%, rgba(166, 66, 50, .08), transparent 28%),
@@ -38,61 +37,65 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      border-top: 5px solid #5a2b2d;
-      border-bottom: 1px solid rgba(184, 148, 97, .32);
-      background:
-        linear-gradient(90deg, rgba(255, 250, 240, .96), rgba(247, 236, 218, .9)),
-        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 8px);
-      box-shadow: 0 10px 26px rgba(60, 44, 24, .08);
+      border-top: 4px solid #4b2a2d;
+      border-bottom: 1px solid rgba(209, 190, 156, .58);
+      background: #fbf3e8;
+      box-shadow: 0 6px 16px rgba(60, 44, 24, .035);
     }
     .site-header-inner {
       display: flex;
       align-items: center;
-      gap: 18px;
-      min-height: 58px;
-      padding: 10px 18px;
+      gap: 32px;
+      min-height: 72px;
+      padding: 14px 34px 15px;
     }
     .site-brand {
       flex: 0 0 auto;
       color: var(--accent-dark);
-      font-size: 17px;
+      font-size: 24px;
       font-weight: 820;
-      letter-spacing: .04em;
+      letter-spacing: .03em;
       white-space: nowrap;
     }
     .site-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 14px;
       margin: 0;
       padding: 0;
     }
     .site-nav a,
     .site-nav button {
       appearance: none;
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 31px;
-      padding: 7px 12px;
-      border: 1px solid rgba(184, 148, 97, .38);
+      min-height: 38px;
+      padding: 9px 15px;
+      border: 1px solid transparent;
       border-radius: 999px;
-      background: rgba(255, 250, 240, .74);
-      color: var(--muted);
+      background: transparent;
+      color: rgba(88, 82, 71, .86);
       font: inherit;
-      font-size: 13px;
-      font-weight: 720;
+      font-size: 15px;
+      font-weight: 760;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
       letter-spacing: 0;
-      box-shadow: 0 4px 10px rgba(60, 44, 24, .05);
+      box-shadow: none;
+      transition: color .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .site-nav a:hover {
+      border-color: transparent;
+      background: rgba(166, 66, 50, .06);
+      color: var(--accent-dark);
     }
     .site-nav a.active {
-      border-color: rgba(166, 66, 50, .62);
-      background: linear-gradient(135deg, rgba(166, 66, 50, .12), rgba(255, 250, 240, .82));
+      border-color: transparent;
+      background: rgba(166, 66, 50, .10);
       color: var(--accent-dark);
-      box-shadow: inset 3px 0 0 rgba(166, 66, 50, .82), 0 5px 12px rgba(166, 66, 50, .08);
     }
     main {
       width: min(1240px, calc(100% - 40px));
@@ -272,33 +275,71 @@
       gap: 10px;
       max-width: 240px;
     }
+    .bio-portrait-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .bio-portrait {
+      display: grid;
+      justify-items: center;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .bio-portrait img {
+      display: block;
+      width: 58px;
+      height: 58px;
+      border: 1px solid rgba(184, 148, 97, .38);
+      border-radius: 16px;
+      background: rgba(255, 250, 240, .72);
+      object-fit: cover;
+      object-position: 50% 16%;
+      box-shadow: 0 6px 16px rgba(60, 44, 24, .10);
+      filter: saturate(.92) contrast(.98);
+    }
+    .bio-portrait:hover {
+      color: var(--accent-dark);
+    }
+    .bio-portrait:hover img {
+      border-color: rgba(166, 66, 50, .42);
+    }
     .genealogy-jump {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 32px;
       padding: 7px 12px;
-      border: 1px solid rgba(40, 106, 102, .24);
+      border: 1px solid rgba(166, 66, 50, .14);
       border-radius: 999px;
-      background: rgba(40, 106, 102, .055);
-      color: var(--accent-2);
+      background: rgba(166, 66, 50, .10);
+      color: var(--accent-dark);
       font-size: 12.5px;
       font-weight: 740;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
-      box-shadow: inset 0 0 0 1px rgba(255, 250, 240, .72);
+      box-shadow: none;
     }
     .genealogy-jump::after {
-      content: "↗";
+      content: "";
+      flex: 0 0 auto;
       margin-left: 7px;
-      color: rgba(40, 106, 102, .78);
-      font-size: 12px;
-      transform: translateY(-1px);
+      width: 8px;
+      height: 8px;
+      border-top: 1.4px solid currentColor;
+      border-right: 1.4px solid currentColor;
+      opacity: .72;
+      transform: rotate(45deg) translate(-1px, 1px);
     }
     .genealogy-jump:hover {
-      border-color: rgba(166, 66, 50, .38);
-      background: rgba(166, 66, 50, .07);
+      border-color: rgba(166, 66, 50, .22);
+      background: rgba(166, 66, 50, .14);
       color: var(--accent-dark);
     }
     .bio-columns {
@@ -350,6 +391,24 @@
       justify-content: space-between;
       gap: 10px;
       margin-bottom: 10px;
+    }
+    .praise-actions {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 8px;
+    }
+    .praise-actions .bio-portrait-strip {
+      gap: 6px;
+    }
+    .bio-portrait.compact img {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(60, 44, 24, .08);
+    }
+    .bio-portrait.compact span {
+      display: none;
     }
     .praise-heading > div {
       display: flex;
@@ -500,6 +559,9 @@
         justify-items: start;
         margin-top: 10px;
       }
+      .bio-portrait-strip {
+        justify-content: flex-start;
+      }
       .bio-source {
         display: block;
         max-width: none;
@@ -542,7 +604,7 @@
     <div class="site-header-inner">
       <div class="site-brand">延陵吴氏</div>
       <nav class="site-nav" aria-label="站点一级目录">
-        <a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link" href="./source_migration.html">源流迁徙</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link active" href="./biographies.html" aria-current="page">族贤传略</a><a class="nav-link" href="./family_customs.html">家训礼俗</a>
+        <a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link" href="./source_migration.html">源流迁徙</a><a class="nav-link" href="./image_archive.html">宗族图志</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link active" href="./biographies.html" aria-current="page">族贤传略</a><a class="nav-link" href="./family_customs.html">家训礼俗</a>
       </nav>
     </div>
   </header>
@@ -556,7 +618,7 @@
       <aside class="bio-toc" aria-label="族贤传略目录">
         <h2 class="bio-toc-title">文献目录</h2>
         <div class="bio-toc-list">
-          
+
           <button class="bio-toc-item active" type="button" data-target="bio-1">
             <strong>国乐公傳</strong>
           </button>
@@ -591,7 +653,7 @@
         </div>
       </aside>
       <div class="bio-content">
-        
+
         <article class="bio-page active" id="bio-1" data-article="bio-1">
           <div class="bio-head">
             <div>
@@ -599,10 +661,15 @@
             </div>
             <div class="bio-head-side">
               <span class="bio-source">国乐公傳.docx</span>
+              <div class="bio-portrait-strip">
+              <a class="bio-portrait" href="image_archive.html#ancestors" target="_blank" rel="noopener" title="處士國樂公容像" aria-label="查看先祖画像：處士國樂公容像" data-person-id="G21-GLG-03">
+                <img src="assets/image_archive/ancestors_01.png" alt="處士國樂公容像" loading="lazy">
+                <span>先祖画像</span>
+              </a></div>
               <a class="genealogy-jump" href="index.html?person=G21-GLG-03" data-person-id="G21-GLG-03" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="bio-columns">
             <article class="bio-text">
               <h3>原文</h3>
@@ -631,7 +698,7 @@
               <a class="genealogy-jump" href="index.html?person=G25-CXG-01" data-person-id="G25-CXG-01" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="bio-columns">
             <article class="bio-text">
               <h3>原文</h3>
@@ -669,19 +736,25 @@
             </div>
             <div class="bio-head-side">
               <span class="bio-source">四老颂赞.docx</span>
-              <a class="genealogy-jump" href="index.html?person=G26-ZJG-03" data-person-id="G26-ZJG-03" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="praise-grid">
-            
+
             <section class="praise-section">
               <div class="praise-heading">
                 <div>
                   <span>01</span>
                   <h3>元杰公繆老孺人雙容上讚</h3>
                 </div>
-                <a class="genealogy-jump" href="index.html?person=G26-ZJG-03" data-person-id="G26-ZJG-03" target="_blank" rel="noopener">查看对应节点</a>
+                <div class="praise-actions">
+                  <div class="bio-portrait-strip">
+              <a class="bio-portrait compact" href="image_archive.html#ancestors" target="_blank" rel="noopener" title="耆賓元杰公容像" aria-label="查看先祖画像：耆賓元杰公容像" data-person-id="G26-ZJG-03">
+                <img src="assets/image_archive/ancestors_02.png" alt="耆賓元杰公容像" loading="lazy">
+                <span>先祖画像</span>
+              </a></div>
+                  <a class="genealogy-jump" href="index.html?person=G26-ZJG-03" data-person-id="G26-ZJG-03" target="_blank" rel="noopener">查看对应节点</a>
+                </div>
               </div>
               <div class="praise-body">
                 <p>平生耿直　和睦鄉鄰　白手興家　大厦落成 户立上玉　稅置千零　生子有五　克振家聲 開族四房　百有餘丁　椿萱並茂　給畫容形 芝孫萬代　禴祀蒸嘗</p>
@@ -695,7 +768,14 @@
                   <span>02</span>
                   <h3>德顺公赞曰</h3>
                 </div>
-                <a class="genealogy-jump" href="index.html?person=G27-DSG-001" data-person-id="G27-DSG-001" target="_blank" rel="noopener">查看对应节点</a>
+                <div class="praise-actions">
+                  <div class="bio-portrait-strip">
+              <a class="bio-portrait compact" href="image_archive.html#ancestors" target="_blank" rel="noopener" title="德顺公容像" aria-label="查看先祖画像：德顺公容像" data-person-id="G27-DSG-001">
+                <img src="assets/image_archive/ancestors_03.png" alt="德顺公容像" loading="lazy">
+                <span>先祖画像</span>
+              </a></div>
+                  <a class="genealogy-jump" href="index.html?person=G27-DSG-001" data-person-id="G27-DSG-001" target="_blank" rel="noopener">查看对应节点</a>
+                </div>
               </div>
               <div class="praise-body">
                 <p>延陵舊第人 耕讀伴日月 撒下兩粒籽 詩贊順公德</p>
@@ -709,7 +789,14 @@
                   <span>03</span>
                   <h3>傳珍公赞曰</h3>
                 </div>
-                <a class="genealogy-jump" href="index.html?person=G28-CZG-01" data-person-id="G28-CZG-01" target="_blank" rel="noopener">查看对应节点</a>
+                <div class="praise-actions">
+                  <div class="bio-portrait-strip">
+              <a class="bio-portrait compact" href="image_archive.html#ancestors" target="_blank" rel="noopener" title="傳珍公容像" aria-label="查看先祖画像：傳珍公容像" data-person-id="G28-CZG-01">
+                <img src="assets/image_archive/ancestors_04.png" alt="傳珍公容像" loading="lazy">
+                <span>先祖画像</span>
+              </a></div>
+                  <a class="genealogy-jump" href="index.html?person=G28-CZG-01" data-person-id="G28-CZG-01" target="_blank" rel="noopener">查看对应节点</a>
+                </div>
               </div>
               <div class="praise-body">
                 <p>傳承先考志 兒時好學問 雖是種田漢 西村小天地</p>
@@ -723,7 +810,14 @@
                   <span>04</span>
                   <h3>傳珠公赞曰</h3>
                 </div>
-                <a class="genealogy-jump" href="index.html?person=G28-CZG-02" data-person-id="G28-CZG-02" target="_blank" rel="noopener">查看对应节点</a>
+                <div class="praise-actions">
+                  <div class="bio-portrait-strip">
+              <a class="bio-portrait compact" href="image_archive.html#ancestors" target="_blank" rel="noopener" title="傳珠公容像" aria-label="查看先祖画像：傳珠公容像" data-person-id="G28-CZG-02">
+                <img src="assets/image_archive/ancestors_05.png" alt="傳珠公容像" loading="lazy">
+                <span>先祖画像</span>
+              </a></div>
+                  <a class="genealogy-jump" href="index.html?person=G28-CZG-02" data-person-id="G28-CZG-02" target="_blank" rel="noopener">查看对应节点</a>
+                </div>
               </div>
               <div class="praise-body">
                 <p>伯仲父母定 深耕多打糧 日出作田去 腹中飽經論</p>
@@ -744,10 +838,15 @@
             </div>
             <div class="bio-head-side">
               <span class="bio-source">肇修仕珍公譜牒文.docx</span>
+              <div class="bio-portrait-strip">
+              <a class="bio-portrait" href="image_archive.html#ancestors" target="_blank" rel="noopener" title="傳珍公容像" aria-label="查看先祖画像：傳珍公容像" data-person-id="G28-CZG-01">
+                <img src="assets/image_archive/ancestors_04.png" alt="傳珍公容像" loading="lazy">
+                <span>先祖画像</span>
+              </a></div>
               <a class="genealogy-jump" href="index.html?person=G28-CZG-01" data-person-id="G28-CZG-01" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="bio-columns">
             <article class="bio-text">
               <h3>原文</h3>
@@ -782,7 +881,7 @@
               <a class="genealogy-jump" href="index.html?person=G29-ZRG-03" data-person-id="G29-ZRG-03" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="bio-columns">
             <article class="bio-text">
               <h3>原文</h3>
@@ -815,7 +914,7 @@
               <a class="genealogy-jump" href="index.html?person=G31-SMG-02" data-person-id="G31-SMG-02" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <article class="bio-text single">
             <p>詩明公諱明，西堡遠桂之次子也。生於光緒乙巳年四月廿一日。明公出身寒門，七歲喪父，八歲入學，十二歲母親無力供讀，輟學在家幫人放牛受盡人間艱辛。長大後憑靠天賦，虛心好學，拜師學醫。學徒三年後，一方面繼續鑽研中醫外科，另一方面研究民間中草藥秘方，嘗盡百草千藥，對医治疔瘡、癤毒、瘋濕等疾病術大進，名揚饒城内外。成家後，夫妻恩愛，夫唱婦隨，生活日盈。明公興趣廣泛，性格開朗，常以狩獵、捉甲魚爲樂，既可延年益壽，又可改善生活，一舉两得。明公不僅醫術精湛，而且醫德高尚，經常濟困扶危，送醫送藥，救死扶傷，具有高尚的人道主義思想。在饒北鄉村，無人不讚，深受人敬。明公爲人正直、作風正派、言行一致、禮義家風。直接薰陶着晚輩，膝下三子均從父業，專心骨傷科，在饒東古鎮頗具聲望，三兄弟從事醫務專業，老二書華升任上饒市第三人民醫院院長。</p>
 <p>詩明公，晚年生活豐富，福壽齊天，四世同堂，室下有二十余丁，在西堡可謂德高望重。公元一九九六年四月十二日病故，享壽九十有三。</p>
@@ -837,7 +936,7 @@
               <a class="genealogy-jump" href="index.html?person=G31-SGG-03" data-person-id="G31-SGG-03" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <article class="bio-text single">
             <p>徐氏福秀老孺人，生於光緒戊戌年六月初四日。由於家中貧寒，十三歲嫁進吳門，成爲詩光室下。嗣後，以吳家爲重，勤勞節儉，漿洗縫補，操里持外，敬重公婆，照顧丈夫，教育兒女，負重度過一生，享壽九十有七，在當地堪稱佳話。</p>
 <p>徐氏夫妻恩愛，和睦如初。生活上尤先考慮家人，事事順着丈夫，在病重期間，更加體貼入微，盡心盡力。在一九五三年，丈夫病故，遵循婦道，從一而終，在逆境中艱苦奮斗，勤儉持家有方，使家中經濟、生活逐漸好轉。</p>
@@ -861,7 +960,7 @@
               <a class="genealogy-jump" href="index.html?person=G32-SSG-02" data-person-id="G32-SSG-02" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <article class="bio-text single">
             <p>書森公諱森，字學森，光緒辛巳年八月廿二日建生，公元一九五七年四月十四日卒，享壽七十有四。由于出身寒門，父母無力供學。雖爲農夫，但人聰慧，辛勤勞作，靠勤儉之手養育六口之家。于一九二七年二月，離鄉背井，携妻帶子，奔赴浙江衢縣山坑桐樹坪寓居帮人做紙。一九三四年佃田十六畝，購買茅竹山十五畝，生活出現轉機，一九四五年構建新房三間二廂。新中國成立後，翻身作主，又建屋一幢。森公身處异境，善待鄉鄰，自律自重，深得人敬。森公教子勤學，增長知識，兒孫達賢。四子裕乾，有一定文化知識，解放後當上干部入了黨。曾任初、高級社長，村黨支部書記，鄉黨委委員等職及縣市人大代表。孫後良，于一九六九年參軍，退伍後被選爲村委主任，玄孫馨宏，攻讀有成，一玖玖三年考取軍事院校，繼而考取碩士，海軍上尉軍銜，現在北京國防科學研究院供職。</p>
 <p>森公後裔，如此争光，出息不凡，備受家族推崇，乃吾祖之慰也。</p>

@@ -26,8 +26,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", "PMingLiU", serif;
       color: var(--ink);
       background:
         radial-gradient(circle at 12% 8%, rgba(166, 66, 50, .08), transparent 28%),
@@ -40,61 +39,65 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      border-top: 5px solid #5a2b2d;
-      border-bottom: 1px solid rgba(184, 148, 97, .32);
-      background:
-        linear-gradient(90deg, rgba(255, 250, 240, .96), rgba(247, 236, 218, .9)),
-        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 8px);
-      box-shadow: 0 10px 26px rgba(60, 44, 24, .08);
+      border-top: 4px solid #4b2a2d;
+      border-bottom: 1px solid rgba(209, 190, 156, .58);
+      background: #fbf3e8;
+      box-shadow: 0 6px 16px rgba(60, 44, 24, .035);
     }
     .site-header-inner {
       display: flex;
       align-items: center;
-      gap: 18px;
-      min-height: 58px;
-      padding: 10px 18px;
+      gap: 32px;
+      min-height: 72px;
+      padding: 14px 34px 15px;
     }
     .site-brand {
       flex: 0 0 auto;
       color: var(--accent-dark);
-      font-size: 17px;
+      font-size: 24px;
       font-weight: 820;
-      letter-spacing: .04em;
+      letter-spacing: .03em;
       white-space: nowrap;
     }
     .site-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 14px;
       margin: 0;
       padding: 0;
     }
     .site-nav a,
     .site-nav button {
       appearance: none;
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 31px;
-      padding: 7px 12px;
-      border: 1px solid rgba(184, 148, 97, .38);
+      min-height: 38px;
+      padding: 9px 15px;
+      border: 1px solid transparent;
       border-radius: 999px;
-      background: rgba(255, 250, 240, .74);
-      color: var(--muted);
+      background: transparent;
+      color: rgba(88, 82, 71, .86);
       font: inherit;
-      font-size: 13px;
-      font-weight: 720;
+      font-size: 15px;
+      font-weight: 760;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
       letter-spacing: 0;
-      box-shadow: 0 4px 10px rgba(60, 44, 24, .05);
+      box-shadow: none;
+      transition: color .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .site-nav a:hover {
+      border-color: transparent;
+      background: rgba(166, 66, 50, .06);
+      color: var(--accent-dark);
     }
     .site-nav a.active {
-      border-color: rgba(166, 66, 50, .62);
-      background: linear-gradient(135deg, rgba(166, 66, 50, .12), rgba(255, 250, 240, .82));
+      border-color: transparent;
+      background: rgba(166, 66, 50, .10);
       color: var(--accent-dark);
-      box-shadow: inset 3px 0 0 rgba(166, 66, 50, .82), 0 5px 12px rgba(166, 66, 50, .08);
     }
     .site-nav button {
       cursor: default;
@@ -539,7 +542,7 @@
     <div class="site-header-inner">
       <div class="site-brand">延陵吴氏</div>
       <nav class="site-nav" aria-label="站点一级目录">
-        <a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link active" href="./source_migration.html" aria-current="page">源流迁徙</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link" href="./biographies.html">族贤传略</a><a class="nav-link" href="./family_customs.html">家训礼俗</a>
+        <a class="nav-link" href="./index.html">世系族谱</a><a class="nav-link active" href="./source_migration.html" aria-current="page">源流迁徙</a><a class="nav-link" href="./image_archive.html">宗族图志</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link" href="./biographies.html">族贤传略</a><a class="nav-link" href="./family_customs.html">家训礼俗</a>
       </nav>
     </div>
   </header>
@@ -565,7 +568,7 @@
       </div>
       <div class="panel">
         <ol class="route-list">
-          
+
           <li class="route-entry">
             <span class="route-index">01</span>
             <span>泰伯仲雍公隐居蛮</span>
@@ -725,7 +728,7 @@
         <span class="source-note">按原文“派下”分组整理</span>
       </div>
       <div class="branch-grid">
-        
+
           <details class="branch-card">
             <summary>
               <span>智公派下</span>
@@ -873,7 +876,7 @@
         <span class="source-note">来源：延陵季子考证.docx</span>
       </div>
       <div class="reading-guide" aria-label="延陵季子考证导读">
-        
+
           <article class="guide-card">
             <h3>考证对象</h3>
             <p>辨析本支是否可以直接附会为延陵季子之后，而不是单纯歌颂季札贤名。</p>

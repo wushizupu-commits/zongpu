@@ -21,6 +21,7 @@
       --shadow: 0 18px 42px rgba(60, 44, 24, 0.14);
       --shadow-soft: 0 8px 24px rgba(60, 44, 24, 0.09);
       --radius: 10px;
+      --font-serif: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", "PMingLiU", serif;
     }
 
     * { box-sizing: border-box; }
@@ -29,8 +30,7 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-family: var(--font-serif);
       color: var(--ink);
       background:
         radial-gradient(circle at 12% 8%, rgba(166, 66, 50, .08), transparent 28%),
@@ -45,28 +45,26 @@
       position: relative;
       z-index: 12;
       flex: 0 0 auto;
-      border-top: 5px solid #5a2b2d;
-      border-bottom: 1px solid rgba(184, 148, 97, .32);
-      background:
-        linear-gradient(90deg, rgba(255, 250, 240, .96), rgba(247, 236, 218, .9)),
-        repeating-linear-gradient(90deg, rgba(116, 88, 48, .025) 0 1px, transparent 1px 8px);
-      box-shadow: 0 10px 26px rgba(60, 44, 24, .08);
+      border-top: 4px solid #4b2a2d;
+      border-bottom: 1px solid rgba(209, 190, 156, .58);
+      background: #fbf3e8;
+      box-shadow: 0 6px 16px rgba(60, 44, 24, .035);
     }
 
     .site-header-inner {
       display: flex;
       align-items: center;
-      gap: 18px;
-      min-height: 58px;
-      padding: 10px 18px;
+      gap: 32px;
+      min-height: 72px;
+      padding: 14px 34px 15px;
     }
 
     .site-brand {
       flex: 0 0 auto;
       color: var(--accent-dark);
-      font-size: 17px;
+      font-size: 24px;
       font-weight: 820;
-      letter-spacing: .04em;
+      letter-spacing: .03em;
       white-space: nowrap;
     }
 
@@ -141,7 +139,7 @@
     .site-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 14px;
       margin: 0;
       padding: 0;
     }
@@ -149,30 +147,37 @@
     .site-nav a,
     .site-nav button {
       appearance: none;
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 31px;
-      padding: 7px 12px;
-      border: 1px solid rgba(184, 148, 97, .38);
+      min-height: 38px;
+      padding: 9px 15px;
+      border: 1px solid transparent;
       border-radius: 999px;
-      background: rgba(255, 250, 240, .74);
-      color: var(--muted);
+      background: transparent;
+      color: rgba(88, 82, 71, .86);
       font: inherit;
-      font-size: 13px;
-      font-weight: 720;
+      font-size: 15px;
+      font-weight: 760;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
       letter-spacing: 0;
-      box-shadow: 0 4px 10px rgba(60, 44, 24, .05);
+      box-shadow: none;
+      transition: color .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .site-nav a:hover {
+      border-color: transparent;
+      background: rgba(166, 66, 50, .06);
+      color: var(--accent-dark);
     }
 
     .site-nav a.active {
-      border-color: rgba(166, 66, 50, .62);
-      background: linear-gradient(135deg, rgba(166, 66, 50, .12), rgba(255, 250, 240, .82));
+      border-color: transparent;
+      background: rgba(166, 66, 50, .10);
       color: var(--accent-dark);
-      box-shadow: inset 3px 0 0 rgba(166, 66, 50, .82), 0 5px 12px rgba(166, 66, 50, .08);
     }
 
     .site-nav button {
@@ -271,6 +276,9 @@
     }
 
     .detail-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       margin: 14px 0 22px;
     }
 
@@ -281,27 +289,34 @@
     .biography-link {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      min-height: 38px;
+      justify-content: center;
+      gap: 8px;
+      flex: 1 1 0;
+      min-width: 0;
+      min-height: 40px;
       max-width: 100%;
-      padding: 8px 14px;
-      border: 1px solid rgba(40, 106, 102, .22);
+      padding: 9px 12px;
+      border: 1px solid rgba(166, 66, 50, .12);
       border-radius: 999px;
-      background: linear-gradient(180deg, rgba(40, 106, 102, .08), rgba(40, 106, 102, .04));
-      color: var(--accent-2);
+      background: rgba(166, 66, 50, .10);
+      color: var(--accent-dark);
       font-size: 13px;
       font-weight: 760;
       line-height: 1.35;
       text-decoration: none;
-      box-shadow: 0 8px 18px rgba(40, 106, 102, .06);
+      box-shadow: none;
       transition: border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease;
     }
 
     .biography-link span {
       flex: 0 0 auto;
-      color: rgba(40, 106, 102, .72);
-      font-size: 12px;
-      font-weight: 700;
+      min-width: 0;
+      overflow: hidden;
+      color: currentColor;
+      font-size: 13px;
+      font-weight: 780;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .biography-link strong {
@@ -314,22 +329,25 @@
     }
 
     .biography-link::after {
-      content: "↗";
+      content: "";
       flex: 0 0 auto;
-      color: currentColor;
-      font-size: 12px;
-      transform: translateY(-1px);
+      width: 8px;
+      height: 8px;
+      border-top: 1.4px solid currentColor;
+      border-right: 1.4px solid currentColor;
+      opacity: .72;
+      transform: rotate(45deg) translate(-1px, 1px);
     }
 
     .biography-link:hover {
-      border-color: rgba(40, 106, 102, .34);
-      background: linear-gradient(180deg, rgba(40, 106, 102, .12), rgba(40, 106, 102, .06));
-      box-shadow: 0 10px 22px rgba(40, 106, 102, .08);
+      border-color: rgba(166, 66, 50, .20);
+      background: rgba(166, 66, 50, .14);
+      box-shadow: 0 8px 18px rgba(166, 66, 50, .055);
       transform: translateY(-1px);
     }
 
     .biography-link:focus-visible {
-      outline: 2px solid rgba(40, 106, 102, .24);
+      outline: 2px solid rgba(166, 66, 50, .24);
       outline-offset: 3px;
     }
 
