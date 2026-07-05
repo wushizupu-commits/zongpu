@@ -21,7 +21,7 @@
       --shadow: 0 18px 42px rgba(60, 44, 24, 0.14);
       --shadow-soft: 0 8px 24px rgba(60, 44, 24, 0.09);
       --radius: 10px;
-      --font-serif: "Songti SC", "STSong", "Source Han Serif SC", "Source Han Serif TC", "Noto Serif CJK SC", "Noto Serif CJK TC", "SimSun", "PMingLiU", serif;
+      --font-serif: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", Arial, sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -65,7 +65,7 @@
       flex: 0 0 auto;
       color: var(--accent-dark);
       font-size: 24px;
-      font-weight: 820;
+      font-weight: 700;
       letter-spacing: .03em;
       white-space: nowrap;
     }
@@ -161,7 +161,7 @@
       color: rgba(88, 82, 71, .86);
       font: inherit;
       font-size: 15px;
-      font-weight: 760;
+      font-weight: 600;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
@@ -232,7 +232,7 @@
       padding: 5px 12px;
       border-radius: 999px;
       font-size: 13px;
-      font-weight: 760;
+      font-weight: 600;
       line-height: 1;
       white-space: nowrap;
     }
@@ -303,7 +303,7 @@
       background: rgba(166, 66, 50, .10);
       color: var(--accent-dark);
       font-size: 13px;
-      font-weight: 760;
+      font-weight: 600;
       line-height: 1.35;
       text-decoration: none;
       box-shadow: none;
@@ -316,7 +316,7 @@
       overflow: hidden;
       color: currentColor;
       font-size: 13px;
-      font-weight: 780;
+      font-weight: 700;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
@@ -325,7 +325,7 @@
       min-width: 0;
       overflow: hidden;
       color: currentColor;
-      font-weight: 780;
+      font-weight: 700;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
@@ -452,7 +452,7 @@
       font-size: 14px;
       letter-spacing: 0;
       color: var(--accent);
-      font-weight: 760;
+      font-weight: 600;
     }
 
     p {
@@ -919,7 +919,7 @@
       background: var(--paper-strong);
       color: var(--accent);
       font-size: 15px;
-      font-weight: 750;
+      font-weight: 600;
       cursor: pointer;
     }
 
@@ -1556,7 +1556,7 @@
     .node .generation-label {
       fill: rgba(150, 63, 47, .78);
       font-size: 7.4px;
-      font-weight: 740;
+      font-weight: 600;
       text-anchor: middle;
       dominant-baseline: middle;
     }
@@ -1572,7 +1572,7 @@
     .node .early-death-label {
       fill: rgba(150, 63, 47, .82);
       font-size: 7.4px;
-      font-weight: 730;
+      font-weight: 600;
       text-anchor: middle;
       dominant-baseline: middle;
     }
@@ -1588,7 +1588,7 @@
     .node .alias-label {
       fill: rgba(40, 106, 102, .82);
       font-size: 7.6px;
-      font-weight: 740;
+      font-weight: 600;
       text-anchor: middle;
       dominant-baseline: middle;
     }
@@ -1659,7 +1659,7 @@
 
     .node .name {
       font-size: 13.5px;
-      font-weight: 760;
+      font-weight: 600;
     }
 
     .node .id {
@@ -1677,7 +1677,7 @@
     .node .badge {
       fill: var(--accent-2);
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
       text-anchor: middle;
       dominant-baseline: middle;
     }

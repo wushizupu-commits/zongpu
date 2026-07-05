@@ -24,7 +24,7 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "Songti SC", "STSong", "Source Han Serif SC", "Source Han Serif TC", "Noto Serif CJK SC", "Noto Serif CJK TC", "SimSun", "PMingLiU", serif;
+      font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       color: var(--ink);
@@ -55,7 +55,7 @@
       flex: 0 0 auto;
       color: var(--accent-dark);
       font-size: 24px;
-      font-weight: 820;
+      font-weight: 700;
       letter-spacing: .03em;
       white-space: nowrap;
     }
@@ -81,7 +81,7 @@
       color: rgba(88, 82, 71, .86);
       font: inherit;
       font-size: 15px;
-      font-weight: 760;
+      font-weight: 600;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
@@ -128,7 +128,7 @@
       margin: 0 0 12px;
       color: var(--accent);
       font-size: 13px;
-      font-weight: 780;
+      font-weight: 700;
       letter-spacing: .12em;
     }
     h1 {
@@ -165,7 +165,7 @@
       margin: 0 0 16px;
       color: var(--muted-2);
       font-size: 12px;
-      font-weight: 760;
+      font-weight: 600;
       letter-spacing: .08em;
     }
     .bio-toc-list {
@@ -199,7 +199,7 @@
       display: block;
       color: inherit;
       font-size: 13px;
-      font-weight: 760;
+      font-weight: 600;
       line-height: 1.35;
     }
     .bio-toc-item span {
@@ -254,7 +254,7 @@
       background: rgba(40, 106, 102, .1);
       color: var(--accent-2);
       font-size: 11px;
-      font-weight: 760;
+      font-weight: 600;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
     .bio-head h2 {
@@ -322,7 +322,7 @@
       background: rgba(166, 66, 50, .10);
       color: var(--accent-dark);
       font-size: 12.5px;
-      font-weight: 740;
+      font-weight: 600;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
@@ -428,13 +428,13 @@
       background: rgba(40, 106, 102, .1);
       color: var(--accent-2);
       font-size: 11px;
-      font-weight: 820;
+      font-weight: 700;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
     .praise-heading h3 {
       margin: 0;
       color: var(--accent-dark);
-      font-size: 17px;
+      font-size: 18px;
       line-height: 1.35;
     }
     .praise-body {
@@ -445,7 +445,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.9;
+      line-height: 1.95;
       text-align: justify;
     }
     .bio-pager {
@@ -477,7 +477,7 @@
     .nav-inline-arrow {
       color: currentColor;
       font-size: 13px;
-      font-weight: 820;
+      font-weight: 700;
     }
     .bio-nav-button::before {
       content: "← ";
@@ -495,7 +495,7 @@
       margin-top: 2px;
       color: currentColor;
       font-size: 14px;
-      font-weight: 760;
+      font-weight: 600;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -505,17 +505,17 @@
     }
     @media (min-width: 1280px) {
       main {
-        width: min(1320px, calc(100% - 56px));
+        width: min(1480px, calc(100% - 72px));
       }
       .hero-card p {
-        font-size: 17px;
-        line-height: 1.82;
+        font-size: 18px;
+        line-height: 1.9;
       }
       .bio-toc-item {
         font-size: 15px;
       }
       .bio-head h2 {
-        font-size: clamp(30px, 2.7vw, 38px);
+        font-size: clamp(34px, 3vw, 44px);
       }
       .bio-text h3,
       .praise-heading h3 {
@@ -523,8 +523,8 @@
       }
       .bio-text p,
       .praise-body p {
-        font-size: 16.5px;
-        line-height: 1.9;
+        font-size: 18px;
+        line-height: 1.95;
       }
     }
     @media (max-width: 980px) {
