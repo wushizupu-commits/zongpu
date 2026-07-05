@@ -1792,7 +1792,7 @@ const NODE_W = 176;
         .node text {
           fill:#241b14;
           letter-spacing:0;
-          font-family:"Noto Serif CJK SC","Noto Serif CJK TC","Source Han Serif SC","Source Han Serif TC","Songti SC","STSong","SimSun","PMingLiU",serif;
+          font-family:"Songti SC","STSong","Source Han Serif SC","Source Han Serif TC","Noto Serif CJK SC","Noto Serif CJK TC","SimSun","PMingLiU",serif;
         }
         .node .name { font-size:13.5px; font-weight:760; }
         .node .id { fill:rgba(86,75,62,.82); font-size:10.5px; font-weight:620; }
