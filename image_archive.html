@@ -62,6 +62,20 @@
     .image-card { border:1px solid rgba(184,148,97,.30); border-radius:12px; background:linear-gradient(180deg, rgba(255,253,247,.84), rgba(251,246,234,.60)); overflow:hidden; box-shadow:0 5px 16px rgba(60,44,24,.055); }
     .image-open { display:block; width:100%; padding:0; border:0; background:#f7f0e2; cursor:zoom-in; }
     .image-open img { display:block; width:100%; max-height:72vh; object-fit:contain; background:#f7f0e2; }
+    .compare-view { --split:50%; position:relative; overflow:hidden; background:#f7f0e2; }
+    .compare-view .image-open { position:relative; z-index:1; }
+    .compare-view .image-open img { user-select:none; }
+    .compare-ai { position:absolute; inset:0; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center; background:#f7f0e2; opacity:0; pointer-events:none; clip-path:inset(0 0 0 var(--split)); transition:opacity .22s ease; user-select:none; }
+    .compare-view.compare-active .compare-ai { opacity:1; }
+    .ai-toggle { appearance:none; position:absolute; top:16px; right:16px; z-index:7; border:1px solid rgba(166,66,50,.18); border-radius:999px; background:rgba(255,250,240,.86); color:var(--accent-dark); padding:8px 13px; font:inherit; font-size:13px; font-weight:700; line-height:1; cursor:pointer; box-shadow:0 8px 18px rgba(60,44,24,.09); backdrop-filter:blur(8px); transition:background .18s ease, color .18s ease, border-color .18s ease; }
+    .ai-toggle:hover,
+    .ai-toggle[aria-pressed="true"] { background:rgba(166,66,50,.12); border-color:rgba(166,66,50,.30); color:var(--accent-dark); }
+    .compare-range { position:absolute; inset:0; z-index:6; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; display:none; touch-action:none; }
+    .compare-view.compare-active .compare-range { display:block; }
+    .compare-handle { position:absolute; top:0; bottom:0; left:var(--split); z-index:5; width:2px; display:none; transform:translateX(-50%); background:linear-gradient(180deg, transparent, rgba(166,66,50,.72) 10%, rgba(166,66,50,.72) 90%, transparent); pointer-events:none; }
+    .compare-view.compare-active .compare-handle { display:block; }
+    .compare-handle::before { content:""; position:absolute; top:50%; left:50%; width:44px; height:34px; transform:translate(-50%, -50%); border-radius:999px; background:rgba(120,48,38,.92); box-shadow:0 8px 22px rgba(60,44,24,.18); }
+    .compare-handle::after { content:"‹  ›"; position:absolute; top:50%; left:50%; transform:translate(-50%, -54%); color:#fff7e8; font-size:20px; font-weight:700; letter-spacing:5px; white-space:nowrap; }
     .image-caption { display:flex; justify-content:space-between; gap:18px; padding:17px 18px; border-top:1px solid rgba(184,148,97,.22); align-items:start; }
     .image-caption h3 { margin:0 0 5px; font-size:22px; color:var(--ink); }
     .image-caption p { margin:0; color:var(--muted); font-size:14px; }
@@ -111,6 +125,8 @@
       .hero-side { padding:14px 0 0; border-left:0; border-top:1px solid rgba(184,148,97,.24); }
       .archive-toc { padding:6px 0 6px 14px; }
       .image-caption h3 { font-size:20px; }
+      .ai-toggle { top:12px; right:12px; padding:7px 11px; font-size:12px; }
+      .compare-handle::before { width:40px; height:32px; }
     }
   </style>
 </head>
@@ -459,6 +475,67 @@
     tocItems.forEach(item => item.addEventListener('click', () => activateSection(item.dataset.target)));
     const initial = decodeURIComponent(location.hash.replace('#',''));
     if (initial) activateSection(initial, false);
+    const aiPortraits = {
+      '處士國樂公容像': 'assets/image_archive/ai_ancestors/guole.png',
+      '耆賓元杰公容像': 'assets/image_archive/ai_ancestors/yuanjie.png',
+      '祖龙公容像': 'assets/image_archive/ai_ancestors/zulong.png',
+      '祖桂公容像': 'assets/image_archive/ai_ancestors/zugui.png',
+      '德顺公容像': 'assets/image_archive/ai_ancestors/deshun.png',
+      '傳珍公容像': 'assets/image_archive/ai_ancestors/chuanzhen.png',
+      '傳珠公容像': 'assets/image_archive/ai_ancestors/chuanzhu.png'
+    };
+    document.querySelectorAll('.image-open').forEach(button => {
+      const aiSrc = aiPortraits[button.dataset.title || ''];
+      if (!aiSrc || !button.parentElement) return;
+      const compare = document.createElement('div');
+      compare.className = 'compare-view';
+      compare.style.setProperty('--split', '50%');
+      button.parentElement.insertBefore(compare, button);
+      compare.appendChild(button);
+
+      const aiImage = document.createElement('img');
+      aiImage.className = 'compare-ai';
+      aiImage.src = aiSrc;
+      aiImage.alt = `${button.dataset.title || '先祖画像'} AI 生成真人像`;
+      aiImage.loading = 'lazy';
+      compare.appendChild(aiImage);
+
+      const toggle = document.createElement('button');
+      toggle.className = 'ai-toggle';
+      toggle.type = 'button';
+      toggle.textContent = 'AI 生成真人像';
+      toggle.setAttribute('aria-pressed', 'false');
+      compare.appendChild(toggle);
+
+      const range = document.createElement('input');
+      range.className = 'compare-range';
+      range.type = 'range';
+      range.min = '0';
+      range.max = '100';
+      range.value = '50';
+      range.setAttribute('aria-label', '拖动对比画像和 AI 生成真人像');
+      compare.appendChild(range);
+
+      const handle = document.createElement('div');
+      handle.className = 'compare-handle';
+      compare.appendChild(handle);
+
+      const setSplit = value => {
+        const next = Math.max(0, Math.min(100, Number(value) || 0));
+        compare.style.setProperty('--split', `${next}%`);
+        range.value = String(next);
+      };
+      toggle.addEventListener('click', event => {
+        event.stopPropagation();
+        const active = !compare.classList.contains('compare-active');
+        compare.classList.toggle('compare-active', active);
+        toggle.setAttribute('aria-pressed', String(active));
+        setSplit(range.value);
+      });
+      range.addEventListener('input', () => setSplit(range.value));
+      range.addEventListener('click', event => event.stopPropagation());
+      range.addEventListener('pointerdown', event => event.stopPropagation());
+    });
     const lightbox = document.querySelector('.lightbox');
     const lightboxImg = lightbox.querySelector('img');
     const lightboxTitle = lightbox.querySelector('strong');
