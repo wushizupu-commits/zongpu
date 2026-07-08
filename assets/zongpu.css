@@ -21,7 +21,7 @@
       --shadow: 0 18px 42px rgba(60, 44, 24, 0.14);
       --shadow-soft: 0 8px 24px rgba(60, 44, 24, 0.09);
       --radius: 10px;
-      --font-serif: "Noto Serif CJK SC", "Noto Serif CJK TC", "Source Han Serif SC", "Source Han Serif TC", "Songti SC", "STSong", "SimSun", "PMingLiU", serif;
+      --font-serif: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", Arial, sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -244,7 +244,7 @@
     .detail-tag.id {
       background: rgba(142, 154, 170, .12);
       color: #8896a7;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-family: var(--font-serif);
       letter-spacing: .01em;
     }
 
