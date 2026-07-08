@@ -26,9 +26,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      font-family: "Noto Serif CJK SC", "Noto Serif CJK TC", "Source Han Serif SC", "Source Han Serif TC", "Songti SC", "STSong", "SimSun", "PMingLiU", serif;
       color: var(--ink);
       background:
         radial-gradient(circle at 12% 8%, rgba(166, 66, 50, .08), transparent 28%),
@@ -57,7 +55,7 @@
       flex: 0 0 auto;
       color: var(--accent-dark);
       font-size: 24px;
-      font-weight: 700;
+      font-weight: 820;
       letter-spacing: .03em;
       white-space: nowrap;
     }
@@ -83,7 +81,7 @@
       color: rgba(88, 82, 71, .86);
       font: inherit;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 760;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
@@ -153,7 +151,7 @@
       margin: 0 0 12px;
       color: var(--accent);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 780;
       letter-spacing: .12em;
     }
     h1 {
@@ -266,7 +264,7 @@
       background: rgba(40, 106, 102, .1);
       color: var(--accent-2);
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
     .article p {
@@ -296,7 +294,7 @@
       padding: 10px 14px;
       color: var(--accent-dark);
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 760;
       cursor: pointer;
       list-style: none;
     }
@@ -313,7 +311,7 @@
       border-radius: 999px;
       background: rgba(40, 106, 102, .1);
       color: var(--accent-2);
-      font-weight: 700;
+      font-weight: 820;
     }
     .branch-card[open] summary::after {
       content: "-";
@@ -332,7 +330,7 @@
     h3 {
       margin: 0 0 12px;
       color: var(--accent-dark);
-      font-size: 18px;
+      font-size: 17px;
     }
     ul {
       margin: 0;
@@ -447,28 +445,6 @@
       color: var(--muted);
       font-size: 12.5px;
       line-height: 1.5;
-    }
-    @media (min-width: 1280px) {
-      main {
-        width: min(1480px, calc(100% - 72px));
-      }
-      .hero-card p {
-        font-size: 18px;
-        line-height: 1.9;
-      }
-      .panel h2,
-      .section-title h2 {
-        font-size: 28px;
-      }
-      li,
-      .article p,
-      .branch-card li {
-        font-size: 16px;
-        line-height: 1.9;
-      }
-      .route-entry {
-        font-size: 15.5px;
-      }
     }
     @media (max-width: 980px) {
       .hero,
@@ -592,7 +568,7 @@
       </div>
       <div class="panel">
         <ol class="route-list">
-
+          
           <li class="route-entry">
             <span class="route-index">01</span>
             <span>泰伯仲雍公隐居蛮</span>
@@ -752,7 +728,7 @@
         <span class="source-note">按原文“派下”分组整理</span>
       </div>
       <div class="branch-grid">
-
+        
           <details class="branch-card">
             <summary>
               <span>智公派下</span>
@@ -900,7 +876,7 @@
         <span class="source-note">来源：延陵季子考证.docx</span>
       </div>
       <div class="reading-guide" aria-label="延陵季子考证导读">
-
+        
           <article class="guide-card">
             <h3>考证对象</h3>
             <p>辨析本支是否可以直接附会为延陵季子之后，而不是单纯歌颂季札贤名。</p>

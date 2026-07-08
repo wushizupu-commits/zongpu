@@ -1756,7 +1756,7 @@ const NODE_W = 176;
         .node .generation-label {
           fill:rgba(150,63,47,.78);
           font-size:7.4px;
-          font-weight:600;
+          font-weight:740;
           text-anchor:middle;
           dominant-baseline:middle;
         }
@@ -1770,7 +1770,7 @@ const NODE_W = 176;
         .node .early-death-label {
           fill:rgba(150,63,47,.82);
           font-size:7.4px;
-          font-weight:600;
+          font-weight:730;
           text-anchor:middle;
           dominant-baseline:middle;
         }
@@ -1784,7 +1784,7 @@ const NODE_W = 176;
         .node .alias-label {
           fill:rgba(40,106,102,.82);
           font-size:7.6px;
-          font-weight:600;
+          font-weight:740;
           text-anchor:middle;
           dominant-baseline:middle;
         }
@@ -1792,12 +1792,12 @@ const NODE_W = 176;
         .node text {
           fill:#241b14;
           letter-spacing:0;
-          font-family:"Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC",Arial,sans-serif;
+          font-family:"Noto Serif CJK SC","Noto Serif CJK TC","Source Han Serif SC","Source Han Serif TC","Songti SC","STSong","SimSun","PMingLiU",serif;
         }
-        .node .name { font-size:13.5px; font-weight:600; }
+        .node .name { font-size:13.5px; font-weight:760; }
         .node .id { fill:rgba(86,75,62,.82); font-size:10.5px; font-weight:620; }
         .node .child-toggle { fill:rgba(246,239,223,.94); stroke:rgba(40,106,102,.36); stroke-width:1.2; }
-        .node .badge { fill:#286a66; font-size:12px; font-weight:700; text-anchor:middle; dominant-baseline:middle; }
+        .node .badge { fill:#286a66; font-size:12px; font-weight:800; text-anchor:middle; dominant-baseline:middle; }
       `;
     }
 
@@ -2332,3 +2332,4 @@ const NODE_W = 176;
     fitVisible();
     hideDetailPanel();
     revealPersonFromRoute();
+  
