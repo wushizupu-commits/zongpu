@@ -309,6 +309,32 @@
     .bio-portrait:hover img {
       border-color: rgba(166, 66, 50, .42);
     }
+    .bio-tomb-thumb {
+      display: grid;
+      justify-items: center;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .bio-tomb-thumb img {
+      display: block;
+      width: 70px;
+      height: 96px;
+      border: 1px solid rgba(184, 148, 97, .38);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .72);
+      object-fit: contain;
+      box-shadow: 0 6px 16px rgba(60, 44, 24, .10);
+    }
+    .bio-tomb-thumb:hover {
+      color: var(--accent-dark);
+    }
+    .bio-tomb-thumb:hover img {
+      border-color: rgba(166, 66, 50, .42);
+    }
     .genealogy-jump {
       display: inline-flex;
       align-items: center;
@@ -619,7 +645,7 @@
       <aside class="bio-toc" aria-label="族贤传略目录">
         <h2 class="bio-toc-title">文献目录</h2>
         <div class="bio-toc-list">
-          
+
           <button class="bio-toc-item active" type="button" data-target="bio-1">
             <strong>国乐公傳</strong>
           </button>
@@ -651,10 +677,14 @@
           <button class="bio-toc-item" type="button" data-target="bio-4">
             <strong>書森公傳</strong>
           </button>
+
+          <button class="bio-toc-item" type="button" data-target="bio-9">
+            <strong>書有公傳</strong>
+          </button>
         </div>
       </aside>
       <div class="bio-content">
-        
+
         <article class="bio-page active" id="bio-1" data-article="bio-1">
           <div class="bio-head">
             <div>
@@ -670,7 +700,7 @@
               <a class="genealogy-jump" href="index.html?person=G21-GLG-03" data-person-id="G21-GLG-03" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="bio-columns">
             <article class="bio-text">
               <h3>原文</h3>
@@ -699,7 +729,7 @@
               <a class="genealogy-jump" href="index.html?person=G25-CXG-01" data-person-id="G25-CXG-01" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="bio-columns">
             <article class="bio-text">
               <h3>原文</h3>
@@ -739,9 +769,9 @@
               <span class="bio-source">四老颂赞.docx</span>
             </div>
           </div>
-          
+
           <div class="praise-grid">
-            
+
             <section class="praise-section">
               <div class="praise-heading">
                 <div>
@@ -847,7 +877,7 @@
               <a class="genealogy-jump" href="index.html?person=G28-CZG-01" data-person-id="G28-CZG-01" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="bio-columns">
             <article class="bio-text">
               <h3>原文</h3>
@@ -882,7 +912,7 @@
               <a class="genealogy-jump" href="index.html?person=G29-ZRG-03" data-person-id="G29-ZRG-03" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <div class="bio-columns">
             <article class="bio-text">
               <h3>原文</h3>
@@ -915,7 +945,7 @@
               <a class="genealogy-jump" href="index.html?person=G31-SMG-02" data-person-id="G31-SMG-02" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <article class="bio-text single">
             <p>詩明公諱明，西堡遠桂之次子也。生於光緒乙巳年四月廿一日。明公出身寒門，七歲喪父，八歲入學，十二歲母親無力供讀，輟學在家幫人放牛受盡人間艱辛。長大後憑靠天賦，虛心好學，拜師學醫。學徒三年後，一方面繼續鑽研中醫外科，另一方面研究民間中草藥秘方，嘗盡百草千藥，對医治疔瘡、癤毒、瘋濕等疾病術大進，名揚饒城内外。成家後，夫妻恩愛，夫唱婦隨，生活日盈。明公興趣廣泛，性格開朗，常以狩獵、捉甲魚爲樂，既可延年益壽，又可改善生活，一舉两得。明公不僅醫術精湛，而且醫德高尚，經常濟困扶危，送醫送藥，救死扶傷，具有高尚的人道主義思想。在饒北鄉村，無人不讚，深受人敬。明公爲人正直、作風正派、言行一致、禮義家風。直接薰陶着晚輩，膝下三子均從父業，專心骨傷科，在饒東古鎮頗具聲望，三兄弟從事醫務專業，老二書華升任上饒市第三人民醫院院長。</p>
 <p>詩明公，晚年生活豐富，福壽齊天，四世同堂，室下有二十余丁，在西堡可謂德高望重。公元一九九六年四月十二日病故，享壽九十有三。</p>
@@ -937,7 +967,7 @@
               <a class="genealogy-jump" href="index.html?person=G31-SGG-03" data-person-id="G31-SGG-03" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <article class="bio-text single">
             <p>徐氏福秀老孺人，生於光緒戊戌年六月初四日。由於家中貧寒，十三歲嫁進吳門，成爲詩光室下。嗣後，以吳家爲重，勤勞節儉，漿洗縫補，操里持外，敬重公婆，照顧丈夫，教育兒女，負重度過一生，享壽九十有七，在當地堪稱佳話。</p>
 <p>徐氏夫妻恩愛，和睦如初。生活上尤先考慮家人，事事順着丈夫，在病重期間，更加體貼入微，盡心盡力。在一九五三年，丈夫病故，遵循婦道，從一而終，在逆境中艱苦奮斗，勤儉持家有方，使家中經濟、生活逐漸好轉。</p>
@@ -961,7 +991,7 @@
               <a class="genealogy-jump" href="index.html?person=G32-SSG-02" data-person-id="G32-SSG-02" target="_blank" rel="noopener">查看世系族谱节点</a>
             </div>
           </div>
-          
+
           <article class="bio-text single">
             <p>書森公諱森，字學森，光緒辛巳年八月廿二日建生，公元一九五七年四月十四日卒，享壽七十有四。由于出身寒門，父母無力供學。雖爲農夫，但人聰慧，辛勤勞作，靠勤儉之手養育六口之家。于一九二七年二月，離鄉背井，携妻帶子，奔赴浙江衢縣山坑桐樹坪寓居帮人做紙。一九三四年佃田十六畝，購買茅竹山十五畝，生活出現轉機，一九四五年構建新房三間二廂。新中國成立後，翻身作主，又建屋一幢。森公身處异境，善待鄉鄰，自律自重，深得人敬。森公教子勤學，增長知識，兒孫達賢。四子裕乾，有一定文化知識，解放後當上干部入了黨。曾任初、高級社長，村黨支部書記，鄉黨委委員等職及縣市人大代表。孫後良，于一九六九年參軍，退伍後被選爲村委主任，玄孫馨宏，攻讀有成，一玖玖三年考取軍事院校，繼而考取碩士，海軍上尉軍銜，現在北京國防科學研究院供職。</p>
 <p>森公後裔，如此争光，出息不凡，備受家族推崇，乃吾祖之慰也。</p>
@@ -969,6 +999,43 @@
           </article>
           <div class="bio-pager">
             <button type="button" class="bio-nav-button" data-target="bio-6">上一篇<br><strong>徐老孺人傳</strong></button>
+            <button type="button" class="bio-nav-button next" data-target="bio-9">下一篇 <span class="nav-inline-arrow">→</span><br><strong>書有公傳</strong></button>
+          </div>
+        </article>
+
+        <article class="bio-page" id="bio-9" data-article="bio-9">
+          <div class="bio-head">
+            <div>
+              <div class="bio-id-list"><span>三十二世</span></div>
+              <h2>書有公傳</h2>
+            </div>
+            <div class="bio-head-side">
+              <span class="bio-source">裕豐公墓圖誌（原載書有公墓圖）</span>
+              <a class="bio-tomb-thumb" href="assets/image_archive/tombs_06.png" target="_blank" rel="noopener" title="查看書有公墓图原图" aria-label="查看書有公墓图原图">
+                <img src="assets/image_archive/tombs_06.png" alt="書有公墓图" loading="lazy">
+                <span>書有公墓图</span>
+              </a>
+              <a class="genealogy-jump" href="index.html?person=G32-SYG-01" data-person-id="G32-SYG-01" target="_blank" rel="noopener">查看世系族谱节点</a>
+            </div>
+          </div>
+
+          <div class="bio-columns">
+            <article class="bio-text">
+              <h3>裕豐公墓圖誌原文</h3>
+              <p>上系先伯書有吳公之墓圖也。先伯性和謙，少疾言厲色，昆仲間尤怡怡可風。壯年娶妻，因意見枘鑿，遂令大歸，嗣不續。雖親友頻勸，皆婉辭卻之。視三侄猶同子女，教養備至。數十年同堂共炊，從無間言。</p>
+              <p>壽踰七旬，易簀時，豐曾以承繼事請，祇點首而已。繼囑云：「汝侄輩永久不忘我，墓田何須承繼？」云已，言猶在耳，事難忘心。謹撰事實，以誌于墓圖之左，俾子孫皆有所矜式耳。</p>
+              <p>胞侄裕豐謹誌。</p>
+            </article>
+            <article class="bio-text">
+              <h3>白话释义</h3>
+              <p>这幅墓图所记的是先伯书有公。书有公性情温和谦逊，很少对人疾言厉色；与兄弟相处尤其和睦，足以成为家族的榜样。</p>
+              <p>他壮年时曾娶妻，后因夫妻意见不合，便让妻子回归娘家，此后没有续娶，也未留下子嗣。亲友多次劝他再婚或安排继嗣，他都婉言谢绝；却把三位侄子视同亲生子女，教养照顾得十分周到。数十年间，大家同堂共炊，从未有过不和之言。</p>
+              <p>书有公七十多岁去世时，裕丰公曾请示继承之事，他只点头，并嘱咐说：“只要你们这些侄辈永远不忘记我，墓地、祭田又何必一定另立继承人呢？”</p>
+              <p>裕丰公因此把这段事迹记在墓图旁，希望后世子孙都能以书有公的品行为榜样。</p>
+            </article>
+          </div>
+          <div class="bio-pager">
+            <button type="button" class="bio-nav-button" data-target="bio-4">上一篇<br><strong>書森公傳</strong></button>
             <span class="bio-nav-spacer"></span>
           </div>
         </article>
