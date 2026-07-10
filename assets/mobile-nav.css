@@ -1,6 +1,7 @@
 @media (max-width: 760px) {
   :root {
     --mobile-nav-height: 62px;
+    --mobile-detail-peek: 112px;
   }
 
   body {
@@ -70,5 +71,18 @@
 
   .site-nav::-webkit-scrollbar {
     display: none;
+  }
+
+  .app.sidebar-hidden:not(.detail-hidden) > main {
+    height: calc(100svh - var(--mobile-nav-height) - var(--mobile-detail-peek));
+    min-height: 0;
+  }
+
+  .app:not(.detail-hidden) > .detail {
+    top: auto;
+    right: auto;
+    bottom: auto;
+    border-top: 1px solid rgba(184, 148, 97, .36);
+    box-shadow: 0 -10px 26px rgba(60, 44, 24, .08);
   }
 }
