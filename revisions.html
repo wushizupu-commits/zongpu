@@ -253,20 +253,17 @@
       outline: 3px solid rgba(40, 106, 102, .5);
       outline-offset: 4px;
     }
-    .annotation-thumbnail-row {
-      display: flex;
-      justify-content: flex-end;
-      margin: -4px 0 14px;
-    }
     .annotation-thumbnail {
-      display: block;
-      width: 132px;
+      display: inline-block;
+      width: 45px;
+      margin-left: 8px;
       padding: 0;
       border: 0;
       border-radius: 8px;
       background: transparent;
       cursor: zoom-in;
       line-height: 0;
+      vertical-align: -6px;
     }
     .annotation-thumbnail img {
       display: block;
@@ -828,7 +825,7 @@
         <h1>历代修谱</h1>
         <p>按丙午赛博重修、辛巳续修、民国丙戌、光绪乙未与修谱附录五个阶段整理谱序、凡例、谱局芳名等文献。点击左侧章节目录中的文献题名，可切换到对应的独立阅读页。</p>
       </div>
-
+      
       <aside class="poem-summary" aria-label="排行诗">
         <div class="poem-summary-head">
           <span>排行诗</span>
@@ -852,11 +849,11 @@
       <aside class="revision-toc" aria-label="历代修谱章节目录">
         <h2 class="toc-title">章节目录</h2>
         <div class="toc-tree">
-
+          
           <section class="toc-group">
             <h3><span>2026 年</span>丙午赛博重修</h3>
             <div class="toc-docs">
-
+              
               <button class="toc-doc active" type="button" data-target="bingwu-2026-1">
                 丙午延陵吴氏赛博修谱序
               </button>
@@ -869,7 +866,7 @@
           <section class="toc-group">
             <h3><span>2001 年</span>辛巳续修</h3>
             <div class="toc-docs">
-
+              
               <button class="toc-doc" type="button" data-target="xinsi-2001-1">
                 辛巳延陵吳氏續修宗譜序言
               </button>
@@ -885,7 +882,7 @@
           <section class="toc-group">
             <h3><span>1946 年</span>民国丙戌重修</h3>
             <div class="toc-docs">
-
+              
               <button class="toc-doc" type="button" data-target="minguo-1946-1">
                 延陵吴氏重修宗谱旧序
               </button>
@@ -895,7 +892,7 @@
           <section class="toc-group">
             <h3><span>1895 年</span>光绪乙未修谱</h3>
             <div class="toc-docs">
-
+              
               <button class="toc-doc" type="button" data-target="guangxu-1895-1">
                 延陵吳氏肇修歷代譜牒文
               </button>
@@ -911,7 +908,7 @@
           <section class="toc-group">
             <h3><span>附录</span>修谱附录</h3>
             <div class="toc-docs">
-
+              
               <button class="toc-doc" type="button" data-target="appendix-1">
                 延陵吳氏宗譜續修新譜局芳名：
               </button>
@@ -920,7 +917,7 @@
         </div>
       </aside>
       <div class="content-area">
-
+        
         <article class="revision-page" id="guangxu-1895-1" data-article="guangxu-1895-1">
           <div class="article-head">
             <div>
@@ -932,7 +929,7 @@
             </div>
             <span class="article-source">延陵吳氏肇修歷代譜牒文-必仁叩首敬撰.docx</span>
           </div>
-
+          
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -970,7 +967,7 @@
             </div>
             <span class="article-source">延陵吴氏重修宗谱旧序-大清光绪廿一年.docx</span>
           </div>
-
+          
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -1007,7 +1004,7 @@
             </div>
             <span class="article-source">重修譜牒凡例（旧）.docx</span>
           </div>
-
+          
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -1061,7 +1058,7 @@
             </div>
             <span class="article-source">延陵吴氏重修宗谱旧序-民国三十五年.docx</span>
           </div>
-
+          
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -1096,7 +1093,7 @@
             </div>
             <span class="article-source">辛巳延陵吳氏續修宗譜序言-2001 年.docx</span>
           </div>
-
+          
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -1130,7 +1127,7 @@
             </div>
             <span class="article-source">新凡例-辛巳年正月.docx</span>
           </div>
-
+          
           <article class="doc-text single">
             <p>一、續修族譜，應以當今黨的路綫、方針、政策為指導，以法律、法規為准繩，實事求是地記述本族子孫所系。如因不育而買養、領養、過繼之子嗣均可入譜。招郎入贅之婿，記原籍、姓名，以免紊宗。</p>
 <p>二、立繼承祧，必於某公名下注明出繼某人，又必須在領繼人名下注明立某公為嗣，庶來歷有因，便於查考。</p>
@@ -1161,7 +1158,7 @@
             </div>
             <span class="article-source">修谱跋文.docx</span>
           </div>
-
+          
           <article class="doc-text single">
             <p>吳氏始于商夏、繼于周、興于漢、盛于隋唐。達六朝。鑒于散居各地、難以統一纂修。</p>
 <p>上邑西村吳氏於清光緒丙戌前、宗譜曾修失考。丙戌年設局續修。民國三十五年鑒于時局動蕩、玉山樟村吳姓未與西村、西堡同修支譜。至今已愈五十余載，年久事遠，如不續修，將無以為繼。今逢盛世，國泰民安。生活日盈才把續修宗譜盛事擺上議程。辛巳春節，余返故訪親、族人推舉為首、其間深得玉山樟村、汪村西堡及西村等族親鼎力支持和譜局成員通力協作。三易其稿、進展順利。同時又得到張先生悉心指導、《吳氏宗譜》增設了八十歲壽星芳名和上述三地祖先容像、詩明公書森公徐老孺人傳等內容、這對激勵吾族後輩勤耕苦讀、奮發向上將起到鼓舞之功效。值此、余謹代表家族對張應全先生和王劍文師傅表示謝意。</p>
@@ -1184,7 +1181,7 @@
             </div>
             <span class="article-source">丙午延陵吴氏赛博修谱序.docx</span>
           </div>
-
+          
           <div class="doc-columns stacked">
             <article class="doc-text">
               <h4>原文</h4>
@@ -1220,7 +1217,7 @@
             </div>
             <span class="article-source">丙午延陵吴氏赛博修谱跋文.docx</span>
           </div>
-
+          
           <div class="doc-columns stacked">
             <article class="doc-text">
               <h4>原文</h4>
@@ -1240,12 +1237,11 @@
               <p>「壽踰七旬，易簀時，豐曾以承繼事請，祇點首而已。繼囑云：『汝侄輩永久不忘我，墓田何須承繼？』云已，言猶在耳。」</p>
               <p>（先伯活到七十多岁。临终之时，我曾就立嗣继承之事向他请示，他只是点了点头。随后又嘱咐说：“只要你们这些侄辈永远不忘记我，我的墓地、祭田又何必一定要另立继承人呢？”他说过的这些话，至今仿佛仍在耳边回响。）</p>
               <p>这般伯侄之间的深情，让我倍感动容。</p>
-              <p>第三，族谱中有一处明显的记录纰误，曾祖裕乾公当时用钢笔在原页上进行了批注。恰恰因为这样，有幸留下了他的笔迹。这让我想起幼时刚上学那会儿，有很长一段时间，每天中午放学后的午饭，都是在曾祖和曾祖母屋里，同他们一起吃，吃他们亲手做的饭菜。夏日学校午休时，其他同学只能在教室的课桌椅上趴着休息，而我可以躺在曾祖屋里的凉席上，伴着曾祖母手中轻摇的蒲扇小憩。有时我睡不着，还同曾祖母闲聊。这些画面，至今仍历历在目。</p>
-              <div class="annotation-thumbnail-row">
+              <p>第三，族谱中有一处明显的记录纰误，曾祖裕乾公当时用钢笔在原页上进行了批注。恰恰因为这样，有幸留下了他的笔迹。这让我想起幼时刚上学那会儿，有很长一段时间，每天中午放学后的午饭，都是在曾祖和曾祖母屋里，同他们一起吃，吃他们亲手做的饭菜。夏日学校午休时，其他同学只能在教室的课桌椅上趴着休息，而我可以躺在曾祖屋里的凉席上，伴着曾祖母手中轻摇的蒲扇小憩。有时我睡不着，还同曾祖母闲聊。这些画面，至今仍历历在目。
                 <button class="annotation-thumbnail revision-image-trigger" type="button" data-full="assets/yuqian_handwritten_annotation.png" data-title="裕乾公在宗谱原页留下的钢笔批注" data-alt="裕乾公在宗谱人物生卒记录旁留下的钢笔圈注原图" aria-label="查看裕乾公钢笔批注原图">
                   <img src="assets/yuqian_handwritten_annotation.png" alt="裕乾公在宗谱人物生卒记录旁留下的钢笔圈注" loading="lazy" decoding="async" />
                 </button>
-              </div>
+              </p>
               <p>种种这些，愈发让我觉得，我所做的这个数字化工作是多么正确。这些祖辈们的事迹和对话，哪怕只是寥寥几字，如果能通过数字化实现真正的“赛博永存”，让后人还能读到，这便是一件让我觉得非常有意义的事情。</p>
               <p>当然，我并不是一个对家族血脉延续抱有多少使命感的人，也不是那种思想传统、拘守旧俗的人。我只是一个对历史、对时间尤为敏感且善感的人。</p>
               <p>记得以前看过一部电影《寻梦环游记》，里面有一个设定：只要亲人的记忆里还有你的位置，你的灵魂就能在亡灵世界继续存在；一旦记忆消失，就会迎来“终极死亡”。当我翻阅并念诵那些祖辈们的名字，我想象着他们也在亡灵世界继续存在着。而那句话——死亡不是终点，遗忘才是——在此刻，便是对这一切最好的注脚。</p>
@@ -1290,7 +1286,7 @@
             </div>
             <span class="article-source">延陵吳氏宗譜續修新譜局芳名.docx</span>
           </div>
-
+          
           <div class="bureau-sections">
             <section class="bureau-section compact">
               <div class="bureau-section-head">
