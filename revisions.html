@@ -108,7 +108,7 @@
     }
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 460px);
       gap: 18px;
       align-items: end;
       margin-bottom: 28px;
@@ -216,6 +216,130 @@
     .poem-summary-lines {
       display: grid;
       gap: 7px;
+    }
+    .poem-summary-body {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 16px;
+      align-items: center;
+    }
+    .revision-cover {
+      display: block;
+      width: 190px;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid rgba(120, 48, 38, .2);
+      border-radius: 8px;
+      background: var(--paper-strong);
+      box-shadow: 0 6px 16px rgba(60, 44, 24, .14);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .revision-cover-trigger {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      cursor: zoom-in;
+      line-height: 0;
+    }
+    .revision-cover-trigger:hover .revision-cover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(60, 44, 24, .2);
+    }
+    .revision-cover-trigger:focus-visible {
+      outline: 3px solid rgba(40, 106, 102, .5);
+      outline-offset: 4px;
+    }
+    .annotation-thumbnail-row {
+      display: flex;
+      justify-content: flex-end;
+      margin: -4px 0 14px;
+    }
+    .annotation-thumbnail {
+      display: block;
+      width: 132px;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      cursor: zoom-in;
+      line-height: 0;
+    }
+    .annotation-thumbnail img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 7px 18px rgba(60, 44, 24, .14);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .annotation-thumbnail:hover img {
+      transform: translateY(-2px);
+      box-shadow: 0 11px 24px rgba(60, 44, 24, .2);
+    }
+    .annotation-thumbnail:focus-visible {
+      outline: 3px solid rgba(40, 106, 102, .5);
+      outline-offset: 4px;
+    }
+    body.revision-preview-open {
+      overflow: hidden;
+    }
+    .revision-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 14px;
+      padding: 22px;
+      background: rgba(37, 31, 24, .9);
+      backdrop-filter: blur(4px);
+    }
+    .revision-lightbox.active {
+      display: grid;
+    }
+    .revision-lightbox-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      color: #fff7e8;
+    }
+    .revision-lightbox-bar strong {
+      font-size: 17px;
+      line-height: 1.4;
+    }
+    .revision-lightbox-close {
+      appearance: none;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 247, 232, .48);
+      border-radius: 10px;
+      background: rgba(255, 247, 232, .1);
+      color: #fff7e8;
+      font: inherit;
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .revision-lightbox-close:hover,
+    .revision-lightbox-close:focus-visible {
+      background: rgba(255, 247, 232, .2);
+      outline: none;
+    }
+    .revision-lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto;
+      object-fit: contain;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .42);
     }
     .poem-summary-lines p {
       margin: 0;
@@ -394,6 +518,16 @@
     .doc-text + .doc-text {
       padding-left: 18px;
       border-left: 1px solid rgba(184, 148, 97, .22);
+    }
+    .doc-columns.stacked {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+    .doc-columns.stacked .doc-text + .doc-text {
+      margin-top: 24px;
+      padding: 24px 2px 0;
+      border-left: 0;
+      border-top: 1px solid rgba(184, 148, 97, .22);
     }
     .doc-text.single {
       margin: 20px 24px 10px;
@@ -645,6 +779,21 @@
         margin-top: 8px;
         text-align: left;
       }
+      .poem-summary-body {
+        grid-template-columns: 1fr;
+      }
+      .revision-cover {
+        width: 100%;
+      }
+      .revision-cover-trigger {
+        width: 100%;
+      }
+      .revision-lightbox {
+        padding: 12px;
+      }
+      .revision-lightbox-bar strong {
+        font-size: 14px;
+      }
       .doc-columns {
         padding: 16px 18px 8px;
       }
@@ -677,19 +826,24 @@
       <div class="hero-card">
         <p class="eyebrow">GENEALOGY REVISION ARCHIVE</p>
         <h1>历代修谱</h1>
-        <p>按光绪乙未、民国丙戌、辛巳续修与修谱附录四个阶段整理谱序、凡例、谱局芳名等文献。点击左侧章节目录中的文献题名，可切换到对应的独立阅读页。</p>
+        <p>按丙午赛博重修、辛巳续修、民国丙戌、光绪乙未与修谱附录五个阶段整理谱序、凡例、谱局芳名等文献。点击左侧章节目录中的文献题名，可切换到对应的独立阅读页。</p>
       </div>
-      
+
       <aside class="poem-summary" aria-label="排行诗">
         <div class="poem-summary-head">
           <span>排行诗</span>
           <strong>自十六世起</strong>
         </div>
-        <div class="poem-summary-lines">
-          <p>朝廷永大建 國泰福榮昌</p>
+        <div class="poem-summary-body">
+          <button class="revision-cover-trigger revision-image-trigger" type="button" data-full="assets/revision_archive_cover_2026_full.png" data-title="辛巳续修延陵吴氏宗谱封面原图" data-alt="公元二零零一年辛巳续修延陵吴氏宗谱封面与扉页原图" aria-label="查看辛巳续修延陵吴氏宗谱封面原图">
+            <img class="revision-cover" src="assets/revision_archive_cover_2026.png" alt="公元二零零一年辛巳续修延陵吴氏宗谱封面与扉页" decoding="async" />
+          </button>
+          <div class="poem-summary-lines">
+            <p>朝廷永大建 國泰福榮昌</p>
 <p>祖德傳振遠 詩書裕後馨</p>
 <p>人文期炳蔚 門閭樂輝煌</p>
 <p>世澤流芳久 家聲克紹長</p>
+          </div>
         </div>
       </aside>
     </section>
@@ -698,29 +852,16 @@
       <aside class="revision-toc" aria-label="历代修谱章节目录">
         <h2 class="toc-title">章节目录</h2>
         <div class="toc-tree">
-          
-          <section class="toc-group">
-            <h3><span>1895 年</span>光绪乙未修谱</h3>
-            <div class="toc-docs">
-              
-              <button class="toc-doc active" type="button" data-target="guangxu-1895-1">
-                延陵吳氏肇修歷代譜牒文
-              </button>
-              <button class="toc-doc" type="button" data-target="guangxu-1895-2">
-                延陵吴氏重修宗谱旧序
-              </button>
-              <button class="toc-doc" type="button" data-target="guangxu-1895-3">
-                重修譜牒凡例（旧）
-              </button>
-            </div>
-          </section>
 
           <section class="toc-group">
-            <h3><span>1946 年</span>民国丙戌重修</h3>
+            <h3><span>2026 年</span>丙午赛博重修</h3>
             <div class="toc-docs">
-              
-              <button class="toc-doc" type="button" data-target="minguo-1946-1">
-                延陵吴氏重修宗谱旧序
+
+              <button class="toc-doc active" type="button" data-target="bingwu-2026-1">
+                丙午延陵吴氏赛博修谱序
+              </button>
+              <button class="toc-doc" type="button" data-target="bingwu-2026-2">
+                丙午延陵吴氏赛博修谱跋文
               </button>
             </div>
           </section>
@@ -728,7 +869,7 @@
           <section class="toc-group">
             <h3><span>2001 年</span>辛巳续修</h3>
             <div class="toc-docs">
-              
+
               <button class="toc-doc" type="button" data-target="xinsi-2001-1">
                 辛巳延陵吳氏續修宗譜序言
               </button>
@@ -742,9 +883,35 @@
           </section>
 
           <section class="toc-group">
+            <h3><span>1946 年</span>民国丙戌重修</h3>
+            <div class="toc-docs">
+
+              <button class="toc-doc" type="button" data-target="minguo-1946-1">
+                延陵吴氏重修宗谱旧序
+              </button>
+            </div>
+          </section>
+
+          <section class="toc-group">
+            <h3><span>1895 年</span>光绪乙未修谱</h3>
+            <div class="toc-docs">
+
+              <button class="toc-doc" type="button" data-target="guangxu-1895-1">
+                延陵吳氏肇修歷代譜牒文
+              </button>
+              <button class="toc-doc" type="button" data-target="guangxu-1895-2">
+                延陵吴氏重修宗谱旧序
+              </button>
+              <button class="toc-doc" type="button" data-target="guangxu-1895-3">
+                重修譜牒凡例（旧）
+              </button>
+            </div>
+          </section>
+
+          <section class="toc-group">
             <h3><span>附录</span>修谱附录</h3>
             <div class="toc-docs">
-              
+
               <button class="toc-doc" type="button" data-target="appendix-1">
                 延陵吳氏宗譜續修新譜局芳名：
               </button>
@@ -753,8 +920,8 @@
         </div>
       </aside>
       <div class="content-area">
-        
-        <article class="revision-page active" id="guangxu-1895-1" data-article="guangxu-1895-1">
+
+        <article class="revision-page" id="guangxu-1895-1" data-article="guangxu-1895-1">
           <div class="article-head">
             <div>
               <div class="article-meta">
@@ -765,7 +932,7 @@
             </div>
             <span class="article-source">延陵吳氏肇修歷代譜牒文-必仁叩首敬撰.docx</span>
           </div>
-          
+
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -803,7 +970,7 @@
             </div>
             <span class="article-source">延陵吴氏重修宗谱旧序-大清光绪廿一年.docx</span>
           </div>
-          
+
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -840,7 +1007,7 @@
             </div>
             <span class="article-source">重修譜牒凡例（旧）.docx</span>
           </div>
-          
+
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -894,7 +1061,7 @@
             </div>
             <span class="article-source">延陵吴氏重修宗谱旧序-民国三十五年.docx</span>
           </div>
-          
+
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -929,7 +1096,7 @@
             </div>
             <span class="article-source">辛巳延陵吳氏續修宗譜序言-2001 年.docx</span>
           </div>
-          
+
           <div class="doc-columns">
             <article class="doc-text">
               <h4>原文</h4>
@@ -963,7 +1130,7 @@
             </div>
             <span class="article-source">新凡例-辛巳年正月.docx</span>
           </div>
-          
+
           <article class="doc-text single">
             <p>一、續修族譜，應以當今黨的路綫、方針、政策為指導，以法律、法規為准繩，實事求是地記述本族子孫所系。如因不育而買養、領養、過繼之子嗣均可入譜。招郎入贅之婿，記原籍、姓名，以免紊宗。</p>
 <p>二、立繼承祧，必於某公名下注明出繼某人，又必須在領繼人名下注明立某公為嗣，庶來歷有因，便於查考。</p>
@@ -994,7 +1161,7 @@
             </div>
             <span class="article-source">修谱跋文.docx</span>
           </div>
-          
+
           <article class="doc-text single">
             <p>吳氏始于商夏、繼于周、興于漢、盛于隋唐。達六朝。鑒于散居各地、難以統一纂修。</p>
 <p>上邑西村吳氏於清光緒丙戌前、宗譜曾修失考。丙戌年設局續修。民國三十五年鑒于時局動蕩、玉山樟村吳姓未與西村、西堡同修支譜。至今已愈五十余載，年久事遠，如不續修，將無以為繼。今逢盛世，國泰民安。生活日盈才把續修宗譜盛事擺上議程。辛巳春節，余返故訪親、族人推舉為首、其間深得玉山樟村、汪村西堡及西村等族親鼎力支持和譜局成員通力協作。三易其稿、進展順利。同時又得到張先生悉心指導、《吳氏宗譜》增設了八十歲壽星芳名和上述三地祖先容像、詩明公書森公徐老孺人傳等內容、這對激勵吾族後輩勤耕苦讀、奮發向上將起到鼓舞之功效。值此、余謹代表家族對張應全先生和王劍文師傅表示謝意。</p>
@@ -1002,6 +1169,112 @@
           </article>
           <div class="article-pager">
             <button type="button" class="article-nav-button" data-target="xinsi-2001-2">上一篇<br><strong>新凡例</strong></button>
+            <button type="button" class="article-nav-button next" data-target="bingwu-2026-1">下一篇 <span class="nav-inline-arrow">→</span><br><strong>丙午延陵吴氏赛博修谱序</strong></button>
+          </div>
+        </article>
+
+        <article class="revision-page active" id="bingwu-2026-1" data-article="bingwu-2026-1">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>2026 年</span>
+                <em>丙午赛博重修</em>
+              </div>
+              <h2>丙午延陵吴氏赛博修谱序</h2>
+            </div>
+            <span class="article-source">丙午延陵吴氏赛博修谱序.docx</span>
+          </div>
+
+          <div class="doc-columns stacked">
+            <article class="doc-text">
+              <h4>原文</h4>
+              <p>想起我幼时第一次看到辛巳续修的新族谱时，我的曾祖父裕乾公，我的曾祖母余连凤都还在世，那时我还年幼，并看不懂族谱中的记载，更不明白族谱的意义。而随着时代的发展，如今已三十有四，时过境迁，我曾祖父祖母和很多族中长辈早已离世，去年十一国庆假期时，当再次翻阅族谱时，我就起心动念，萌生了要将它进行数字化的念头。</p>
+              <p>幸运的是随着科技的发展，AI工具的便利性，也让我有了一个人也可以进行族谱数字化的可能性，而且随着时间的推移，传统的纸制族谱的保存和阅读都变的十分的不方便，同时对于当下以及未来的年轻人对于传统族谱的接触和理解也越来越困难。</p>
+              <p>正因如此，我将利用时下最新的AI工具以及信息技术，将族谱中记载的世系、谱序、传记、祖像、墓图等等进行系统性的整理。从而可以更好的保护、梳理和延续旧铺和宗族的记忆。</p>
+              <p>延陵吴氏第三十六世孙 人哲 恭敬撰写</p>
+              <p>公元二零二六年夏</p>
+            </article>
+            <article class="doc-text">
+              <h4>AI 转译古文</h4>
+              <p>忆幼时初见辛巳年续修新谱，曾祖父裕乾公、曾祖母余连凤太君犹健在。彼时年幼，尚不能读谱中文字，更不知族谱之于宗族、之于个人，究有何义。光阴荏苒，倏忽三十有四矣。时过境迁，曾祖父母及族中多位长辈皆已辞世。去岁国庆假期，重睹族谱旧帙，翻览之间，忽有所触，遂起心动念，欲以数字之术存续宗谱，使先人之名讳事迹，不致湮于尘蠹。</p>
+              <p>所幸时代日新，人工智能诸般利器渐次而出，予我以孤力而能成此事之机。反观传统纸谱，藏则惧湿蠹，阅则苦繁重，于当世青年尤觉疏隔。若不加变通，恐后世子孙欲溯其源而不得其径矣。</p>
+              <p>故今援引时下智能工具与信息之法，将谱中所载世系、序文、传记、祖像、墓图，一一整理编次，化入数字之中，俾宗族记忆可存、可阅、可传。此举非徒保存故纸，更欲使后来者能循此而识其所从来，于木本水源之义，或可稍稍有会焉。</p>
+              <p>延陵吴氏第三十六世孙 人哲 恭撰</p>
+              <p>公元二零二六年夏</p>
+            </article>
+          </div>
+          <div class="article-pager">
+            <button type="button" class="article-nav-button" data-target="xinsi-2001-3">上一篇<br><strong>修谱跋文</strong></button>
+            <button type="button" class="article-nav-button next" data-target="bingwu-2026-2">下一篇 <span class="nav-inline-arrow">→</span><br><strong>丙午延陵吴氏赛博修谱跋文</strong></button>
+          </div>
+        </article>
+
+        <article class="revision-page" id="bingwu-2026-2" data-article="bingwu-2026-2">
+          <div class="article-head">
+            <div>
+              <div class="article-meta">
+                <span>2026 年</span>
+                <em>丙午赛博重修</em>
+              </div>
+              <h2>丙午延陵吴氏赛博修谱跋文</h2>
+            </div>
+            <span class="article-source">丙午延陵吴氏赛博修谱跋文.docx</span>
+          </div>
+
+          <div class="doc-columns stacked">
+            <article class="doc-text">
+              <h4>原文</h4>
+              <p>去年国庆回家，再次翻阅了族谱。距离我上次查看族谱，已经是二十多年前的事了。那时正值春节，新族谱刚修订完成，送到了我的曾祖父裕乾公手上，之后族谱一直保存在堂叔祖父后良公家中。</p>
+              <p>时过境迁，曾祖父早已仙逝，后良公也在前几年过世。去年族叔新宏重建新房，便将族谱放置在我家中保管，这才有了我起心动念、想要赛博修谱的来由。</p>
+              <p>此次族谱数字化，借用了时下最新的AI工具，将族谱中记载的世系、谱序、传记、祖像、墓图等，进行了系统性的整理，从而更好地保护、梳理和延续旧谱与宗族的记忆。</p>
+              <p>此次共整理了约939条人物详细信息记录表，相关人物传略、修谱序文、牒文等文稿约25篇，祖像图、墓图、祠图数字化重绘保存约25张。同时，对辛巳年新修的族谱，进行了逐页拍照留档，共约724张新谱图片。</p>
+              <p>在记录人物信息的同时，我还对所有在谱人员进行了统一ID编码，保证编码的唯一性。通过父子编码的串联，将939条人物关系系统性地串联起来，最终借助AI技术，完成了在线族谱网页的开发并上线。</p>
+              <p>今年1月春节期间，我对族谱进行了逐一拍照留档。之后从五月开始陆续的，逐步手动整理人物表格，前后大约花费了一个多月时间，终于在6月末将表格整理完成。随后借助AI工具，将表格信息建成网站，又逐步整理相关文稿和图片，陆续更新完善到网站上。</p>
+              <p>在整个整理过程中，确实也发现了一些问题，比如部分生卒年信息存在记录的逻辑错误或存疑之处，我也尽可能在备注中进行了标注。此外，谱中记载的族中长辈，有些可能已经过世，也有一些新辈诞生。如有可获悉的渠道，我也会尽可能去维护和更新网站上的信息。</p>
+              <p>不同于传统的纸质修谱——修撰、校正、装订成册，便算一次重修结束——现代化的数字技术，其实是一个逐步完善、逐步优化的过程，同时还保持着可以实时更新的能力。事实上，直到我写下这些文字的此刻，仍有一些已经过世的族中长辈的信息还没有更新完成，我也会在后续逐步完善。因此，这似乎不像一个结束，而更像是一个开始。</p>
+              <p>总之，我一人之力，即便借助AI技术，终究能力有限，不免会有错漏。同时，纸质宗谱中还有一些因印刷造成的漏印等问题，我也确实无力修正。因此，如果族中长辈和同辈们发现有错漏的地方，欢迎指正。也希望这个数字化的族谱能够一直流传下去，能有后人来一直维护。</p>
+              <p>此次整理，旧谱信息实质上已经全部数字化完成，我觉得也算有了一个阶段性的成果。所以，在这个时间点来写这篇跋文，感觉时机恰到好处。</p>
+              <p>除了记录这次赛博修谱的经历之外，我还想说几点修谱过程中收获的意外体验。</p>
+              <p>第一，经过这次重新整理，我才得以如此详细地阅读先祖们的经历和故事。最触动我的是，在国乐公传略中，读到他曾远赴两广谋生的经历，也因兄弟早早离世而对身边人流露出对自己人生的担忧。那一刻，我忽然觉得，虽然与先祖国乐公相隔数百年，他却仿佛一个活生生的人站在我面前，同我诉说这些心事。我好像透过文字，穿越了数百年的时光，有幸瞥见先辈鲜活人生的一角。</p>
+              <p>第二，在裕丰公为纪念先伯書有公所写的文字里，我读到一位虽无子嗣、却拥有豁达人生的长辈：</p>
+              <p>「壽踰七旬，易簀時，豐曾以承繼事請，祇點首而已。繼囑云：『汝侄輩永久不忘我，墓田何須承繼？』云已，言猶在耳。」</p>
+              <p>（先伯活到七十多岁。临终之时，我曾就立嗣继承之事向他请示，他只是点了点头。随后又嘱咐说：“只要你们这些侄辈永远不忘记我，我的墓地、祭田又何必一定要另立继承人呢？”他说过的这些话，至今仿佛仍在耳边回响。）</p>
+              <p>这般伯侄之间的深情，让我倍感动容。</p>
+              <p>第三，族谱中有一处明显的记录纰误，曾祖裕乾公当时用钢笔在原页上进行了批注。恰恰因为这样，有幸留下了他的笔迹。这让我想起幼时刚上学那会儿，有很长一段时间，每天中午放学后的午饭，都是在曾祖和曾祖母屋里，同他们一起吃，吃他们亲手做的饭菜。夏日学校午休时，其他同学只能在教室的课桌椅上趴着休息，而我可以躺在曾祖屋里的凉席上，伴着曾祖母手中轻摇的蒲扇小憩。有时我睡不着，还同曾祖母闲聊。这些画面，至今仍历历在目。</p>
+              <div class="annotation-thumbnail-row">
+                <button class="annotation-thumbnail revision-image-trigger" type="button" data-full="assets/yuqian_handwritten_annotation.png" data-title="裕乾公在宗谱原页留下的钢笔批注" data-alt="裕乾公在宗谱人物生卒记录旁留下的钢笔圈注原图" aria-label="查看裕乾公钢笔批注原图">
+                  <img src="assets/yuqian_handwritten_annotation.png" alt="裕乾公在宗谱人物生卒记录旁留下的钢笔圈注" loading="lazy" decoding="async" />
+                </button>
+              </div>
+              <p>种种这些，愈发让我觉得，我所做的这个数字化工作是多么正确。这些祖辈们的事迹和对话，哪怕只是寥寥几字，如果能通过数字化实现真正的“赛博永存”，让后人还能读到，这便是一件让我觉得非常有意义的事情。</p>
+              <p>当然，我并不是一个对家族血脉延续抱有多少使命感的人，也不是那种思想传统、拘守旧俗的人。我只是一个对历史、对时间尤为敏感且善感的人。</p>
+              <p>记得以前看过一部电影《寻梦环游记》，里面有一个设定：只要亲人的记忆里还有你的位置，你的灵魂就能在亡灵世界继续存在；一旦记忆消失，就会迎来“终极死亡”。当我翻阅并念诵那些祖辈们的名字，我想象着他们也在亡灵世界继续存在着。而那句话——死亡不是终点，遗忘才是——在此刻，便是对这一切最好的注脚。</p>
+              <p>延陵吴氏第三十六世孙 人哲 恭撰</p>
+              <p>公元二零二六年夏</p>
+            </article>
+            <article class="doc-text">
+              <h4>AI 转译古文</h4>
+              <p>去年国庆归家，复启旧谱而观之。忆昔初见，尚在髫年，时值新春，新谱方成，送至先曾祖裕乾公手，其后藏于堂叔祖父后良公家。屈指计之，盖二十余年矣。</p>
+              <p>时过境迁，曾祖早归道山，后良公亦于数年前谢世。去岁族叔新宏营建新居，乃奉谱牒置余家，俾余守之。余展卷摩挲，忽有所触，遂起赛博修谱之念。此其缘起也。</p>
+              <p>此次修谱，藉时下人工智能之术，将谱中所载世系、序文、传记、祖像、墓图，一一整理编次，庶几旧谱与宗族之记忆，得以存护而延续焉。计整理人物详情凡九百三十九条，传略、序文、牒文之属约二十五篇，祖像、墓图、祠图重绘保存约二十五帧。又以辛巳新谱逐页摄影留真，得图七百二十四幅。</p>
+              <p>人物之录，复系以统一编码，使各人皆有专属，不紊不杂。父子之间，以编码相缀，若珠之在贯，九百三十九人之伦序，粲然可寻。终假AI之技，制为线上族谱网页，刊布于世。</p>
+              <p>余自丙午元春，始为谱牒摄影存档。五月以降，渐次手录人物表册，晨钞暝纂，积一月有余，至季夏乃克告竣。复藉AI之助，化表格为网站，续理文稿图像，陆续补苴完善。其间披阅之勤，鈎稽之苦，有不可胜言者。</p>
+              <p>然校理之际，亦见纰缪之迹：或生卒纪年自相抵牾，或存疑待考，辄以注语标之。又谱中所载长辈，必有已归道山而未及录者，亦有新丁始诞而宜补入者。苟有可询之途，余当随时补订，不敢懈也。</p>
+              <p>夫纸本修谱，修之、校之、订为成书，即为一期之竟功。数字之法则不然，可渐次增益，随时刊正，无所谓终成，而恒在日新之中。即今操翰之顷，尚有已故长辈之信息未遑补录者，当俟异日续完之。然则今日之举，似非终篇，而实为发轫也。</p>
+              <p>嗟乎！余以藐然一身，虽藉AI之能，终不免疏漏舛误。况纸本旧谱，雕版之时已有漫漶脱漏，非余力所能匡正。族中长幼同侪，倘有察其阙失者，幸垂教焉。尤望此数字谱牒，可传之久远，后世子孙，能续其事而不坠也。</p>
+              <p>旧谱信息，至此已悉数化为数字，可谓略有阶段之成。爰于此时泚笔为跋，聊识其颠末云尔。</p>
+              <p>抑余修谱之余，复得数端感触，不可以不书。</p>
+              <p>其一，经此重理旧帙，乃得细读先祖行实。最所感者，莫过国乐公传略。公尝远涉两广谋生，复以兄弟早逝，语人辄露人生无常之惧。掩卷凝想，虽与公相隔数百年，而公之音容，若在目前；公之忧思，若与余语。余乃恍然，文字之力，可通幽明，可越世代，使后人得以窥见先辈栩栩然血肉之躯，非仅谱中木主名讳而已。</p>
+              <p>其二，裕丰公为纪念其先伯书有公所作文字中，余读至一段，为之肃然。其文曰：“寿踰七旬，易箦时，丰曾以承继事请，祇点首而已。继嘱云：‘汝侄辈永久不忘我，墓田何须承继？’云已，言犹在耳。”呜呼！此翁无嗣，而心胸豁达若此，伯侄之间，情深若是。寥寥数语，百年而下，犹令人动容。</p>
+              <p>其三，旧谱有一处显误，曾祖裕乾公尝以钢笔批注其旁。是误也，反使曾祖手泽，得留天地间。余因之追忆髫年，初入小学时，每日午学归来，恒就曾祖、曾祖母屋中用膳，二老亲为治馔，温馨满室。夏日学校午休，同窗皆伏案而卧，余独得卧曾祖屋中凉簟之上，曾祖母手摇蒲扇，为余驱暑。有时未寝，犹与曾祖母闲话。此情此景，历历如昨，偶一思及，不觉泫然。</p>
+              <p>凡此种种，愈令余信此数字化之举，为不可不为者也。先祖一言一行，纵仅存片羽吉光，苟能以数字之法存之，使后世子孙得时时展读，则是真赛博永存之义也，岂非大有裨益于人心者乎？</p>
+              <p>余非抱家族血胤延续之执念者，亦非抱残守缺之拘儒。惟于历史，于时光，常怀善感之心。昔观电影《寻梦环游记》，中有设境：生者记忆存，则亡灵不灭；记忆一泯，是谓终极之死。余今翻谱而诵祖宗之名讳，恍惚见彼等犹存于亡灵之境。然则“死非终点，遗忘乃为终点”之语，于斯际也，殆为最佳之注脚欤？</p>
+              <p>延陵吴氏第三十六世裔孙 人哲 恭撰</p>
+              <p>公元二零二六年岁次丙午仲夏</p>
+            </article>
+          </div>
+          <div class="article-pager">
+            <button type="button" class="article-nav-button" data-target="bingwu-2026-1">上一篇<br><strong>丙午延陵吴氏赛博修谱序</strong></button>
             <button type="button" class="article-nav-button next" data-target="appendix-1">下一篇 <span class="nav-inline-arrow">→</span><br><strong>延陵吳氏宗譜續修新譜局芳名：</strong></button>
           </div>
         </article>
@@ -1017,7 +1290,7 @@
             </div>
             <span class="article-source">延陵吳氏宗譜續修新譜局芳名.docx</span>
           </div>
-          
+
           <div class="bureau-sections">
             <section class="bureau-section compact">
               <div class="bureau-section-head">
@@ -1053,13 +1326,20 @@
             </section>
           </div>
           <div class="article-pager">
-            <button type="button" class="article-nav-button" data-target="xinsi-2001-3">上一篇<br><strong>修谱跋文</strong></button>
+            <button type="button" class="article-nav-button" data-target="bingwu-2026-2">上一篇<br><strong>丙午延陵吴氏赛博修谱跋文</strong></button>
             <span class="article-nav-spacer"></span>
           </div>
         </article>
       </div>
     </section>
   </main>
+  <div class="revision-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="revision-preview-title">
+    <div class="revision-lightbox-bar">
+      <strong id="revision-preview-title">原图预览</strong>
+      <button class="revision-lightbox-close" type="button" aria-label="关闭原图预览">×</button>
+    </div>
+    <img alt="" />
+  </div>
   <script>
     const tocItems = Array.from(document.querySelectorAll(".toc-doc"));
     const articlePanels = Array.from(document.querySelectorAll(".revision-page"));
@@ -1089,6 +1369,43 @@
     window.addEventListener("popstate", () => {
       const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
       if (hash) activateArticle(hash, false);
+    });
+    const revisionImageTriggers = Array.from(document.querySelectorAll(".revision-image-trigger"));
+    const revisionLightbox = document.querySelector(".revision-lightbox");
+    const revisionLightboxImage = revisionLightbox.querySelector("img");
+    const revisionLightboxTitle = revisionLightbox.querySelector("strong");
+    const revisionLightboxClose = revisionLightbox.querySelector(".revision-lightbox-close");
+    let revisionPreviewReturnFocus = null;
+    function openRevisionPreview(trigger) {
+      revisionPreviewReturnFocus = document.activeElement;
+      revisionLightboxImage.src = trigger.dataset.full;
+      revisionLightboxImage.alt = trigger.dataset.alt || trigger.dataset.title || "原图";
+      revisionLightboxTitle.textContent = trigger.dataset.title || "原图预览";
+      revisionLightbox.classList.add("active");
+      revisionLightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("revision-preview-open");
+      revisionLightboxClose.focus({ preventScroll: true });
+    }
+    function closeRevisionPreview() {
+      if (!revisionLightbox.classList.contains("active")) return;
+      revisionLightbox.classList.remove("active");
+      revisionLightbox.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("revision-preview-open");
+      revisionLightboxImage.removeAttribute("src");
+      revisionLightboxImage.alt = "";
+      if (revisionPreviewReturnFocus instanceof HTMLElement) {
+        revisionPreviewReturnFocus.focus({ preventScroll: true });
+      }
+    }
+    revisionImageTriggers.forEach(trigger => {
+      trigger.addEventListener("click", () => openRevisionPreview(trigger));
+    });
+    revisionLightboxClose.addEventListener("click", closeRevisionPreview);
+    revisionLightbox.addEventListener("click", event => {
+      if (event.target === revisionLightbox) closeRevisionPreview();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeRevisionPreview();
     });
   </script>
 </body>
