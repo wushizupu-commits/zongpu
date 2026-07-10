@@ -73,6 +73,65 @@
     display: none;
   }
 
+  .sidebar {
+    max-height: min(50svh, 420px);
+  }
+
+  .sidebar .side-inner {
+    position: relative;
+    padding: 12px;
+  }
+
+  .sidebar .side-header h1,
+  .sidebar .side-inner > p,
+  .sidebar .side-inner > h2,
+  .sidebar .legend {
+    display: none;
+  }
+
+  .sidebar .side-header {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    padding: 0;
+    border: 0;
+  }
+
+  .sidebar #sidebarCollapseBtn {
+    width: 36px;
+    height: 36px;
+    min-height: 36px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .sidebar .search {
+    min-height: 44px;
+    padding-right: 50px;
+  }
+
+  #sidebarOpenBtn .sidebar-open-arrow {
+    display: none;
+  }
+
+  #sidebarOpenBtn .sidebar-open-search {
+    display: grid;
+  }
+
+  #sidebarOpenBtn.sidebar-open {
+    bottom: calc(var(--mobile-nav-height) + 16px + env(safe-area-inset-bottom, 0px));
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+
+  #sidebarOpenBtn .sidebar-open-search svg {
+    width: 20px;
+    height: 20px;
+  }
+
   .app.sidebar-hidden:not(.detail-hidden) > main {
     height: calc(100svh - var(--mobile-nav-height) - var(--mobile-detail-peek));
     min-height: 0;

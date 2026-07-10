@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>族谱人物子嗣关系交互图</title>
-  <link rel="stylesheet" href="assets/zongpu.css" />
-  <link rel="stylesheet" href="assets/mobile-nav.css" />
+  <link rel="stylesheet" href="assets/zongpu.css?v=20260710-mobile-search" />
+  <link rel="stylesheet" href="assets/mobile-nav.css?v=20260710-mobile-search" />
 </head>
 <body>
 
@@ -22,7 +22,7 @@
       <div class="side-inner">
         <div class="side-header">
           <h1>族谱人物子嗣关系交互图</h1>
-          <button id="sidebarCollapseBtn" class="icon-button" title="收起左侧面板" aria-label="收起左侧面板"><span aria-hidden="true">‹</span></button>
+          <button id="sidebarCollapseBtn" class="icon-button" title="收起人物搜索" aria-label="收起人物搜索"><span aria-hidden="true">‹</span></button>
         </div>
         <p>节点只显示姓名与 ID。单击任意有子嗣的节点即可展开或收起其子节点；选中人物的祖先链路会以流动线条标出。</p>
         <input id="search" class="search" placeholder="搜索姓名或 ID" autocomplete="off" />
@@ -74,7 +74,10 @@
           <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5 12 5l7.5 6.5"/><path d="M6.5 10.5v8h11v-8"/><path d="M10 18.5v-5h4v5"/></svg></span>
         </button>
       </div>
-      <button id="sidebarOpenBtn" class="sidebar-open icon-button" title="展开左侧面板" aria-label="展开左侧面板"><span aria-hidden="true">›</span></button>
+      <button id="sidebarOpenBtn" class="sidebar-open icon-button" title="打开人物搜索" aria-label="打开人物搜索">
+        <span class="sidebar-open-arrow" aria-hidden="true">›</span>
+        <span class="sidebar-open-search" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+      </button>
       <svg id="chart" role="img" aria-label="族谱人物子嗣关系图">
         <g id="viewport"></g>
       </svg>
@@ -134,6 +137,6 @@
   </div>
 
   <script src="assets/zongpu-data.js"></script>
-  <script src="assets/zongpu-app.js"></script>
+  <script src="assets/zongpu-app.js?v=20260710-mobile-search"></script>
 </body>
 </html>

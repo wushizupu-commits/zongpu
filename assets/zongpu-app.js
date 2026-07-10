@@ -120,6 +120,12 @@ const NODE_W = 176;
     function refreshInteractionMode() {
       const touchMode = isTouchOptimized();
       appEl.classList.toggle("touch-mode", touchMode);
+      const openLabel = touchMode ? "打开人物搜索" : "展开左侧面板";
+      const closeLabel = touchMode ? "收起人物搜索" : "收起左侧面板";
+      sidebarOpenBtn.title = openLabel;
+      sidebarOpenBtn.setAttribute("aria-label", openLabel);
+      sidebarCollapseBtn.title = closeLabel;
+      sidebarCollapseBtn.setAttribute("aria-label", closeLabel);
       if (touchMode) {
         hideHoverCard();
         if (!mobileSidebarInitialized) {
@@ -1708,7 +1714,10 @@ const NODE_W = 176;
         return `<button class="result" data-key="${escapeText(node.key)}"><b>${escapeText(node.name)}</b><small>${escapeText(node.id + alias)}</small></button>`;
       }).join("") || `<p>没有匹配结果。</p>`;
       for (const button of resultsEl.querySelectorAll(".result")) {
-        button.addEventListener("click", () => revealNode(button.dataset.key));
+        button.addEventListener("click", () => {
+          revealNode(button.dataset.key);
+          if (isTouchOptimized()) appEl.classList.add("sidebar-hidden");
+        });
       }
       render();
     }
@@ -2183,7 +2192,10 @@ const NODE_W = 176;
     });
     sidebarOpenBtn.addEventListener("click", () => {
       appEl.classList.remove("sidebar-hidden");
-      window.requestAnimationFrame(fitVisible);
+      window.requestAnimationFrame(() => {
+        fitVisible();
+        if (isTouchOptimized()) searchInput.focus({ preventScroll: true });
+      });
     });
     window.zongpuTools = {
       captureCanvas,

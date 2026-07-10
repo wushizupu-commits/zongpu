@@ -420,6 +420,15 @@
       transform: translateY(-.5px);
     }
 
+    #sidebarOpenBtn .sidebar-open-search {
+      display: none;
+    }
+
+    #sidebarOpenBtn .sidebar-open-search svg {
+      width: 18px;
+      height: 18px;
+    }
+
     aside::-webkit-scrollbar,
     .migration-records::-webkit-scrollbar {
       width: 8px;
