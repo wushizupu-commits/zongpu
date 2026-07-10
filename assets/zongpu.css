@@ -429,6 +429,11 @@
       height: 18px;
     }
 
+    #sidebarCollapseBtn svg {
+      width: 18px;
+      height: 18px;
+    }
+
     aside::-webkit-scrollbar,
     .migration-records::-webkit-scrollbar {
       width: 8px;
@@ -1266,6 +1271,14 @@
       pointer-events: none;
       transition: left .18s ease;
       backdrop-filter: blur(6px);
+    }
+
+    .canvas-command-bar {
+      display: contents;
+    }
+
+    .mobile-command-divider {
+      display: none;
     }
 
     .canvas-actions {

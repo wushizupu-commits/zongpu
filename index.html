@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>族谱人物子嗣关系交互图</title>
-  <link rel="stylesheet" href="assets/zongpu.css?v=20260710-mobile-search" />
-  <link rel="stylesheet" href="assets/mobile-nav.css?v=20260710-mobile-search" />
+  <link rel="stylesheet" href="assets/zongpu.css?v=20260710-mobile-toolbar" />
+  <link rel="stylesheet" href="assets/mobile-nav.css?v=20260710-mobile-toolbar" />
 </head>
 <body>
 
@@ -22,7 +22,7 @@
       <div class="side-inner">
         <div class="side-header">
           <h1>族谱人物子嗣关系交互图</h1>
-          <button id="sidebarCollapseBtn" class="icon-button" title="收起人物搜索" aria-label="收起人物搜索"><span aria-hidden="true">‹</span></button>
+          <button id="sidebarCollapseBtn" class="icon-button" title="收起人物搜索" aria-label="收起人物搜索"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></span></button>
         </div>
         <p>节点只显示姓名与 ID。单击任意有子嗣的节点即可展开或收起其子节点；选中人物的祖先链路会以流动线条标出。</p>
         <input id="search" class="search" placeholder="搜索姓名或 ID" autocomplete="off" />
@@ -38,6 +38,7 @@
     </aside>
     <main>
       <div class="canvas-meta" id="canvasMeta"></div>
+      <div class="canvas-command-bar">
       <div class="canvas-actions" aria-label="画布快照下载">
         <button id="downloadPngBtn" title="下载当前展开节点的完整高清 PNG" aria-label="PNG 快照">
           <span class="button-label">PNG 快照</span>
@@ -48,6 +49,7 @@
           <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 4.6h7.1L18.8 9v10.4H7.2z"/><path d="M14.3 4.6V9h4.5"/><path d="M9.6 12.6h5.4"/><path d="M9.6 15.4h4.2"/></svg></span>
         </button>
       </div>
+      <span class="mobile-command-divider" aria-hidden="true"></span>
       <div class="toolbar canvas-toolbar" aria-label="画布操作">
         <button id="viewModeBtn" title="切换为自上而下的纵向展开视图" aria-label="切换视图" aria-pressed="false">
           <span class="button-label">纵向视图</span>
@@ -73,6 +75,7 @@
           <span class="button-label">总览</span>
           <span class="mobile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5 12 5l7.5 6.5"/><path d="M6.5 10.5v8h11v-8"/><path d="M10 18.5v-5h4v5"/></svg></span>
         </button>
+      </div>
       </div>
       <button id="sidebarOpenBtn" class="sidebar-open icon-button" title="打开人物搜索" aria-label="打开人物搜索">
         <span class="sidebar-open-arrow" aria-hidden="true">›</span>
@@ -137,6 +140,6 @@
   </div>
 
   <script src="assets/zongpu-data.js"></script>
-  <script src="assets/zongpu-app.js?v=20260710-mobile-search"></script>
+  <script src="assets/zongpu-app.js?v=20260710-mobile-toolbar"></script>
 </body>
 </html>
