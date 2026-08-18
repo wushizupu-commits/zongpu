@@ -1,0 +1,414 @@
+/*
+ * 延陵吴氏宗谱 · 内容页统一视觉层
+ * 设计语言：墨砚档案 —— 深墨报头 / 宣纸底 / 朱砂与金色点缀 / 衬线文献标题
+ */
+
+:root {
+  --ink: #1d262f;
+  --ink-2: #27333e;
+  --paper: #f3eee3;
+  --paper-raised: #faf7ee;
+  --paper-sunken: #eae3d2;
+  --paper-warm: #f6f0e0;
+  --cinnabar: #b23a26;
+  --cinnabar-deep: #8c2a1a;
+  --cinnabar-soft: rgba(178, 58, 38, .08);
+  --gold: #b08d4f;
+  --gold-deep: #8a6c39;
+  --gold-soft: rgba(176, 141, 79, .15);
+  --jade: #2f6f66;
+  --jade-soft: rgba(47, 111, 102, .1);
+  --text: #28313a;
+  --text-strong: #1d262f;
+  --muted: #6b7380;
+  --muted-2: #98a0a8;
+  --line: rgba(29, 38, 47, .16);
+  --line-soft: rgba(29, 38, 47, .09);
+  --line-gold: rgba(176, 141, 79, .4);
+  --on-dark: #e9e4d8;
+  --on-dark-muted: rgba(233, 228, 216, .62);
+  --shadow-soft: 0 10px 30px rgba(29, 38, 47, .1);
+  --shadow-raise: 0 18px 48px rgba(29, 38, 47, .16);
+  --radius: 8px;
+  --radius-sm: 6px;
+  --serif: "Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", "SimSun", serif;
+  --sans: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --masthead-h: 68px;
+}
+
+html { scroll-padding-top: calc(var(--masthead-h) + 20px); }
+
+body.archive-page {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.75;
+  background:
+    radial-gradient(1100px 500px at 88% -8%, rgba(176, 141, 79, .1), transparent 60%),
+    radial-gradient(900px 460px at -10% 24%, rgba(47, 111, 102, .05), transparent 55%),
+    repeating-linear-gradient(0deg, rgba(29, 38, 47, .022) 0 1px, transparent 1px 9px),
+    var(--paper);
+}
+
+body.archive-page ::selection { background: rgba(178, 58, 38, .18); }
+
+/* 统一报头 */
+.archive-page .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  border: 0;
+  border-bottom: 1px solid rgba(176, 141, 79, .5);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .04), transparent 42%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .02) 0 1px, transparent 1px 7px),
+    linear-gradient(135deg, #1a232c 0%, var(--ink) 46%, #24313c 100%);
+  box-shadow: 0 2px 0 rgba(140, 42, 26, .55), 0 14px 34px rgba(15, 22, 28, .25);
+}
+
+.archive-page .site-header-inner {
+  width: min(1360px, calc(100% - 48px));
+  min-height: var(--masthead-h);
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.archive-page .site-brand {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.archive-page .brand-seal {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  background: linear-gradient(160deg, #c4492f 0%, var(--cinnabar) 55%, var(--cinnabar-deep) 100%);
+  color: #fdf6ea;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1.5px rgba(253, 246, 234, .4), inset 0 -6px 12px rgba(90, 20, 10, .45), 0 4px 12px rgba(140, 42, 26, .4);
+  transform: rotate(-2deg);
+}
+
+.archive-page .brand-seal.small { width: 34px; height: 34px; font-size: 18px; }
+.archive-page .brand-copy { display: grid; line-height: 1.2; }
+.archive-page .brand-copy strong { color: var(--on-dark); font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: .14em; }
+.archive-page .brand-copy small { color: var(--gold); font-size: 11px; font-weight: 500; letter-spacing: .34em; }
+
+.archive-page .site-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+
+.archive-page .site-nav a,
+.archive-page .site-nav button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  box-shadow: none;
+  color: var(--on-dark-muted);
+  font: 500 14.5px/1 var(--sans);
+  letter-spacing: .06em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .18s ease, background .18s ease;
+}
+
+.archive-page .site-nav a:hover { color: var(--on-dark); background: rgba(233, 228, 216, .07); }
+.archive-page .site-nav a.active { color: #f4e9cf; background: rgba(176, 141, 79, .13); }
+.archive-page .site-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), rgba(176, 141, 79, .2));
+}
+
+/* 页面级阅读骨架 */
+.archive-page > main {
+  width: min(1360px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 52px 0 82px;
+}
+
+.archive-page .hero {
+  margin: 0 0 34px;
+  padding: 0 0 32px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.archive-page .hero .eyebrow,
+.archive-page .hero-card .eyebrow {
+  margin: 0 0 13px;
+  color: var(--gold-deep);
+  font: 700 12px/1.5 var(--sans);
+  letter-spacing: .22em;
+}
+
+.archive-page .hero h1,
+.archive-page .hero-card h1 {
+  margin: 0 0 14px;
+  color: var(--text-strong);
+  font-family: var(--serif);
+  font-size: clamp(40px, 5.3vw, 66px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: .11em;
+}
+
+.archive-page .hero > p:last-child,
+.archive-page .hero-card > p:last-child {
+  max-width: 820px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 2;
+}
+
+.archive-page .hero-side {
+  border-left: 2px solid var(--line-gold);
+  padding-left: 24px;
+}
+.archive-page .hero-side strong { color: var(--text-strong); font-family: var(--serif); }
+.archive-page .hero-side span { color: var(--muted); }
+
+/* 目录与文献卡：覆盖各页面原有命名 */
+.archive-page :is(.bio-toc, .archive-toc, .revision-toc) {
+  position: sticky;
+  top: calc(var(--masthead-h) + 22px);
+  max-height: calc(100vh - var(--masthead-h) - 44px);
+  overflow: auto;
+  padding: 4px 0 10px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.archive-page :is(.bio-layout, .archive-layout, .revision-layout) {
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.archive-page :is(.bio-toc-title, .toc-title) {
+  margin: 0 0 12px;
+  padding: 0 0 0 14px;
+  border: 0;
+  color: var(--gold-deep);
+  font: 700 12px/1.4 var(--serif);
+  letter-spacing: .2em;
+}
+
+.archive-page :is(.bio-toc-item, .toc-doc) {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  box-shadow: none;
+  font-weight: 500;
+  transition: color .16s ease;
+}
+.archive-page :is(.bio-toc-item, .toc-doc):hover { background: transparent; color: var(--text-strong); }
+.archive-page :is(.bio-toc-item, .toc-doc).active { background: transparent; color: var(--cinnabar-deep); font-weight: 700; }
+
+/* 传略与图志用一条细朱砂标记当前篇目，不再使用选中背景卡片。 */
+.archive-page :is(.bio-toc, .archive-toc) :is(.bio-toc-item, .toc-doc) {
+  padding: 7px 4px 7px 14px;
+}
+.archive-page :is(.bio-toc, .archive-toc) :is(.bio-toc-item, .toc-doc)::before {
+  left: 0;
+  top: 50%;
+  width: 2px;
+  height: 18px;
+  border-radius: 2px;
+  background: transparent;
+  box-shadow: none;
+  transform: translateY(-50%);
+}
+.archive-page :is(.bio-toc, .archive-toc) :is(.bio-toc-item, .toc-doc).active::before {
+  background: var(--cinnabar);
+  box-shadow: none;
+}
+
+/* 修谱保留年代树的必要引导线，选中项只用小朱砂点和文字强调。 */
+.archive-page .revision-toc .toc-tree { gap: 16px; }
+.archive-page .revision-toc .toc-docs { border-left-color: var(--line-soft); }
+.archive-page .revision-toc .toc-doc.active::after {
+  width: 5px;
+  height: 5px;
+  left: -16px;
+  top: calc(50% - 2px);
+  box-shadow: none;
+}
+
+.archive-page :is(.bio-page, .archive-section, .revision-page, .panel, .sub-panel, .branch-card) {
+  border-color: var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--paper-raised), var(--paper-warm));
+  box-shadow: var(--shadow-soft);
+}
+
+.archive-page :is(.bio-head, .section-head, .article-head) {
+  border-bottom-color: var(--line-soft);
+  background: linear-gradient(90deg, var(--cinnabar-soft), transparent 55%);
+}
+
+.archive-page :is(.bio-head h2, .section-head h2, .article-head h2, .section-header h2, .bio-text h3, .doc-text h3) {
+  color: var(--text-strong);
+  font-family: var(--serif);
+  font-weight: 800;
+  letter-spacing: .055em;
+}
+
+.archive-page :is(.bio-source, .article-source, .source-note) { color: var(--gold-deep); }
+.archive-page :is(.bio-text, .doc-text) { color: var(--text); background: rgba(255, 255, 255, .24); }
+.archive-page :is(.bio-text, .doc-text) p { line-height: 2.05; }
+
+.archive-page :is(.genealogy-jump, .bio-nav-button, .article-nav-button, .archive-link, .text-link) {
+  border-color: var(--line-gold);
+  border-radius: var(--radius-sm);
+  color: var(--cinnabar-deep);
+  background: rgba(176, 141, 79, .06);
+  box-shadow: none;
+}
+.archive-page :is(.genealogy-jump, .bio-nav-button, .article-nav-button, .archive-link, .text-link):hover {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+}
+
+/* 图志 */
+.page-images .archive-section { overflow: hidden; }
+.page-images .section-intro { border-left-color: var(--jade); background: var(--jade-soft); color: var(--muted); }
+.page-images :is(.portrait-card, .tomb-card, .archive-image-card, .poem-card) {
+  border-color: var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-raised);
+  box-shadow: none;
+}
+.page-images img { filter: saturate(.92) contrast(1.02); }
+
+/* 家训 */
+.page-customs .section { margin-top: 32px; }
+.page-customs .section-header { border-bottom-color: var(--line-soft); }
+.page-customs :is(.maxim-grid, .rule-grid, .custom-grid) { gap: 12px; }
+.page-customs :is(.maxim, .rule-card, .custom-card) {
+  border-color: var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-raised);
+}
+
+/* 修谱 */
+.page-revisions .revision-page { overflow: hidden; }
+.page-revisions .revision-summary { border-color: var(--line); background: var(--paper-raised); }
+.page-revisions :is(.edition-tag, .article-meta span) { color: var(--jade); background: var(--jade-soft); }
+.page-revisions .annotation-thumbnail { border-color: var(--line-gold); }
+
+/* 源流迁徙 */
+.page-migration .hero { grid-template-columns: minmax(0, 1fr) 360px; gap: 42px; }
+.page-migration .stats.panel { border: 1px solid var(--line); background: linear-gradient(180deg, var(--paper-raised), var(--paper-warm)); }
+.page-migration .stat strong { color: var(--cinnabar-deep); font-family: var(--serif); }
+.page-migration .route-entry { border-bottom-color: var(--line-soft); }
+.page-migration .route-index { color: var(--jade); background: var(--jade-soft); }
+.page-migration details.branch-card[open] { border-color: var(--line-gold); }
+.page-migration .reading-guide .guide-card { border-color: var(--line); background: var(--paper-raised); }
+
+/* 统一页脚 */
+.archive-page .site-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(176, 141, 79, .45);
+  color: var(--on-dark-muted);
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .02) 0 1px, transparent 1px 7px), linear-gradient(180deg, #202b35, #1a232c);
+}
+.archive-page .footer-inner {
+  width: min(1360px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 30px 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+}
+.archive-page .footer-brand { display: flex; align-items: center; gap: 13px; }
+.archive-page .footer-brand strong { display: block; color: var(--on-dark); font-family: var(--serif); font-size: 15px; letter-spacing: .08em; }
+.archive-page .footer-brand p,
+.archive-page .footer-note { margin: 2px 0 0; color: var(--on-dark-muted); font-size: 11.5px; letter-spacing: .06em; }
+
+@media (max-width: 1080px) {
+  .archive-page .site-header-inner { width: min(100% - 32px, 1360px); }
+  .archive-page .site-nav a { padding-inline: 9px; font-size: 13.5px; }
+  .archive-page > main { width: min(100% - 32px, 1360px); }
+  .archive-page :is(.bio-layout, .archive-layout, .revision-layout) { grid-template-columns: 220px minmax(0, 1fr); gap: 22px; }
+}
+
+@media (max-width: 820px) {
+  :root { --masthead-h: auto; }
+  .archive-page .site-header-inner { width: 100%; min-height: auto; padding: 12px 16px 0; flex-wrap: wrap; gap: 9px; }
+  .archive-page .brand-seal { width: 34px; height: 34px; font-size: 18px; }
+  .archive-page .brand-copy strong { font-size: 18px; }
+  .archive-page .brand-copy small { font-size: 9px; }
+  .archive-page .site-nav { width: calc(100% + 32px); margin: 0 -16px; padding: 0 12px 10px; overflow-x: auto; scrollbar-width: none; }
+  .archive-page .site-nav::-webkit-scrollbar { display: none; }
+  .archive-page .site-nav a { flex: 0 0 auto; min-height: 36px; padding: 8px 10px; font-size: 13px; }
+  .archive-page > main { width: min(100% - 28px, 1360px); padding: 36px 0 58px; }
+  .archive-page .hero { padding-bottom: 24px; margin-bottom: 24px; }
+  .archive-page .hero h1,
+  .archive-page .hero-card h1 { font-size: clamp(36px, 12vw, 50px); }
+  .archive-page :is(.bio-layout, .archive-layout, .revision-layout) { display: block; }
+  .archive-page :is(.bio-toc, .archive-toc, .revision-toc) {
+    position: static;
+    max-height: none;
+    margin-bottom: 18px;
+    padding: 8px 0 10px;
+    overflow-x: auto;
+  }
+  .archive-page :is(.bio-toc-list, .toc-tree, .toc-docs) { display: flex; gap: 6px; min-width: max-content; }
+  .archive-page :is(.bio-toc-title, .toc-title) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .archive-page :is(.bio-toc-item, .toc-doc) { width: auto; min-width: 132px; padding: 9px 11px; }
+  .page-migration .hero { display: block; }
+  .page-migration .stats.panel { margin-top: 22px; }
+  .archive-page .footer-inner { width: min(100% - 32px, 1360px); }
+}
+
+@media (max-width: 560px) {
+  .archive-page .brand-copy small { display: none; }
+  .archive-page .site-nav a { font-size: 12.5px; }
+  .archive-page .hero > p:last-child,
+  .archive-page .hero-card > p:last-child { font-size: 14px; }
+  .archive-page :is(.bio-head, .section-head, .article-head) { padding: 20px 18px 16px; }
+  .archive-page :is(.bio-columns, .doc-columns, .two-column) { grid-template-columns: 1fr; }
+  .archive-page .footer-note { width: 100%; }
+}
