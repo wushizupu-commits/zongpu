@@ -2,15 +2,21 @@
   const pages = new Set(["index.html", "tree.html", "biographies.html", "image_archive.html", "family_customs.html", "revisions.html", "source_migration.html"]);
   const paper = { "index.html": "home.html", "tree.html": "index.html?view=tree" };
   const current = location.pathname.split("/").pop();
-  if (matchMedia("(max-width: 820px)").matches) {
-    location.replace(`../${paper[current] || current}`);
+  const mobileQuery = matchMedia("(max-width: 820px)");
+  const paperUrl = () => new URL(`../${paper[current] || current}`, location.href).href;
+  const returnToPaper = () => location.replace(paperUrl());
+  if (mobileQuery.matches) {
+    returnToPaper();
     return;
   }
+  mobileQuery.addEventListener("change", ({ matches }) => {
+    if (matches) returnToPaper();
+  });
   function mapLinks() {
     document.querySelectorAll("a[href]").forEach((link) => {
       const value = link.getAttribute("href");
       const [path, suffix = ""] = value.split(/(?=[?#])/);
-      if (pages.has(path)) link.href = new URL(`ink-archive/${path}${suffix}`, new URL("../", location.href)).href;
+      if (pages.has(path)) link.href = new URL(`${path}${suffix}`, location.href).href;
     });
   }
   async function copyCurrentLink(button) {
@@ -46,7 +52,7 @@
     toggle.innerHTML = '<span>纸卷</span><input type="checkbox" checked aria-label="切换为当前纸卷皮肤"><i aria-hidden="true"></i><span>墨砚</span>';
     toggle.querySelector("input").addEventListener("change", () => {
       localStorage.setItem("zongpu-ui-skin", "paper");
-      location.assign(new URL(`../${paper[current] || current}`, location.href).href);
+      location.assign(paperUrl());
     });
     header.append(toggle);
     const share = document.createElement("button");
