@@ -1,9 +1,7 @@
 (() => {
-  const pages = new Set(["index.html", "tree.html", "biographies.html", "image_archive.html", "family_customs.html", "revisions.html", "source_migration.html"]);
-  const paper = { "index.html": "home.html", "tree.html": "index.html?view=tree" };
-  const current = location.pathname.split("/").pop();
+  const site = window.ZongpuSite;
   const mobileQuery = matchMedia("(max-width: 820px)");
-  const paperUrl = () => new URL(`../${paper[current] || current}`, location.href).href;
+  const paperUrl = () => site.paperUrl();
   const returnToPaper = () => location.replace(paperUrl());
   if (mobileQuery.matches) {
     returnToPaper();
@@ -12,33 +10,17 @@
   mobileQuery.addEventListener("change", ({ matches }) => {
     if (matches) returnToPaper();
   });
-  function mapLinks() {
-    document.querySelectorAll("a[href]").forEach((link) => {
-      const value = link.getAttribute("href");
-      const [path, suffix = ""] = value.split(/(?=[?#])/);
-      if (pages.has(path)) link.href = new URL(`${path}${suffix}`, location.href).href;
-    });
+  function mapLink(link) {
+    if (!link) return;
+    const target = site.inkLink(link.getAttribute("href"));
+    if (target) link.href = target;
   }
-  async function copyCurrentLink(button) {
-    try {
-      if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(location.href);
-      else {
-        const field = document.createElement("textarea");
-        field.value = location.href;
-        field.setAttribute("readonly", "");
-        field.style.cssText = "position:fixed;opacity:0;pointer-events:none";
-        document.body.append(field);
-        field.select();
-        if (!document.execCommand("copy")) throw new Error("copy failed");
-        field.remove();
-      }
-      button.classList.add("is-copied");
-      button.querySelector("span").textContent = "已复制";
-      window.setTimeout(() => { button.classList.remove("is-copied"); button.querySelector("span").textContent = "分享"; }, 1600);
-    } catch {
-      button.querySelector("span").textContent = "复制失败";
-      window.setTimeout(() => { button.querySelector("span").textContent = "分享"; }, 1600);
-    }
+  function mapLinks() {
+    document.querySelectorAll("a[href]").forEach(mapLink);
+    // Person detail links are created after the initial page load.
+    ["click", "auxclick", "contextmenu"].forEach(type => {
+      document.addEventListener(type, event => mapLink(event.target.closest("a[href]")), true);
+    });
   }
   document.addEventListener("DOMContentLoaded", () => {
     mapLinks();
@@ -51,8 +33,9 @@
     toggle.className = "skin-toggle";
     toggle.innerHTML = '<span>纸卷</span><input type="checkbox" checked aria-label="切换为当前纸卷皮肤"><i aria-hidden="true"></i><span>墨砚</span>';
     toggle.querySelector("input").addEventListener("change", () => {
-      localStorage.setItem("zongpu-ui-skin", "paper");
-      location.assign(paperUrl());
+      const target = new URL(paperUrl());
+      if (!site.writeSkin("paper")) target.searchParams.set("skin", "paper");
+      location.assign(target.href);
     });
     header.append(toggle);
     const share = document.createElement("button");
@@ -60,7 +43,7 @@
     share.className = "share-link";
     share.setAttribute("aria-label", "复制当前页面链接");
     share.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3-5.5 5.5h3.75V14h3.5V8.5h3.75L12 3ZM6 15v4.5c0 .83.67 1.5 1.5 1.5h9c.83 0 1.5-.67 1.5-1.5V15h-2v4H8v-4H6Z"/></svg><span>分享</span>';
-    share.addEventListener("click", () => copyCurrentLink(share));
+    share.addEventListener("click", () => site.copyLink(share));
     header.append(share);
   });
 })();

@@ -1501,6 +1501,13 @@ const NODE_W = 176;
       updateLineage(key);
       const node = key === "__root__" ? root : nodeMap.get(key);
       if (!node) return;
+      // Sharing or changing skins should retain the person currently being read.
+      const personUrl = new URL(window.location.href);
+      if (key === "__root__") personUrl.searchParams.delete("person");
+      else personUrl.searchParams.set("person", node.id);
+      if (personUrl.pathname.endsWith("/index.html")) personUrl.searchParams.set("view", "tree");
+      if (personUrl.hash.startsWith("#person=")) personUrl.hash = "";
+      try { window.history.replaceState(null, "", personUrl.href); } catch { /* File previews may disallow history updates. */ }
       showDetailPanel();
 
       if (key === "__root__") {
@@ -1621,7 +1628,8 @@ const NODE_W = 176;
     function revealPersonFromRoute() {
       const params = new URLSearchParams(window.location.search);
       let targetId = params.get("person") || "";
-      const hash = decodeURIComponent(window.location.hash || "").replace(/^#/, "");
+      let hash = window.location.hash.slice(1);
+      try { hash = decodeURIComponent(hash); } catch { hash = ""; }
       if (!targetId && hash.startsWith("person=")) targetId = hash.slice("person=".length);
       const node = findNodeByPersonRouteId(targetId);
       if (!node) return false;

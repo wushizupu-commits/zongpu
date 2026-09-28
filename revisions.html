@@ -808,7 +808,8 @@
     }
   </style>
   <link rel="stylesheet" href="assets/mobile-nav.css?v=20260818-nav-v3" />
-  <script defer src="assets/skin-switcher.js?v=20260818-share3"></script>
+  <script defer src="assets/site-tools.js?v=20260928"></script>
+  <script defer src="assets/skin-switcher.js?v=20260928"></script>
 </head>
 <body>
 
@@ -1341,16 +1342,52 @@
   <script>
     const tocItems = Array.from(document.querySelectorAll(".toc-doc"));
     const articlePanels = Array.from(document.querySelectorAll(".revision-page"));
+    // Keep previous/next navigation in the same order as the visible catalogue.
+    const orderedArticles = tocItems.map(item => item.dataset.target);
+    articlePanels.forEach(panel => {
+      const pager = panel.querySelector(".article-pager");
+      const index = orderedArticles.indexOf(panel.dataset.article);
+      if (!pager || index < 0) return;
+      pager.replaceChildren();
+      [-1, 1].forEach(direction => {
+        const target = orderedArticles[index + direction];
+        if (!target) {
+          const spacer = document.createElement("span");
+          spacer.className = "article-nav-spacer";
+          pager.append(spacer);
+          return;
+        }
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "article-nav-button" + (direction === 1 ? " next" : "");
+        button.dataset.target = target;
+        button.append(direction === 1 ? "下一篇 →" : "← 上一篇", document.createElement("br"));
+        const title = document.createElement("strong");
+        title.textContent = tocItems[index + direction].textContent.trim();
+        button.append(title);
+        pager.append(button);
+      });
+    });
     const pagerButtons = Array.from(document.querySelectorAll(".article-nav-button"));
+    const defaultArticle = tocItems[0].dataset.target;
+    function articleFromLocation() {
+      try { return decodeURIComponent(location.hash.slice(1)) || defaultArticle; }
+      catch { return defaultArticle; }
+    }
     function activateArticle(target, pushHash = true) {
       if (!articlePanels.some(panel => panel.dataset.article === target)) return;
-      tocItems.forEach(item => item.classList.toggle("active", item.dataset.target === target));
+      tocItems.forEach(item => {
+        const active = item.dataset.target === target;
+        item.classList.toggle("active", active);
+        if (active) item.setAttribute("aria-current", "true");
+        else item.removeAttribute("aria-current");
+      });
       articlePanels.forEach(panel => panel.classList.toggle("active", panel.dataset.article === target));
       const activePanel = articlePanels.find(panel => panel.dataset.article === target);
       if (activePanel) {
         activePanel.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-      if (pushHash) {
+      if (pushHash && location.hash !== `#${target}`) {
         history.pushState(null, "", `#${target}`);
       }
     }
@@ -1360,14 +1397,8 @@
     pagerButtons.forEach(button => {
       button.addEventListener("click", () => activateArticle(button.dataset.target));
     });
-    const initialHash = decodeURIComponent(location.hash || "").replace(/^#/, "");
-    if (initialHash) {
-      activateArticle(initialHash, false);
-    }
-    window.addEventListener("popstate", () => {
-      const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
-      if (hash) activateArticle(hash, false);
-    });
+    if (location.hash) activateArticle(articleFromLocation(), false);
+    window.addEventListener("popstate", () => activateArticle(articleFromLocation(), false));
     const revisionImageTriggers = Array.from(document.querySelectorAll(".revision-image-trigger"));
     const revisionLightbox = document.querySelector(".revision-lightbox");
     const revisionLightboxImage = revisionLightbox.querySelector("img");

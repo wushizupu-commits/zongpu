@@ -625,7 +625,8 @@
     }
   </style>
   <link rel="stylesheet" href="assets/mobile-nav.css?v=20260818-nav-v3" />
-  <script defer src="assets/skin-switcher.js?v=20260818-share3"></script>
+  <script defer src="assets/site-tools.js?v=20260928"></script>
+  <script defer src="assets/skin-switcher.js?v=20260928"></script>
 </head>
 <body>
 
@@ -1048,22 +1049,28 @@
     const tocItems = Array.from(document.querySelectorAll(".bio-toc-item"));
     const articlePanels = Array.from(document.querySelectorAll(".bio-page"));
     const pagerButtons = Array.from(document.querySelectorAll(".bio-nav-button"));
+    const defaultArticle = tocItems[0].dataset.target;
+    function articleFromLocation() {
+      try { return decodeURIComponent(location.hash.slice(1)) || defaultArticle; }
+      catch { return defaultArticle; }
+    }
     function activateArticle(target, pushHash = true) {
       if (!articlePanels.some(panel => panel.dataset.article === target)) return;
-      tocItems.forEach(item => item.classList.toggle("active", item.dataset.target === target));
+      tocItems.forEach(item => {
+        const active = item.dataset.target === target;
+        item.classList.toggle("active", active);
+        if (active) item.setAttribute("aria-current", "true");
+        else item.removeAttribute("aria-current");
+      });
       articlePanels.forEach(panel => panel.classList.toggle("active", panel.dataset.article === target));
       const activePanel = articlePanels.find(panel => panel.dataset.article === target);
       if (activePanel) activePanel.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (pushHash) history.pushState(null, "", `#${target}`);
+      if (pushHash && location.hash !== `#${target}`) history.pushState(null, "", `#${target}`);
     }
     tocItems.forEach(item => item.addEventListener("click", () => activateArticle(item.dataset.target)));
     pagerButtons.forEach(button => button.addEventListener("click", () => activateArticle(button.dataset.target)));
-    const initialHash = decodeURIComponent(location.hash || "").replace(/^#/, "");
-    if (initialHash) activateArticle(initialHash, false);
-    window.addEventListener("popstate", () => {
-      const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
-      if (hash) activateArticle(hash, false);
-    });
+    if (location.hash) activateArticle(articleFromLocation(), false);
+    window.addEventListener("popstate", () => activateArticle(articleFromLocation(), false));
   </script>
 </body>
 </html>

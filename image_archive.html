@@ -131,7 +131,8 @@
     }
   </style>
   <link rel="stylesheet" href="assets/mobile-nav.css?v=20260818-nav-v3" />
-  <script defer src="assets/skin-switcher.js?v=20260818-share3"></script>
+  <script defer src="assets/site-tools.js?v=20260928"></script>
+  <script defer src="assets/skin-switcher.js?v=20260928"></script>
 </head>
 <body>
   <header class="site-header"><div class="site-header-inner"><div class="site-brand">延陵吴氏</div><nav class="site-nav" aria-label="站点一级目录"><a class="nav-link" href="./home.html">首页</a><a class="nav-link" href="./index.html?view=tree">世系族谱</a><a class="nav-link" href="./biographies.html">族贤传略</a><a class="nav-link active" href="./image_archive.html" aria-current="page">宗族图志</a><a class="nav-link" href="./family_customs.html">家训礼俗</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link" href="./source_migration.html">源流迁徙</a></nav></div></header>
@@ -471,13 +472,17 @@
       if (!sections.some(section => section.dataset.section === target)) return;
       tocItems.forEach(item => item.classList.toggle('active', item.dataset.target === target));
       sections.forEach(section => section.classList.toggle('active', section.dataset.section === target));
-      if (pushHash) history.replaceState(null, '', '#' + target);
+      if (pushHash && location.hash !== '#' + target) history.pushState(null, '', '#' + target);
       const active = sections.find(section => section.dataset.section === target);
       if (active) active.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     tocItems.forEach(item => item.addEventListener('click', () => activateSection(item.dataset.target)));
-    const initial = decodeURIComponent(location.hash.replace('#',''));
-    if (initial) activateSection(initial, false);
+    function sectionFromLocation() {
+      try { return decodeURIComponent(location.hash.slice(1)) || tocItems[0].dataset.target; }
+      catch { return tocItems[0].dataset.target; }
+    }
+    if (location.hash) activateSection(sectionFromLocation(), false);
+    window.addEventListener('popstate', () => activateSection(sectionFromLocation(), false));
     const aiPortraits = {
       '處士國樂公容像': 'assets/image_archive/ai_ancestors/guole.png',
       '耆賓元杰公容像': 'assets/image_archive/ai_ancestors/yuanjie.png',
