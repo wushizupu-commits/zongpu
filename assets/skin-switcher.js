@@ -1,6 +1,6 @@
 (() => {
   const site = window.ZongpuSite;
-  const media = window.matchMedia("(max-width: 820px)");
+  const media = window.matchMedia("(max-width: 820px), (max-width: 1024px) and (max-height: 500px)");
   const ink = "ink-archive";
   const isMobile = () => media.matches;
   const skinUrl = () => site.inkUrl();
@@ -43,7 +43,7 @@
     document.head.append(link);
     const toggleStyle = document.createElement("link");
     toggleStyle.rel = "stylesheet";
-    toggleStyle.href = "assets/skin-toggle.css?v=20260928";
+    toggleStyle.href = "assets/skin-toggle.css?v=20260929-mobile-audit";
     document.head.append(toggleStyle);
     const toggle = mount();
     if (toggle) {

@@ -4,7 +4,7 @@
   <base href="../" />
   <link rel="icon" href="assets/wu-genealogy-mark.svg?v=20260805" type="image/svg+xml" />
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>历代修谱｜延陵吴氏</title>
   <meta name="description" content="延陵吴氏婺源支历代修谱档案：光绪乙未、民国丙戌、辛巳与丙午四次修谱序跋凡例。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -813,8 +813,10 @@
     }
   </style>
   <link rel="stylesheet" href="ink-archive/assets/archive-redesign.css?v=20260813-light-toc" />
-  <script defer src="assets/site-tools.js?v=20260928"></script>
-  <script defer src="assets/ink-archive-bridge.js?v=20260928"></script>
+  <script defer src="assets/site-tools.js?v=20260929-mobile-audit"></script>
+  <script defer src="assets/ink-archive-bridge.js?v=20260929-mobile-audit"></script>
+  <link rel="stylesheet" href="assets/image-preview.css?v=20260929-mobile-audit" />
+  <script defer src="assets/image-preview.js?v=20260929-mobile-audit"></script>
 </head>
 <body class="archive-page page-revisions">
 
@@ -1349,13 +1351,13 @@
       <p class="footer-note">据光绪乙未、民国丙戌、辛巳、丙午历代谱牒整理 · 数字化重排</p>
     </div>
   </footer>
-  <div class="revision-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="revision-preview-title">
+  <dialog class="revision-lightbox image-preview" role="dialog" aria-modal="true" aria-labelledby="revision-preview-title">
     <div class="revision-lightbox-bar">
       <strong id="revision-preview-title">原图预览</strong>
       <button class="revision-lightbox-close" type="button" aria-label="关闭原图预览">×</button>
     </div>
     <img alt="" />
-  </div>
+  </dialog>
   <script>
     const tocItems = Array.from(document.querySelectorAll(".toc-doc"));
     const articlePanels = Array.from(document.querySelectorAll(".revision-page"));
@@ -1416,43 +1418,7 @@
     });
     if (location.hash) activateArticle(articleFromLocation(), false);
     window.addEventListener("popstate", () => activateArticle(articleFromLocation(), false));
-    const revisionImageTriggers = Array.from(document.querySelectorAll(".revision-image-trigger"));
-    const revisionLightbox = document.querySelector(".revision-lightbox");
-    const revisionLightboxImage = revisionLightbox.querySelector("img");
-    const revisionLightboxTitle = revisionLightbox.querySelector("strong");
-    const revisionLightboxClose = revisionLightbox.querySelector(".revision-lightbox-close");
-    let revisionPreviewReturnFocus = null;
-    function openRevisionPreview(trigger) {
-      revisionPreviewReturnFocus = document.activeElement;
-      revisionLightboxImage.src = trigger.dataset.full;
-      revisionLightboxImage.alt = trigger.dataset.alt || trigger.dataset.title || "原图";
-      revisionLightboxTitle.textContent = trigger.dataset.title || "原图预览";
-      revisionLightbox.classList.add("active");
-      revisionLightbox.setAttribute("aria-hidden", "false");
-      document.body.classList.add("revision-preview-open");
-      revisionLightboxClose.focus({ preventScroll: true });
-    }
-    function closeRevisionPreview() {
-      if (!revisionLightbox.classList.contains("active")) return;
-      revisionLightbox.classList.remove("active");
-      revisionLightbox.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("revision-preview-open");
-      revisionLightboxImage.removeAttribute("src");
-      revisionLightboxImage.alt = "";
-      if (revisionPreviewReturnFocus instanceof HTMLElement) {
-        revisionPreviewReturnFocus.focus({ preventScroll: true });
-      }
-    }
-    revisionImageTriggers.forEach(trigger => {
-      trigger.addEventListener("click", () => openRevisionPreview(trigger));
-    });
-    revisionLightboxClose.addEventListener("click", closeRevisionPreview);
-    revisionLightbox.addEventListener("click", event => {
-      if (event.target === revisionLightbox) closeRevisionPreview();
-    });
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeRevisionPreview();
-    });
+
   </script>
 </body>
 </html>

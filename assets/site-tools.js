@@ -92,6 +92,6 @@
   window.ZongpuSite = { paperUrl, inkUrl, inkLink, readSkin, writeSkin, copyLink };
   const style = document.createElement("link");
   style.rel = "stylesheet";
-  style.href = new URL("site-tools.css?v=20260928", document.currentScript.src).href;
+  style.href = new URL("site-tools.css?v=20260929-mobile-audit", document.currentScript.src).href;
   document.head.append(style);
 })();

@@ -1818,7 +1818,9 @@
       }
     }
 
-    @media (max-width: 760px) {
+    .detail-close { display: none; }
+
+    @media (max-width: 820px), (max-width: 1024px) and (max-height: 500px) {
       body {
         display: block;
         height: auto;

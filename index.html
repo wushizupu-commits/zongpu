@@ -2,14 +2,14 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>族谱人物子嗣关系交互图</title>
   <link rel="icon" href="assets/wu-genealogy-mark.svg?v=20260805" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/zongpu.css?v=20260710-mobile-toolbar" />
-  <link rel="stylesheet" href="assets/mobile-nav.css?v=20260818-nav-v3" />
-  <link rel="stylesheet" href="assets/paper-brand.css?v=20260928" />
-  <script defer src="assets/site-tools.js?v=20260928"></script>
-  <script defer src="assets/skin-switcher.js?v=20260928"></script>
+  <link rel="stylesheet" href="assets/zongpu.css?v=20260929-mobile-audit" />
+  <link rel="stylesheet" href="assets/mobile-nav.css?v=20260929-mobile-audit" />
+  <link rel="stylesheet" href="assets/paper-brand.css?v=20260929-mobile-audit" />
+  <script defer src="assets/site-tools.js?v=20260929-mobile-audit"></script>
+  <script defer src="assets/skin-switcher.js?v=20260929-mobile-audit"></script>
   <script>if (!location.search && !location.hash) location.replace("./home.html");</script>
 </head>
 <body>
@@ -30,7 +30,7 @@
           <button id="sidebarCollapseBtn" class="icon-button" title="收起人物搜索" aria-label="收起人物搜索"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></span></button>
         </div>
         <p>节点只显示姓名与 ID。单击任意有子嗣的节点即可展开或收起其子节点；选中人物的祖先链路会以流动线条标出。</p>
-        <input id="search" class="search" placeholder="搜索姓名或 ID" autocomplete="off" />
+        <input id="search" class="search" type="search" aria-label="搜索姓名或 ID" placeholder="搜索姓名或 ID" autocomplete="off" enterkeyhint="search" />
         <div class="results" id="results"></div>
         <h2>图例</h2>
         <div class="legend">
@@ -93,6 +93,7 @@
     <aside class="detail" id="detailPane">
       <div class="side-inner">
         <div class="detail-heading">
+          <button id="detailCloseBtn" class="icon-button detail-close" type="button" title="收起人物详情" aria-label="收起人物详情"><span aria-hidden="true">×</span></button>
           <div class="detail-tags" id="detailTags" hidden></div>
           <h1 id="detailTitle">请选择人物</h1>
           <p id="detailMeta">点击图中人物后，这里显示用于核对关系的最小信息。</p>
@@ -145,6 +146,6 @@
   </div>
 
   <script src="assets/zongpu-data.js"></script>
-  <script src="assets/zongpu-app.js?v=20260928"></script>
+  <script src="assets/zongpu-app.js?v=20260929-mobile-audit"></script>
 </body>
 </html>

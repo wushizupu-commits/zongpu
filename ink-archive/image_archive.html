@@ -4,7 +4,7 @@
   <base href="../" />
   <link rel="icon" href="assets/wu-genealogy-mark.svg?v=20260805" type="image/svg+xml" />
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>宗族图志｜延陵吴氏</title>
   <meta name="description" content="延陵吴氏婺源支宗族图志：先祖画像、符溪图志、祖莹墓图与排行诗卷影像档案。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -136,8 +136,10 @@
     }
   </style>
   <link rel="stylesheet" href="ink-archive/assets/archive-redesign.css?v=20260813-light-toc" />
-  <script defer src="assets/site-tools.js?v=20260928"></script>
-  <script defer src="assets/ink-archive-bridge.js?v=20260928"></script>
+  <script defer src="assets/site-tools.js?v=20260929-mobile-audit"></script>
+  <script defer src="assets/ink-archive-bridge.js?v=20260929-mobile-audit"></script>
+  <link rel="stylesheet" href="assets/image-preview.css?v=20260929-mobile-audit" />
+  <script defer src="assets/image-preview.js?v=20260929-mobile-audit"></script>
 </head>
 <body class="archive-page page-images">
   <header class="site-header">
@@ -486,7 +488,7 @@
       <p class="footer-note">据光绪乙未、民国丙戌、辛巳、丙午历代谱牒整理 · 数字化重排</p>
     </div>
   </footer>
-  <div class="lightbox" role="dialog" aria-modal="true" aria-label="高清大图预览"><div class="lightbox-bar"><strong></strong><button class="lightbox-close" type="button" aria-label="关闭">×</button></div><img alt=""></div>
+  <dialog class="lightbox image-preview" role="dialog" aria-modal="true" aria-label="高清大图预览"><div class="lightbox-bar"><strong></strong><button class="lightbox-close" type="button" aria-label="关闭">×</button></div><img alt=""></dialog>
   <script>
     const tocItems = Array.from(document.querySelectorAll('.toc-doc'));
     const sections = Array.from(document.querySelectorAll('.archive-section'));
@@ -566,19 +568,7 @@
       range.addEventListener('click', event => event.stopPropagation());
       range.addEventListener('pointerdown', event => event.stopPropagation());
     });
-    const lightbox = document.querySelector('.lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const lightboxTitle = lightbox.querySelector('strong');
-    document.querySelectorAll('.image-open').forEach(button => button.addEventListener('click', () => {
-      lightboxImg.src = button.dataset.src;
-      lightboxImg.alt = button.dataset.title || '';
-      lightboxTitle.textContent = button.dataset.title || '高清大图';
-      lightbox.classList.add('active');
-    }));
-    function closeLightbox() { lightbox.classList.remove('active'); lightboxImg.removeAttribute('src'); }
-    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLightbox(); });
+
   </script>
 </body>
 </html>

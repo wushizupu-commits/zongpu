@@ -1,6 +1,6 @@
 (() => {
   const site = window.ZongpuSite;
-  const mobileQuery = matchMedia("(max-width: 820px)");
+  const mobileQuery = matchMedia("(max-width: 820px), (max-width: 1024px) and (max-height: 500px)");
   const paperUrl = () => site.paperUrl();
   const returnToPaper = () => location.replace(paperUrl());
   if (mobileQuery.matches) {
@@ -25,7 +25,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     mapLinks();
     const style = document.createElement("style");
-    style.textContent = ".skin-toggle{display:inline-flex;align-items:center;gap:8px;margin-left:auto;color:#e9dcc2;font:700 12px/1 'Noto Sans SC','Microsoft YaHei',sans-serif;white-space:nowrap;cursor:pointer}.skin-toggle input{position:absolute;opacity:0;pointer-events:none}.skin-toggle i{position:relative;width:38px;height:22px;border:1px solid rgba(214,192,143,.72);border-radius:999px;background:rgba(255,255,255,.08);transition:.18s}.skin-toggle i::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#e9dcc2;transition:.18s}.skin-toggle input:checked+i{background:#b23a26;border-color:#dc785c}.skin-toggle input:checked+i::after{transform:translateX(16px);background:#fff8e8}.share-link{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;padding:7px 10px;border:1px solid rgba(214,192,143,.72);border-radius:999px;background:rgba(255,255,255,.06);color:#e9dcc2;font:700 13px/1 'Noto Sans SC','Microsoft YaHei',sans-serif;cursor:pointer}.share-link:hover{border-color:#e58461;background:rgba(190,59,35,.22)}.share-link.is-copied{border-color:#83c6b5;background:rgba(38,106,102,.35);color:#d7f1e7}.share-link svg{width:14px;height:14px;fill:currentColor}@media(max-width:820px){.skin-toggle{display:none}.share-link{display:none}}";
+    style.textContent = ".skin-toggle{display:inline-flex;align-items:center;gap:8px;margin-left:auto;color:#e9dcc2;font:700 12px/1 'Noto Sans SC','Microsoft YaHei',sans-serif;white-space:nowrap;cursor:pointer}.skin-toggle input{position:absolute;opacity:0;pointer-events:none}.skin-toggle i{position:relative;width:38px;height:22px;border:1px solid rgba(214,192,143,.72);border-radius:999px;background:rgba(255,255,255,.08);transition:.18s}.skin-toggle i::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#e9dcc2;transition:.18s}.skin-toggle input:checked+i{background:#b23a26;border-color:#dc785c}.skin-toggle input:checked+i::after{transform:translateX(16px);background:#fff8e8}.share-link{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;padding:7px 10px;border:1px solid rgba(214,192,143,.72);border-radius:999px;background:rgba(255,255,255,.06);color:#e9dcc2;font:700 13px/1 'Noto Sans SC','Microsoft YaHei',sans-serif;cursor:pointer}.share-link:hover{border-color:#e58461;background:rgba(190,59,35,.22)}.share-link.is-copied{border-color:#83c6b5;background:rgba(38,106,102,.35);color:#d7f1e7}.share-link svg{width:14px;height:14px;fill:currentColor}@media(max-width: 820px), (max-width: 1024px) and (max-height: 500px){.skin-toggle{display:none}.share-link{display:none}}";
     document.head.append(style);
     const header = document.querySelector(".masthead-inner, .site-header-inner");
     if (!header) return;

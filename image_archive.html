@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>宗族图志｜延陵吴氏</title>
   <link rel="icon" href="assets/wu-genealogy-mark.svg?v=20260805" type="image/svg+xml" />
   <style>
@@ -130,10 +130,12 @@
       .compare-handle::before { width:40px; height:32px; }
     }
   </style>
-  <link rel="stylesheet" href="assets/mobile-nav.css?v=20260818-nav-v3" />
-  <link rel="stylesheet" href="assets/paper-brand.css?v=20260928" />
-  <script defer src="assets/site-tools.js?v=20260928"></script>
-  <script defer src="assets/skin-switcher.js?v=20260928"></script>
+  <link rel="stylesheet" href="assets/mobile-nav.css?v=20260929-mobile-audit" />
+  <link rel="stylesheet" href="assets/paper-brand.css?v=20260929-mobile-audit" />
+  <script defer src="assets/site-tools.js?v=20260929-mobile-audit"></script>
+  <script defer src="assets/skin-switcher.js?v=20260929-mobile-audit"></script>
+  <link rel="stylesheet" href="assets/image-preview.css?v=20260929-mobile-audit" />
+  <script defer src="assets/image-preview.js?v=20260929-mobile-audit"></script>
 </head>
 <body>
   <header class="site-header"><div class="site-header-inner"><a class="site-brand paper-brand" href="./home.html" aria-label="吴氏数字家族博物馆首页"><span class="paper-brand-seal" aria-hidden="true">吳</span><span class="paper-brand-copy"><strong>吴氏数字家族博物馆</strong><small>延陵吴氏</small></span></a><nav class="site-nav" aria-label="站点一级目录"><a class="nav-link" href="./home.html">首页</a><a class="nav-link" href="./index.html?view=tree">世系族谱</a><a class="nav-link" href="./biographies.html">族贤传略</a><a class="nav-link active" href="./image_archive.html" aria-current="page">宗族图志</a><a class="nav-link" href="./family_customs.html">家训礼俗</a><a class="nav-link" href="./revisions.html">历代修谱</a><a class="nav-link" href="./source_migration.html">源流迁徙</a></nav></div></header>
@@ -465,7 +467,7 @@
       </section></div>
     </section>
   </main>
-  <div class="lightbox" role="dialog" aria-modal="true" aria-label="高清大图预览"><div class="lightbox-bar"><strong></strong><button class="lightbox-close" type="button" aria-label="关闭">×</button></div><img alt=""></div>
+  <dialog class="lightbox image-preview" role="dialog" aria-modal="true" aria-label="高清大图预览"><div class="lightbox-bar"><strong></strong><button class="lightbox-close" type="button" aria-label="关闭">×</button></div><img alt=""></dialog>
   <script>
     const tocItems = Array.from(document.querySelectorAll('.toc-doc'));
     const sections = Array.from(document.querySelectorAll('.archive-section'));
@@ -545,19 +547,7 @@
       range.addEventListener('click', event => event.stopPropagation());
       range.addEventListener('pointerdown', event => event.stopPropagation());
     });
-    const lightbox = document.querySelector('.lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const lightboxTitle = lightbox.querySelector('strong');
-    document.querySelectorAll('.image-open').forEach(button => button.addEventListener('click', () => {
-      lightboxImg.src = button.dataset.src;
-      lightboxImg.alt = button.dataset.title || '';
-      lightboxTitle.textContent = button.dataset.title || '高清大图';
-      lightbox.classList.add('active');
-    }));
-    function closeLightbox() { lightbox.classList.remove('active'); lightboxImg.removeAttribute('src'); }
-    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLightbox(); });
+
   </script>
 </body>
 </html>

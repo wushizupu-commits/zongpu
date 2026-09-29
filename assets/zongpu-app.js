@@ -111,7 +111,7 @@ const NODE_W = 176;
     let mobileSidebarInitialized = false;
     const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const coarsePointerQuery = window.matchMedia ? window.matchMedia("(hover: none), (pointer: coarse)") : null;
-    const narrowViewportQuery = window.matchMedia ? window.matchMedia("(max-width: 760px)") : null;
+    const narrowViewportQuery = window.matchMedia ? window.matchMedia("(max-width: 820px), (max-width: 1024px) and (max-height: 500px)") : null;
 
     function isTouchOptimized() {
       return Boolean((coarsePointerQuery && coarsePointerQuery.matches) || (narrowViewportQuery && narrowViewportQuery.matches));
@@ -151,6 +151,18 @@ const NODE_W = 176;
 
     function isDetailPanelVisible() {
       return !appEl.classList.contains("detail-hidden");
+    }
+
+    function setSearchPanel(open) {
+      appEl.classList.toggle("sidebar-hidden", !open);
+      sidebarOpenBtn.setAttribute("aria-expanded", String(open));
+      if (!open) searchInput.blur();
+      if (open && isTouchOptimized()) {
+        hideDetailPanel();
+        window.scrollTo({ top: 0, behavior: "instant" });
+        // Keep focus in the tap handler so iOS can open the keyboard.
+        searchInput.focus({ preventScroll: true });
+      }
     }
 
     function initializeCollapse(node, depth = 0) {
@@ -1723,8 +1735,8 @@ const NODE_W = 176;
       }).join("") || `<p>没有匹配结果。</p>`;
       for (const button of resultsEl.querySelectorAll(".result")) {
         button.addEventListener("click", () => {
+          if (isTouchOptimized()) setSearchPanel(false);
           revealNode(button.dataset.key);
-          if (isTouchOptimized()) appEl.classList.add("sidebar-hidden");
         });
       }
       render();
@@ -2179,6 +2191,17 @@ const NODE_W = 176;
       if (event.key === "Escape" && !migrationModal.hidden) closeMigrationModal();
     });
     searchInput.addEventListener("input", updateSearch);
+    searchInput.addEventListener("keydown", event => {
+      if (event.isComposing) return;
+      if (event.key === "Enter") {
+        event.preventDefault();
+        resultsEl.querySelector(".result")?.click();
+      } else if (event.key === "Escape") {
+        setSearchPanel(false);
+        sidebarOpenBtn.focus({ preventScroll: true });
+        window.requestAnimationFrame(fitVisible);
+      }
+    });
     downloadPngBtn.addEventListener("click", () => {
       downloadCanvasPng().catch(error => {
         console.error(error);
@@ -2192,18 +2215,29 @@ const NODE_W = 176;
       });
     });
     sidebarCollapseBtn.addEventListener("click", () => {
-      appEl.classList.add("sidebar-hidden");
+      setSearchPanel(false);
       window.requestAnimationFrame(fitVisible);
     });
     sidebarOpenBtn.addEventListener("pointerdown", event => {
       event.stopPropagation();
     });
     sidebarOpenBtn.addEventListener("click", () => {
-      appEl.classList.remove("sidebar-hidden");
-      window.requestAnimationFrame(() => {
-        fitVisible();
-        if (isTouchOptimized()) searchInput.focus({ preventScroll: true });
-      });
+      setSearchPanel(true);
+      window.requestAnimationFrame(fitVisible);
+    });
+    document.getElementById("detailCloseBtn")?.addEventListener("click", () => {
+      hideDetailPanel();
+      window.scrollTo({ top: 0, behavior: "instant" });
+      sidebarOpenBtn.focus({ preventScroll: true });
+      window.requestAnimationFrame(fitVisible);
+    });
+    let layoutWidth = window.innerWidth;
+    let resizeFrame = 0;
+    window.addEventListener("resize", () => {
+      if (window.innerWidth === layoutWidth) return;
+      layoutWidth = window.innerWidth;
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(fitVisible);
     });
     window.zongpuTools = {
       captureCanvas,

@@ -1,0 +1,65 @@
+html.image-preview-open {
+  overflow: hidden;
+  scroll-behavior: auto;
+}
+
+body.image-preview-open {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+dialog.image-preview {
+  position: fixed;
+  inset: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  border: 0;
+  color: #fff7e8;
+  background: rgba(37, 31, 24, .94);
+  overscroll-behavior: contain;
+}
+
+dialog.image-preview[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 14px;
+}
+
+dialog.image-preview::backdrop {
+  background: rgba(37, 31, 24, .7);
+}
+
+dialog.image-preview > div {
+  min-width: 0;
+  gap: 12px;
+}
+
+dialog.image-preview strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+dialog.image-preview button {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+}
+
+dialog.image-preview img {
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
