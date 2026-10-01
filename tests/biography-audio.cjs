@@ -32,6 +32,7 @@ function setup(initialArticle = 'bio-1', scriptUrl = 'https://example.test/zongp
     play() { this.playCount++; this.paused = false; this.emit('play'); return Promise.resolve(); }
   });
   const choices = new Element('div'), speed = new Element('select'), current = new Element('span'), error = new Element('p');
+  const articleLabel = new Element('span');
   const toggle = new Element('button'), progress = new Element('input'), elapsed = new Element('span');
   const duration = new Element('span'), mute = new Element('button');
   error.parts = { span: new Element('span'), button: new Element('button') };
@@ -39,7 +40,7 @@ function setup(initialArticle = 'bio-1', scriptUrl = 'https://example.test/zongp
     const option = new Element('option'); option.value = value; speed.append(option);
   }
   const player = new Element('section');
-  player.parts = { audio, '.bio-audio-choices': choices, '.bio-audio-current': current, select: speed,
+  player.parts = { audio, '.bio-audio-choices': choices, '.bio-audio-current': current, '.bio-audio-article-title': articleLabel, select: speed,
     '.bio-audio-error': error, '.bio-audio-toggle': toggle, '.bio-audio-progress': progress,
     '.bio-audio-elapsed': elapsed, '.bio-audio-duration': duration, '.bio-audio-mute': mute };
   const panels = {};

@@ -10,7 +10,7 @@
     <div class="bio-audio-header">
       <div class="bio-audio-heading">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="12" width="4" height="8" rx="2"/><rect x="17" y="12" width="4" height="8" rx="2"/></svg>
-        <h3 id="bio-audio-heading">音频朗读</h3>
+        <h3 id="bio-audio-heading"><span class="bio-audio-heading-label">音频朗读</span><span class="bio-audio-article-title"></span></h3>
         <span class="bio-audio-current" aria-live="polite"></span>
       </div>
       <label class="bio-audio-speed">倍速<select aria-label="朗读速度">
@@ -38,6 +38,7 @@
   const audio = player.querySelector("audio");
   const choices = player.querySelector(".bio-audio-choices");
   const currentLabel = player.querySelector(".bio-audio-current");
+  const articleLabel = player.querySelector(".bio-audio-article-title");
   const speed = player.querySelector("select");
   const error = player.querySelector(".bio-audio-error");
   const toggle = player.querySelector(".bio-audio-toggle");
@@ -127,6 +128,8 @@
     if (!head) return;
     articleId = id;
     articleTitle = head.querySelector("h2").textContent.trim();
+    articleLabel.textContent = articleTitle;
+    articleLabel.title = articleTitle;
     choices.replaceChildren();
     choices.hidden = library[id].length === 1;
     currentLabel.hidden = !choices.hidden;
@@ -206,4 +209,11 @@
   window.addEventListener("pagehide", rememberAndPause);
   const active = document.querySelector(".bio-page.active");
   if (active) mount(active.id);
+  // Reserve the actual dock height, including wrapped error messages and text zoom.
+  if (window.ResizeObserver) {
+    new window.ResizeObserver(() => {
+      const height = Math.ceil(player.getBoundingClientRect().height);
+      document.documentElement.style.setProperty("--bio-audio-height", `${height}px`);
+    }).observe(player);
+  }
 })();
