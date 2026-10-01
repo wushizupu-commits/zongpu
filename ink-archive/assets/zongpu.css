@@ -1623,7 +1623,24 @@ body.tree-body .site-footer { display: none; }
 
 /* 详情面板 */
 
-.detail-heading { padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); }
+.detail-heading {
+  position: relative;
+  padding: 0 44px 14px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.detail-heading .detail-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.detail-heading .detail-tags {
+  min-height: 32px;
+  align-items: center;
+}
 
 .detail-tags {
   display: flex;
