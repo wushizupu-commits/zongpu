@@ -630,6 +630,9 @@
     }
   </style>
   <link rel="stylesheet" href="ink-archive/assets/archive-redesign.css?v=20260813-light-toc" />
+  <link rel="stylesheet" href="assets/biography-audio.css?v=20261001" />
+  <script defer src="assets/biography-audio-data.js?v=20261001"></script>
+  <script defer src="assets/biography-audio.js?v=20261001"></script>
   <script defer src="assets/site-tools.js?v=20260929-mobile-audit"></script>
   <script defer src="assets/ink-archive-bridge.js?v=20260929-mobile-audit"></script>
 </head>
@@ -1081,6 +1084,7 @@
       });
       articlePanels.forEach(panel => panel.classList.toggle("active", panel.dataset.article === target));
       const activePanel = articlePanels.find(panel => panel.dataset.article === target);
+      document.dispatchEvent(new CustomEvent("biography:change", { detail: { article: target } }));
       if (activePanel) activePanel.scrollIntoView({ behavior: "smooth", block: "start" });
       if (pushHash && location.hash !== `#${target}`) history.pushState(null, "", `#${target}`);
     }

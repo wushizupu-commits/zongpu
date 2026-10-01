@@ -43,6 +43,7 @@ function environment(href = 'https://example.test/zongpu/home.html', mobile = fa
     body, head, events, activeElement: new Element('button'), currentScript: { src: new URL('../assets/site-tools.js', href).href },
     createElement: tag => new Element(tag), execCommand: () => true,
     addEventListener(type, fn) { (events[type] ||= []).push(fn); },
+    dispatchEvent(event) { (events[event.type] || []).forEach(fn => fn(event)); },
     querySelector(selector) {
       if (selector.includes('header-inner')) return header;
       return [...header.children, ...body.children].find(x => x.className === selector.slice(1)) || null;
@@ -51,6 +52,7 @@ function environment(href = 'https://example.test/zongpu/home.html', mobile = fa
   };
   const context = {
     URL, URLSearchParams, document, location, navigator: {}, matchMedia: () => media,
+    CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } },
     localStorage: { getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value) },
     setTimeout: () => 1, clearTimeout() {}, addEventListener(type, fn) { (events[type] ||= []).push(fn); }
   };
