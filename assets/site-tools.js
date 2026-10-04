@@ -94,4 +94,10 @@
   style.rel = "stylesheet";
   style.href = new URL("site-tools.css?v=20260929-mobile-audit", document.currentScript.src).href;
   document.head.append(style);
+
+  // One shared entry point covers both skins, including pages with a <base> tag.
+  const analytics = document.createElement("script");
+  analytics.src = new URL("site-analytics.js?v=20261004-analytics", document.currentScript.src).href;
+  analytics.async = true;
+  document.head.append(analytics);
 })();
