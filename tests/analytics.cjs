@@ -53,12 +53,12 @@ function environment(page, options = {}) {
 }
 const settle = () => new Promise(resolve => setImmediate(resolve));
 
-test('all 14 content pages share one entry and map both skins to seven safe paths', async () => {
+test('all 14 content pages count silently and map both skins to seven safe paths', async () => {
   for (const page of pages) {
     for (const ink of [false, true]) {
       const file = ink ? 'ink-archive/' + ({ 'home.html': 'index.html', 'index.html': 'tree.html' }[page] || page) : page;
       const html = fs.readFileSync(path.join(root, file), 'utf8');
-      assert.equal((html.match(/src="assets\/site-tools\.js\?v=20261004-analytics"/g) || []).length, 1);
+      assert.equal((html.match(/src="assets\/site-tools\.js\?v=20261004-unlinked"/g) || []).length, 1);
       const e = environment(file + '?view=tree&person=G32-001&utm_source=x#person=G32-001', { sidebar: page === 'index.html' });
       await settle();
       assert.equal(e.calls.length, 1);
@@ -66,7 +66,8 @@ test('all 14 content pages share one entry and map both skins to seven safe path
       assert.equal(e.calls[0].headers['x-bsz-referer'], host + page);
       assert.equal(e.calls[0].referrerPolicy, 'no-referrer');
       assert.equal(e.calls[0].credentials, 'omit');
-      assert.equal((page === 'index.html' ? e.sidebar : e.body).children[0].children[0].href, host + 'analytics.html');
+      assert.equal(e.body.children.length, 0, 'no public dashboard entry');
+      assert.equal(e.sidebar.children.length, 0, 'no sidebar dashboard entry');
       assert.equal(e.storage.get('zongpu-analytics-id'), 'visitor.signature');
       e.run();
       assert.equal(e.calls.length, 1, 'duplicate script must not count again');
@@ -91,34 +92,15 @@ test('storage restrictions, unavailable service and timeouts do not retry or bre
     if (options.hang) [...e.timers.values()].forEach(fn => fn());
     await settle();
     assert.equal(e.calls.length, 1);
-    assert.equal(e.body.children.length, 1);
+    assert.equal(e.body.children.length, 0);
     assert.equal(e.timers.size, 0);
   }
 });
 
-test('dashboard loads and refreshes all rows with GET only; UV is not summed', async () => {
-  const e = environment('analytics.html');
-  await settle();
-  assert.equal(e.calls.length, 7);
-  assert.ok(e.calls.every(call => call.method === 'GET' && !call.headers.Authorization));
-  assert.equal(e.elements.get('analytics-pages').children.length, 7);
-  assert.equal(e.elements.get('analytics-site-pv').textContent, '12');
-  assert.equal(e.elements.get('analytics-site-uv').textContent, '4');
-  assert.equal(e.storage.size, 0, 'read-only dashboard does not persist visitor identity');
-  await e.elements.get('analytics-refresh').events.click();
-  assert.equal(e.calls.length, 14);
-  assert.ok(e.calls.every(call => call.method === 'GET'));
-});
-
-test('dashboard distinguishes failure from zero and local preview makes no requests', async () => {
-  for (const options of [{ failure: true }, { invalid: true }]) {
-    const e = environment('analytics.html', options);
-    await settle();
-    assert.equal(e.elements.get('analytics-site-pv').textContent, '—');
-    assert.match(e.elements.get('analytics-status').textContent, /暂时不可用/);
-    assert.equal(e.elements.get('analytics-refresh').disabled, false);
-  }
-  const e = environment('http://localhost/zongpu/analytics.html');
-  assert.equal(e.calls.length, 0);
-  assert.equal(e.elements.get('analytics-refresh').disabled, true);
+test('main website does not publish a dashboard or expose a viewer URL', () => {
+  assert.equal(fs.existsSync(path.join(root, 'analytics.html')), false);
+  assert.equal(fs.existsSync(path.join(root, 'assets/site-analytics.css')), false);
+  assert.ok(!code.includes('mountLink') && !code.includes('mountDashboard'));
+  assert.ok(!code.includes('viewer-') && !code.includes('analytics.html'));
+  assert.equal(environment('analytics.html').calls.length, 0);
 });
