@@ -1735,8 +1735,11 @@ const NODE_W = 176;
       }).join("") || `<p>没有匹配结果。</p>`;
       for (const button of resultsEl.querySelectorAll(".result")) {
         button.addEventListener("click", () => {
+          const node = nodeMap.get(button.dataset.key);
+          if (!node) return;
           if (isTouchOptimized()) setSearchPanel(false);
           revealNode(button.dataset.key);
+          document.dispatchEvent(new CustomEvent("zongpu:search-select", { detail: { nodeId: node.id } }));
         });
       }
       render();
