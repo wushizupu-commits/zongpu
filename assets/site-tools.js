@@ -97,7 +97,7 @@
 
   // One shared entry point covers both skins, including pages with a <base> tag.
   const analytics = document.createElement("script");
-  analytics.src = new URL("site-analytics.js?v=20261004-events", document.currentScript.src).href;
+  analytics.src = new URL("site-analytics.js?v=20261009-video-stats", document.currentScript.src).href;
   analytics.async = true;
   document.head.append(analytics);
 })();

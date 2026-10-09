@@ -121,6 +121,11 @@
 
   function watchEvents() {
     recordEvent("page");
+    if (canonicalFile === "home.html") {
+      document.addEventListener("zongpu:video-open", event => {
+        if (event.detail?.videoId === "family-introduction") recordEvent("video", "family-introduction");
+      });
+    }
     const allowedArticles = articles[canonicalFile];
     if (allowedArticles) {
       const selector = canonicalFile === "biographies.html" ? ".bio-page[data-article]"

@@ -32,6 +32,7 @@
     document.documentElement.classList.add('home-video-opened');
     document.body.classList.add('home-video-opened');
     dialog.showModal();
+    document.dispatchEvent(new CustomEvent('zongpu:video-open', { detail: { videoId: 'family-introduction' } }));
     closeButton.focus({ preventScroll: true });
 
     // Defer the video download until the visitor explicitly opens the player.
