@@ -121,7 +121,7 @@
 
   function watchEvents() {
     recordEvent("page");
-    if (canonicalFile === "home.html") {
+    if (canonicalFile === "home.html" || canonicalFile === "index.html") {
       document.addEventListener("zongpu:video-open", event => {
         if (event.detail?.videoId === "family-introduction") recordEvent("video", "family-introduction");
       });

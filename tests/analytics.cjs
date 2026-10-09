@@ -92,7 +92,7 @@ test('all 14 content pages count silently and map both skins to seven safe paths
     for (const ink of [false, true]) {
       const file = ink ? 'ink-archive/' + ({ 'home.html': 'index.html', 'index.html': 'tree.html' }[page] || page) : page;
       const html = fs.readFileSync(path.join(root, file), 'utf8');
-      assert.equal((html.match(/src="assets\/site-tools\.js\?v=(?:20261004-events|20261009-video-stats)"/g) || []).length, 1);
+      assert.equal((html.match(/src="assets\/site-tools\.js\?v=(?:20261004-events|20261009-video-stats-2)"/g) || []).length, 1);
       const e = environment(file + '?view=tree&person=G32-001&utm_source=x#person=G32-001', { sidebar: page === 'index.html' });
       await settle();
       assert.equal(e.calls.length, 2);
@@ -255,15 +255,15 @@ test('configuration contains only an optional public Worker address and both gen
   for (const page of ['index.html', 'ink-archive/tree.html']) {
     assert.match(fs.readFileSync(path.join(root, page), 'utf8'), /assets\/zongpu-app\.js\?v=20261004-events/);
   }
-  assert.match(fs.readFileSync(path.join(root, 'assets/site-tools.js'), 'utf8'), /site-analytics\.js\?v=20261009-video-stats/);
+  assert.match(fs.readFileSync(path.join(root, 'assets/site-tools.js'), 'utf8'), /site-analytics\.js\?v=20261009-video-stats-2/);
 });
 
  test('video events count only whitelisted homepage openings in both skins; local never sends', async () => {
-   for (const page of ['home.html','ink-archive/index.html','index.html','http://127.0.0.1:3137/site/home.html']) {
+   for (const page of ['home.html','ink-archive/index.html','index.html?view=tree','ink-archive/tree.html','biographies.html','http://127.0.0.1:3137/site/home.html']) {
      const e=environment(page,{config:{endpoint:collector}});await settle();
      for (const videoId of ['unknown','family-introduction']) e.context.document.dispatchEvent({type:'zongpu:video-open',detail:{videoId}});
      await settle();const videos=events(e).filter(event=>event.kind==='video');
-     assert.equal(videos.length,['home.html','ink-archive/index.html'].includes(page)?1:0);
-     if(videos.length)assert.deepEqual([videos[0].page,videos[0].itemId],['home.html','family-introduction']);
+     assert.equal(videos.length,['home.html','ink-archive/index.html','index.html?view=tree','ink-archive/tree.html'].includes(page)?1:0);
+     if(videos.length)assert.deepEqual([videos[0].page,videos[0].itemId],[page.includes('tree')?'index.html':'home.html','family-introduction']);
    }
  });
